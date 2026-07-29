@@ -1,0 +1,163 @@
+/* ============================================
+   BOX CLÁSSICA — Da Sports Box
+   Página de produto / seleção de kit
+   ============================================ */
+
+body { background: #f5f5f0; color: #111; }
+
+/* NAV (versão clara) */
+.nav {
+  background: #fff; border-bottom: 1px solid #e8e8e3;
+  padding: 0 1.5rem; height: 54px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 50;
+}
+.logo   { font-size: 14px; font-weight: 900; letter-spacing: .07em; text-decoration: none; color: #111; }
+.logo b { color: #2563eb; }
+.bc     { font-size: 12px; color: #aaa; display: flex; gap: 5px; }
+.bc a   { color: #aaa; text-decoration: none; }
+.nc     { background: #111; color: #fff; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 8px; border: none; cursor: pointer; transition: background .2s; display: flex; align-items: center; gap: 6px; }
+.nc:hover { background: #2563eb; }
+.cb     { background: #2563eb; width: 17px; height: 17px; border-radius: 50%; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+
+/* LAYOUT RESPONSIVO */
+.pg {
+  max-width: 920px; margin: 0 auto; padding: 1.5rem;
+  display: grid; grid-template-columns: 400px 1fr;
+  gap: 2rem; align-items: start;
+}
+
+/* GALERIA */
+.mi {
+  background: #111; border-radius: 14px; width: 100%; aspect-ratio: 4/5;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; margin-bottom: 10px;
+}
+.mi-tag { position: absolute; top: 12px; left: 12px; background: #2563eb; color: #fff; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 999px; letter-spacing: .06em; }
+.mi-off { position: absolute; top: 12px; right: 12px; background: #16a34a; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+.mi-big { font-size: 80px; transition: all .3s; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 1rem; }
+.mi-lbl { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 30px; font-weight: 900; color: #fff; letter-spacing: -.02em; }
+.mi-sub { position: absolute; bottom: 7px; left: 0; right: 0; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: .1em; color: rgba(255,255,255,.3); }
+.tbs    { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.tb     { aspect-ratio: 1; border-radius: 10px; background: #111; border: 2px solid transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all .2s; }
+.tb.on  { border-color: #2563eb; }
+.tb:hover { border-color: #93c5fd; }
+
+/* INFO LATERAL */
+.itag { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #2563eb; margin-bottom: 4px; }
+.ih1  { font-size: 26px; font-weight: 900; letter-spacing: -.03em; line-height: 1; margin-bottom: 5px; }
+.isub { font-size: 13px; color: #888; margin-bottom: 10px; }
+.rat  { display: flex; align-items: center; gap: 8px; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid #e8e8e3; }
+.sts  { color: #f59e0b; letter-spacing: 1px; font-size: 13px; }
+.rn   { font-size: 13px; font-weight: 800; }
+.rc   { font-size: 12px; color: #888; }
+
+/* LABEL KIT */
+.kl   { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #888; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+.kl a { color: #2563eb; font-size: 11px; font-weight: 500; cursor: pointer; text-decoration: none; }
+.kl a:hover { text-decoration: underline; }
+.kits { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
+
+/* CARDS DE KIT */
+.kc        { border: 2px solid #e8e8e3; border-radius: 12px; cursor: pointer; transition: border-color .2s; background: #fff; position: relative; overflow: hidden; }
+.kc:hover  { border-color: #93c5fd; }
+.kc.sel    { border-color: #2563eb; }
+.kc.hot::before { content: 'MAIS VENDIDO'; position: absolute; top: -1px; right: 14px; background: #16a34a; color: #fff; font-size: 9px; font-weight: 800; padding: 3px 10px; border-radius: 0 0 8px 8px; letter-spacing: .07em; }
+.kc-head   { padding: 12px 14px; display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.kc-name   { font-size: 14px; font-weight: 800; color: #111; }
+.kc-promo  { font-size: 11px; color: #888; font-weight: 500; margin-left: 4px; }
+.kc-icons  { display: flex; gap: 3px; margin-top: 6px; }
+.ki        { font-size: 14px; }
+.ki.dim    { opacity: .2; }
+.kc-right  { text-align: right; flex-shrink: 0; }
+.kc-old    { font-size: 11px; color: #bbb; text-decoration: line-through; }
+.kc-price  { font-size: 17px; font-weight: 900; }
+.kc-price.bl { color: #2563eb; }
+.kc-eco    { margin-top: 4px; display: flex; gap: 5px; justify-content: flex-end; align-items: center; }
+.eco-b     { background: #111; color: #fff; font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 4px; }
+.eco-p     { font-size: 10px; color: #888; }
+
+/* SELEÇÃO DE TAMANHO */
+.kc-sizes     { border-top: 1px solid #e8e8e3; padding: 12px 14px; background: #f9f9f6; animation: fadeDown .2s ease both; }
+.sz-tabs      { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; margin-bottom: 12px; scrollbar-width: none; }
+.sz-tabs::-webkit-scrollbar { display: none; }
+.sz-tab       { flex: 1; min-width: 72px; border: 2px solid #e0e0da; border-radius: 9px; padding: 7px 4px; font-size: 11px; font-weight: 700; cursor: pointer; background: #fff; transition: all .2s; text-align: center; flex-shrink: 0; }
+.sz-tab.on    { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+.sz-tab.done  { border-color: #111; color: #fff; background: #111; }
+.sz-tab-label { font-size: 9px; font-weight: 500; letter-spacing: .03em; text-transform: uppercase; display: block; margin-bottom: 2px; opacity: .7; }
+.sz-tab-val   { font-size: 12px; font-weight: 800; }
+.sz-btns-label{ font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #888; margin-bottom: 8px; }
+.sz-btns      { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.szb          { height: 38px; border-radius: 8px; border: 2px solid #e0e0da; background: #fff; font-size: 12px; font-weight: 700; color: #111; cursor: pointer; transition: all .18s; display: flex; align-items: center; justify-content: center; }
+.szb:hover    { border-color: #2563eb; color: #2563eb; }
+.szb.on       { background: #111; border-color: #111; color: #fff; }
+
+/* QUANTIDADE */
+.qrow { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; margin-bottom: 1rem; }
+.qlbl { font-size: 13px; font-weight: 700; }
+.qctl { display: flex; align-items: center; border: 2px solid #e0e0da; border-radius: 9px; overflow: hidden; }
+.qbt  { width: 36px; height: 36px; background: #fff; border: none; font-size: 18px; cursor: pointer; color: #111; transition: background .15s; display: flex; align-items: center; justify-content: center; }
+.qbt:hover { background: #f0f0ec; }
+.qnm  { width: 42px; text-align: center; font-size: 15px; font-weight: 800; border-left: 2px solid #e0e0da; border-right: 2px solid #e0e0da; height: 36px; display: flex; align-items: center; justify-content: center; }
+
+/* TOTAL */
+.tot      { background: #fff; border: 2px solid #e8e8e3; border-radius: 12px; padding: 14px; margin-bottom: 1rem; }
+.tot-row  { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
+.tot-lbl  { font-size: 13px; color: #888; }
+.tot-old  { font-size: 13px; color: #ccc; text-decoration: line-through; }
+.tot-main { font-size: 24px; font-weight: 900; letter-spacing: -.02em; }
+.pix-row  { display: flex; justify-content: space-between; align-items: center; padding-top: 9px; border-top: 1px solid #f0f0ec; margin-top: 6px; }
+.pix-lbl  { font-size: 12px; font-weight: 600; color: #16a34a; }
+.pix-val  { font-size: 15px; font-weight: 800; color: #16a34a; }
+
+/* BOTÕES DE COMPRA */
+.bpix  { width: 100%; background: #16a34a; color: #fff; font-size: 14px; font-weight: 700; padding: 14px; border-radius: 11px; border: none; cursor: pointer; transition: all .25s; margin-bottom: 7px; }
+.bpix:hover  { background: #15803d; transform: translateY(-1px); }
+.bcart { width: 100%; background: #111; color: #fff; font-size: 14px; font-weight: 700; padding: 13px; border-radius: 11px; border: none; cursor: pointer; transition: all .2s; margin-bottom: 1.25rem; }
+.bcart:hover { background: #2563eb; }
+
+/* FEATURES */
+.feats { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.ft    { display: flex; align-items: flex-start; gap: 6px; font-size: 11px; color: #555; font-weight: 600; line-height: 1.4; }
+.fc    { color: #16a34a; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+
+/* MODAL GUIA DE TAMANHOS */
+.overlay     { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(4px); }
+.modal       { background: #fff; border-radius: 16px; width: 100%; max-width: 500px; max-height: 88vh; overflow-y: auto; animation: modalIn .22s ease both; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+.modal-head  { padding: 1.25rem 1.25rem .75rem; display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 1px solid #f0f0ec; }
+.modal-title { font-size: 18px; font-weight: 800; letter-spacing: -.02em; }
+.modal-sub   { font-size: 12px; color: #888; margin-top: 3px; font-weight: 400; }
+.mclose      { width: 30px; height: 30px; border-radius: 50%; background: #f0f0ec; border: none; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+.mclose:hover{ background: #e0e0dc; }
+.modal-body  { padding: 1.25rem; }
+
+.calc-card    { background: #f9f9f6; border-radius: 11px; padding: 1rem; margin-bottom: 1rem; }
+.calc-title   { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.calc-sub     { font-size: 12px; color: #888; margin-bottom: .75rem; }
+.calc-fields  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.cf label     { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #888; display: block; margin-bottom: 4px; }
+.cf input     { width: 100%; height: 40px; border: 1.5px solid #e0e0da; border-radius: 8px; font-size: 14px; font-weight: 500; padding: 0 12px; outline: none; font-family: inherit; transition: border-color .2s; background: #fff; color: #111; }
+.cf input:focus { border-color: #2563eb; }
+.calc-btn     { width: 100%; background: #111; color: #fff; font-size: 13px; font-weight: 500; padding: 11px; border-radius: 8px; border: none; cursor: pointer; transition: background .2s; }
+.calc-btn:hover { background: #2563eb; }
+.calc-result  { margin-top: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; display: none; text-align: center; }
+
+.toggle-table { width: 100%; background: #f5f5f0; border: 1px solid #e0e0da; border-radius: 8px; padding: 9px; font-size: 12px; font-weight: 500; cursor: pointer; color: #666; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all .2s; }
+.toggle-table:hover { background: #e8e8e3; color: #111; }
+.model-tabs   { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 10px; }
+.mt           { border: 1.5px solid #e0e0da; border-radius: 7px; padding: 7px 4px; font-size: 11px; font-weight: 600; cursor: pointer; background: #fff; transition: all .2s; text-align: center; color: #888; }
+.mt.on        { background: #111; border-color: #111; color: #fff; }
+.mt:hover     { border-color: #111; }
+
+.sz-table     { width: 100%; border-collapse: collapse; font-size: 12px; }
+.sz-table th  { background: #111; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 8px 10px; text-align: left; }
+.sz-table td  { padding: 8px 10px; border-bottom: 1px solid #f0f0ec; font-weight: 500; color: #444; }
+.sz-table tr:last-child td   { border-bottom: none; }
+.sz-table tr:hover td        { background: #f9f9f6; }
+.sz-table td:first-child     { font-weight: 800; color: #111; }
+
+/* RESPONSIVO */
+@media (max-width: 700px) {
+  .pg  { grid-template-columns: 1fr; gap: 1.25rem; padding: 1rem; }
+  .bc  { display: none; }
+}

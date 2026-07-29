@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Clássica — Da Sports Box</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/box-classica.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="logo">DA SPORTS <b>BOX</b></a>
+  <div class="bc">
+    <a href="index.html">Início</a>
+    <span>›</span>
+    <a href="index.html#boxes">Boxes</a>
+    <span>›</span>
+    <span style="color:#111;font-weight:700;">Box Clássica</span>
+  </div>
+  <button class="nc">Carrinho <span class="cb" id="cN">0</span></button>
+</nav>
+
+<!-- MODAL GUIA DE TAMANHOS -->
+<div class="overlay" id="sizeModal" style="display:none;" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Guia de tamanhos</div>
+        <div class="modal-sub">As medidas são da camiseta, não do corpo.</div>
+      </div>
+      <button class="mclose" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="calc-card">
+        <div class="calc-title">Descubra seu tamanho</div>
+        <div class="calc-sub">Informe sua altura e peso — calculamos o tamanho ideal para você.</div>
+        <div class="calc-fields">
+          <div class="cf"><label>Altura (cm)</label><input type="number" id="cH" placeholder="Ex: 178"></div>
+          <div class="cf"><label>Peso (kg)</label><input type="number" id="cW" placeholder="Ex: 82"></div>
+        </div>
+        <button class="calc-btn" onclick="calcSize()">Encontrar meu tamanho</button>
+        <div class="calc-result" id="calcR"></div>
+      </div>
+      <button class="toggle-table" onclick="toggleTable()">
+        <span id="tTxt">Ver tabela completa</span><span id="tArr">▼</span>
+      </button>
+      <div id="tableSection" style="display:none;">
+        <div class="model-tabs">
+          <div class="mt on" onclick="setModel(this,'masculino')">Masculino</div>
+          <div class="mt"    onclick="setModel(this,'feminino')">Feminino</div>
+          <div class="mt"    onclick="setModel(this,'infantil')">Infantil</div>
+          <div class="mt"    onclick="setModel(this,'jogador')">Jogador</div>
+          <div class="mt"    onclick="setModel(this,'torcedor')">Torcedor</div>
+        </div>
+        <div id="tableWrap"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="pg">
+
+  <!-- Coluna esquerda: galeria -->
+  <div>
+    <div class="mi">
+      <div class="mi-tag">★ BOX CLÁSSICA ★</div>
+      <div class="mi-off">ATÉ 40% OFF</div>
+      <div class="mi-big" id="miBig">👕</div>
+      <div class="mi-lbl" id="miLbl">CLÁSSICA</div>
+      <div class="mi-sub">ESTOQUE LENDÁRIO</div>
+    </div>
+    <div class="tbs">
+      <div class="tb on" onclick="setTb(this,'👕','CLÁSSICA')">👕</div>
+      <div class="tb"    onclick="setTb(this,'🏆','RETRÔ')">🏆</div>
+      <div class="tb"    onclick="setTb(this,'⚽','SELEÇÕES')">⚽</div>
+      <div class="tb"    onclick="setTb(this,'📦','A CAIXA')">📦</div>
+      <div class="tb"    onclick="setTb(this,'🎽','KIT')">🎽</div>
+    </div>
+  </div>
+
+  <!-- Coluna direita: info + seleção -->
+  <div>
+    <p class="itag">Da Sports · Caixa Misteriosa</p>
+    <h1 class="ih1">Box Clássica</h1>
+    <p class="isub">Retrô, atual, clubes e seleções — o equilíbrio perfeito.</p>
+    <div class="rat">
+      <span class="sts">★★★★★</span>
+      <span class="rn">4.9</span>
+      <span class="rc">(163 avaliações)</span>
+    </div>
+
+    <div class="kl">
+      ESCOLHA SEU KIT
+      <a onclick="openModal()">👕 Qual meu tamanho?</a>
+    </div>
+
+    <div class="kits">
+
+      <!-- 1 camisa -->
+      <div class="kc" id="k0" onclick="selKit(0,1)">
+        <div class="kc-head">
+          <div>
+            <div class="kc-name">1 CAMISA</div>
+            <div class="kc-icons"><span class="ki">👕</span></div>
+          </div>
+          <div class="kc-right">
+            <div class="kc-old">R$ 197,95</div>
+            <div class="kc-price">R$ 119,00</div>
+          </div>
+        </div>
+        <div id="ks0" style="display:none;" class="kc-sizes">
+          <div class="sz-btns-label">Selecione o tamanho</div>
+          <div class="sz-btns" id="sb0"></div>
+        </div>
+      </div>
+
+      <!-- 3 camisas -->
+      <div class="kc" id="k1" onclick="selKit(1,3)">
+        <div class="kc-head">
+          <div>
+            <div class="kc-name">3 CAMISAS <span class="kc-promo">· você paga 2</span></div>
+            <div class="kc-icons"><span class="ki">👕</span><span class="ki">👕</span><span class="ki">👕</span></div>
+          </div>
+          <div class="kc-right">
+            <div class="kc-old">R$ 593,85</div>
+            <div class="kc-price bl">R$ 348,00</div>
+            <div class="kc-eco"><span class="eco-b">ECONOMIZE R$245</span><span class="eco-p">R$116/camisa</span></div>
+          </div>
+        </div>
+        <div id="ks1" style="display:none;" class="kc-sizes">
+          <div class="sz-tabs" id="st1"></div>
+          <div class="sz-btns-label" id="sl1">Tamanho · Camisa 1</div>
+          <div class="sz-btns" id="sb1"></div>
+        </div>
+      </div>
+
+      <!-- 5 camisas (MAIS VENDIDO) -->
+      <div class="kc hot" id="k2" onclick="selKit(2,5)">
+        <div class="kc-head">
+          <div>
+            <div class="kc-name">5 CAMISAS <span class="kc-promo">· você paga 3</span></div>
+            <div class="kc-icons">
+              <span class="ki">👕</span><span class="ki">👕</span><span class="ki">👕</span>
+              <span class="ki dim">👕</span><span class="ki dim">👕</span>
+            </div>
+          </div>
+          <div class="kc-right">
+            <div class="kc-old">R$ 989,75</div>
+            <div class="kc-price bl">R$ 447,00</div>
+            <div class="kc-eco"><span class="eco-b">ECONOMIZE R$543</span><span class="eco-p">R$89/camisa</span></div>
+          </div>
+        </div>
+        <div id="ks2" style="display:none;" class="kc-sizes">
+          <div class="sz-tabs" id="st2"></div>
+          <div class="sz-btns-label" id="sl2">Tamanho · Camisa 1</div>
+          <div class="sz-btns" id="sb2"></div>
+        </div>
+      </div>
+
+      <!-- 7 camisas -->
+      <div class="kc" id="k3" onclick="selKit(3,7)">
+        <div class="kc-head">
+          <div>
+            <div class="kc-name">7 CAMISAS <span class="kc-promo">· você paga 4</span></div>
+            <div class="kc-icons">
+              <span class="ki">👕</span><span class="ki">👕</span><span class="ki">👕</span><span class="ki">👕</span>
+              <span class="ki dim">👕</span><span class="ki dim">👕</span><span class="ki dim">👕</span>
+            </div>
+          </div>
+          <div class="kc-right">
+            <div class="kc-old">R$ 1.385,65</div>
+            <div class="kc-price bl">R$ 476,00</div>
+            <div class="kc-eco"><span class="eco-b">ECONOMIZE R$909</span><span class="eco-p">R$68/camisa</span></div>
+          </div>
+        </div>
+        <div id="ks3" style="display:none;" class="kc-sizes">
+          <div class="sz-tabs" id="st3"></div>
+          <div class="sz-btns-label" id="sl3">Tamanho · Camisa 1</div>
+          <div class="sz-btns" id="sb3"></div>
+        </div>
+      </div>
+
+    </div><!-- /kits -->
+
+    <div class="qrow">
+      <span class="qlbl">Quantidade de kits</span>
+      <div class="qctl">
+        <button class="qbt" onclick="chQ(-1)">−</button>
+        <div class="qnm" id="qN">1</div>
+        <button class="qbt" onclick="chQ(1)">+</button>
+      </div>
+    </div>
+
+    <div class="tot">
+      <div class="tot-row"><span class="tot-lbl">Valor original</span><span class="tot-old" id="tOld">R$ 197,95</span></div>
+      <div class="tot-row"><span class="tot-lbl" style="font-weight:700;color:#111;">Total com desconto</span><span class="tot-main" id="tMain">R$ 119,00</span></div>
+      <div class="pix-row"><span class="pix-lbl">🟢 Pix (5% off)</span><span class="pix-val" id="tPix">R$ 113,05</span></div>
+    </div>
+
+    <button class="bpix"  onclick="buyNow()">🟢 Comprar agora via Pix</button>
+    <button class="bcart" onclick="addCart()">Adicionar ao carrinho →</button>
+
+    <div class="feats">
+      <div class="ft"><span class="fc">✓</span>Camisas retrô, atuais e seleções</div>
+      <div class="ft"><span class="fc">✓</span>Lacrada e embalada na origem</div>
+      <div class="ft"><span class="fc">✓</span>Garantia de troca em 30 dias</div>
+      <div class="ft"><span class="fc">✓</span>Escolhida por quem coleciona</div>
+      <div class="ft"><span class="fc">✓</span>Sem camisa repetida por cliente</div>
+      <div class="ft"><span class="fc">✓</span>Entrega rastreada para todo Brasil</div>
+    </div>
+
+  </div><!-- /coluna direita -->
+</div><!-- /pg -->
+
+<script src="js/box-classica.js"></script>
+</body>
+</html>

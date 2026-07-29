@@ -1,0 +1,49 @@
+/* ============================================
+   GLOBAL — Da Sports Box
+   Compartilhado por todas as páginas
+   ============================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ANIMAÇÕES GLOBAIS */
+@keyframes fadeUp    { from { opacity: 0; transform: translateY(32px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes fadeDown  { from { opacity: 0; transform: translateY(-6px)  } to { opacity: 1; transform: translateY(0) } }
+@keyframes fadeIn    { from { opacity: 0 } to { opacity: 1 } }
+@keyframes shimmer   { 0%   { background-position: 200% center } 100% { background-position: -200% center } }
+@keyframes float     { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+@keyframes pulse     { 0%, 100% { opacity: 1 } 50% { opacity: .5 } }
+@keyframes marquee   { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+@keyframes borderGlow{ 0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,0) } 50% { box-shadow: 0 0 24px 4px rgba(37,99,235,.25) } }
+@keyframes modalIn   { from { opacity: 0; transform: scale(.96) } to { opacity: 1; transform: scale(1) } }
+
+/* TICKER */
+.ticker { background: #2563eb; padding: 9px 0; overflow: hidden; }
+.ticker-inner { display: flex; white-space: nowrap; animation: marquee 22s linear infinite; }
+.ticker-inner span { font-size: 12px; font-weight: 600; letter-spacing: .06em; padding: 0 2.5rem; color: #fff; }
+.ticker-inner span::before { content: "⚡ "; }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* BOTÕES COMUNS */
+.btn-main {
+  background: #2563eb; color: #fff; font-size: 14px; font-weight: 700;
+  padding: 14px 28px; border-radius: 10px; border: none; cursor: pointer;
+  transition: all .25s; animation: borderGlow 3s ease infinite;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-main:hover { background: #1d4ed8; transform: translateY(-2px); }
+
+.btn-ghost {
+  background: transparent; color: rgba(255,255,255,.7); font-size: 14px; font-weight: 600;
+  padding: 14px 28px; border-radius: 10px; border: 1px solid rgba(255,255,255,.15);
+  cursor: pointer; transition: all .25s; text-decoration: none;
+  display: inline-flex; align-items: center;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.4); color: #fff; background: rgba(255,255,255,.05); }

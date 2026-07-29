@@ -2,15 +2,19 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/box-classica", "destination": "/box-classica.html" },
-    { "source": "/", "destination": "/index.html" }
+    { "source": "/",              "destination": "/index.html" },
+    { "source": "/box-classica",  "destination": "/box-classica.html" },
+    { "source": "/box-retro",     "destination": "/box-retro.html" },
+    { "source": "/box-atual",     "destination": "/box-atual.html" },
+    { "source": "/box-selecoes",  "destination": "/box-selecoes.html" },
+    { "source": "/box-brasil",    "destination": "/box-brasil.html" }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" }
+        { "key": "X-Frame-Options",        "value": "DENY" }
       ]
     }
   ]

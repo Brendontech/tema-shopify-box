@@ -14,7 +14,14 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---- DADOS (virão da Shopify API em produção) ----
-  var SIZES  = ['P', 'M', 'G', 'GG', '2GG', '3GG', '4GG'];
+  var SIZES_MASC = ['P', 'M', 'G', 'GG', '2GG', '3GG', '4GG'];
+  var SIZES_FEM  = ['P', 'M', 'G', 'GG', '2GG'];
+  var SIZES = BOX.sizes || SIZES_MASC;
+  var CASAL = BOX.mode === 'casal';
+
+  function sizesFor(i) { return CASAL ? (i % 2 ? SIZES_MASC : SIZES_FEM) : SIZES; }
+  function modelFor(i) { return CASAL ? (i % 2 ? 'masculino' : 'feminino') : (BOX.model || 'masculino'); }
+  function labelFor(i) { return CASAL ? (i % 2 ? 'Ele' : 'Ela') + ' ' + Math.ceil(i / 2) : 'Camisa ' + i; }
   var PRICES = BOX.prices || [
     { t: 119, o: 197.95 },
     { t: 348, o: 593.85 },
@@ -132,7 +139,7 @@
     var html = '';
     for (var i = 1; i <= state.n; i++) {
       html += '<button type="button" class="sz-tab' + (i === 1 ? ' on' : '') + '" data-n="' + i + '">'
-        + '<span class="sz-tab-label">Camisa ' + i + '</span>'
+        + '<span class="sz-tab-label">' + labelFor(i) + '</span>'
         + '<span class="sz-tab-val">Escolher</span></button>';
     }
     tc.innerHTML = html;
@@ -142,8 +149,11 @@
     var kc  = kitEls[state.kit];
     var cur = state.sizes[state.tab] || '';
     var lbl = kc.querySelector('.sz-btns-label');
-    if (state.n > 1) lbl.textContent = 'Tamanho · Camisa ' + state.tab;
-    kc.querySelector('.sz-btns').innerHTML = SIZES.map(function (s, i) {
+    var list = sizesFor(state.tab);
+    if (state.n > 1) lbl.textContent = 'Tamanho · ' + labelFor(state.tab) + (CASAL ? (state.tab % 2 ? ' (masculina)' : ' (feminina)') : '');
+    var btns = kc.querySelector('.sz-btns');
+    btns.style.setProperty('--cols', list.length);
+    btns.innerHTML = list.map(function (s, i) {
       return '<button type="button" class="szb' + (cur === s ? ' on' : '') + '" data-sz="' + s + '" style="--i:' + i + '">' + s + '</button>';
     }).join('');
     renderDone();
@@ -196,8 +206,11 @@
   }
 
   // ---- GALERIA ----
-  var miBig = $('miBig');
-  var miLbl = $('miLbl');
+  var mi      = $('mi');
+  var miBig   = $('miBig');
+  var miPhoto = $('miPhoto');
+  var miFan   = $('miFan');
+  var miLbl   = $('miLbl');
   var baseLabel = miLbl.textContent;
 
   function swap(el, cls) {
@@ -206,30 +219,63 @@
     el.classList.add(cls);
   }
 
+  function kitLabel(n) {
+    if (CASAL) return (n / 2) + (n > 2 ? ' CASAIS' : ' CASAL');
+    return n + ' CAMISAS';
+  }
+
   function renderGallery(n) {
-    miBig.classList.toggle('many', n > 1);
-    var html = '';
-    for (var i = 0; i < Math.min(n, 7); i++) html += '<span class="pop" style="--i:' + i + '">👕</span>';
-    miBig.innerHTML = html;
-    miLbl.textContent = n > 1 ? n + ' CAMISAS' : baseLabel;
-    swap(miLbl, 'swap');
     document.querySelectorAll('.tb').forEach(function (t) { t.classList.remove('on'); });
+    miLbl.textContent = n > 1 ? kitLabel(n) : baseLabel;
+    swap(miLbl, 'swap');
+
+    if (miPhoto && BOX.photos) {
+      if (n > 1) {
+        var k = Math.min(n, 5), html = '';
+        for (var i = 0; i < k; i++) {
+          var p = BOX.photos[i % BOX.photos.length];
+          var rot = (i - (k - 1) / 2) * 7;
+          html += '<img src="' + p.thumb + '" alt="" style="--i:' + i + ';--r:' + rot + 'deg;--x:' + ((i - (k - 1) / 2) * 34) + '%">';
+        }
+        miFan.innerHTML = html;
+        miFan.hidden = false;
+        mi.classList.add('fanned');
+      } else {
+        miFan.hidden = true;
+        mi.classList.remove('fanned');
+        var first = document.querySelector('.tb');
+        if (first) first.classList.add('on');
+      }
+      return;
+    }
+
+    miBig.classList.toggle('many', n > 1);
+    var h = '';
+    for (var j = 0; j < Math.min(n, 7); j++) h += '<span class="pop" style="--i:' + j + '">👕</span>';
+    miBig.innerHTML = h;
   }
 
   document.querySelectorAll('.tb').forEach(function (tb) {
     tb.addEventListener('click', function () {
       document.querySelectorAll('.tb').forEach(function (t) { t.classList.remove('on'); });
       tb.classList.add('on');
+      miLbl.textContent = tb.getAttribute('data-label');
+      swap(miLbl, 'swap');
+      if (miPhoto) {
+        miFan.hidden = true;
+        mi.classList.remove('fanned');
+        miPhoto.src = tb.getAttribute('data-src');
+        miPhoto.alt = tb.getAttribute('data-label') + ' — exemplo do acervo';
+        swap(miPhoto, 'swap');
+        return;
+      }
       miBig.classList.remove('many');
       miBig.textContent = tb.getAttribute('data-icon');
-      miLbl.textContent = tb.getAttribute('data-label');
       swap(miBig, 'swap');
-      swap(miLbl, 'swap');
     });
   });
 
   // Inclinação 3D seguindo o mouse
-  var mi = $('mi');
   if (mi && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
     mi.addEventListener('pointermove', function (e) {
       var r = mi.getBoundingClientRect();
@@ -319,7 +365,7 @@
         swap(kc.querySelector('.sz-btns'), 'shake');
       }
       kc.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
-      toast(state.n > 1 ? 'Falta escolher o tamanho da camisa ' + miss : 'Escolha o tamanho da camisa', { type: 'error' });
+      toast(state.n > 1 ? 'Falta escolher o tamanho: ' + labelFor(miss) : 'Escolha o tamanho da camisa', { type: 'error' });
       return false;
     }
     return true;
@@ -340,7 +386,7 @@
       btnCart.classList.add('ok');
       btnCart.innerHTML = '✓ Adicionado ao carrinho!';
       if (DSB.addToCart) DSB.addToCart(state.qty, btnCart, '👕');
-      toast((BOX.name || 'Box') + ' · ' + state.n + ' camisa' + (state.n > 1 ? 's' : '') + ' adicionada', { action: { href: '#', label: 'Ver carrinho' } });
+      toast((BOX.name || 'Box') + ' · ' + (CASAL ? kitLabel(state.n).toLowerCase() : state.n + ' camisa' + (state.n > 1 ? 's' : '')) + ' no carrinho', { action: { href: '#', label: 'Ver carrinho' } });
       setTimeout(function () {
         btnCart.classList.remove('ok');
         btnCart.innerHTML = cartHtml;
@@ -404,14 +450,16 @@
   window.addEventListener('hashchange', checkHash);
   checkHash();
 
-  function recommend(h, w) {
-    return h <= 170 && w <= 70  ? 'P'
-         : h <= 176 && w <= 80  ? 'M'
-         : h <= 182 && w <= 92  ? 'G'
-         : h <= 186 && w <= 100 ? 'GG'
-         : h <= 190 && w <= 115 ? '2GG'
-         : h <= 192 && w <= 128 ? '3GG' : '4GG';
+  // Primeira linha da tabela em que altura e peso cabem no limite superior
+  function maxOf(range) { return parseFloat(String(range).split(/[–-]/).pop()); }
+  function recommend(h, w, model) {
+    var rows = TABLES[model] || TABLES.masculino;
+    for (var i = 0; i < rows.length; i++) {
+      if (h <= maxOf(rows[i].alt) && w <= maxOf(rows[i].peso)) return rows[i].sz;
+    }
+    return rows[rows.length - 1].sz;
   }
+  function calcModel() { return state.kit >= 0 ? modelFor(state.tab) : currentModel; }
 
   $('calcForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -425,17 +473,26 @@
       r.textContent = 'Informe altura e peso para continuar.';
       return;
     }
-    var sz = recommend(h, w);
+    var model = calcModel();
+    var sz = recommend(h, w, model);
+    var canUse = state.kit >= 0 && sizesFor(state.tab).indexOf(sz) > -1;
     r.classList.add('show', 'ok');
-    r.innerHTML = 'Tamanho recomendado<b>' + sz + '</b>baseado na sua altura e peso'
-      + (state.kit >= 0 ? '<br><button type="button" class="use-size">Usar ' + sz + ' na camisa ' + (state.n > 1 ? state.tab : '') + '</button>' : '');
+    r.innerHTML = 'Tamanho recomendado<b>' + sz + '</b>tabela ' + model + ', pela sua altura e peso'
+      + (canUse ? '<br><button type="button" class="use-size">Usar ' + sz + (state.n > 1 ? ' em ' + labelFor(state.tab) : '') + '</button>' : '');
+    selectModel(model);
     var use = r.querySelector('.use-size');
     if (use) use.addEventListener('click', function () { closeModal(); pickSize(sz); });
     highlightRow(sz);
   });
 
   var tableOpen = false;
-  var currentModel = 'masculino';
+  var currentModel = BOX.model || 'masculino';
+  function selectModel(m) {
+    currentModel = m;
+    document.querySelectorAll('.mt').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-model') === m); });
+    if (tableOpen) renderTable(m);
+  }
+  selectModel(currentModel);
   $('toggleTable').addEventListener('click', function () {
     tableOpen = !tableOpen;
     this.setAttribute('aria-expanded', tableOpen);
@@ -445,9 +502,7 @@
   });
   document.querySelectorAll('.mt').forEach(function (b) {
     b.addEventListener('click', function () {
-      document.querySelectorAll('.mt').forEach(function (x) { x.classList.remove('on'); });
-      b.classList.add('on');
-      currentModel = b.getAttribute('data-model');
+      selectModel(b.getAttribute('data-model'));
       renderTable(currentModel);
     });
   });
@@ -462,8 +517,11 @@
         + row.peso + '</td><td>' + row.busto + '</td><td>' + row.comp + '</td></tr>';
     });
     $('tableWrap').innerHTML = h + '</tbody></table>';
+    if (lastRecommended) highlightRow(lastRecommended);
   }
+  var lastRecommended = '';
   function highlightRow(sz) {
+    lastRecommended = sz;
     document.querySelectorAll('.sz-table tr').forEach(function (tr) {
       tr.classList.toggle('hl', tr.getAttribute('data-sz') === sz);
     });

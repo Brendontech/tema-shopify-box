@@ -1,5 +1,11 @@
 {
-  "populares": ["Retrô", "Brasil 2026", "Seleções", "Zidane", "Guia de tamanhos"],
+  "populares": [
+    "Retrô",
+    "Feminino",
+    "Infantil",
+    "Casal",
+    "Guia de tamanhos"
+  ],
   "itens": [
     {
       "tipo": "Box",
@@ -7,9 +13,26 @@
       "url": "box-retro.html",
       "descricao": "Camisas históricas de 1970 a 2020. Os clássicos que marcaram época.",
       "emoji": "🏆",
+      "imagem": "img/camisas/retro/05-flamengo-retro-19921993-home-p.webp",
       "preco": 174,
       "precoAntigo": 289.97,
-      "tags": ["retro", "classica", "historica", "vintage", "anos 70", "anos 80", "anos 90", "copa", "zidane", "ronaldo", "nedved", "bebeto", "campeoes", "colecao"]
+      "tags": [
+        "retro",
+        "classica",
+        "historica",
+        "vintage",
+        "anos 90",
+        "copa",
+        "zidane",
+        "ronaldo",
+        "nedved",
+        "bebeto",
+        "flamengo",
+        "juventus",
+        "manchester united",
+        "inter de milao",
+        "inglaterra"
+      ]
     },
     {
       "tipo": "Box",
@@ -17,9 +40,23 @@
       "url": "box-atual.html",
       "descricao": "Temporada recente dos clubões e modelos fora do padrão.",
       "emoji": "⚡",
+      "imagem": "img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp",
       "preco": 119,
-      "precoAntigo": 197.97,
-      "tags": ["atual", "temporada", "lancamento", "clubes", "clubao", "europa", "premier league", "la liga", "serie a", "2025", "2026"]
+      "precoAntigo": 197.95,
+      "tags": [
+        "atual",
+        "temporada",
+        "lancamento",
+        "clubes",
+        "europa",
+        "premier league",
+        "la liga",
+        "serie a",
+        "chelsea",
+        "atletico de madrid",
+        "gremio",
+        "sao paulo"
+      ]
     },
     {
       "tipo": "Box",
@@ -27,19 +64,41 @@
       "url": "box-selecoes.html",
       "descricao": "Do Japão à Jamaica — seleções que ninguém tem.",
       "emoji": "🌍",
+      "imagem": "img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp",
       "preco": 149,
       "precoAntigo": 249.97,
-      "tags": ["selecoes", "selecao", "mundo", "copa do mundo", "japao", "jamaica", "alemanha", "franca", "argentina", "italia", "holanda", "nigeria"]
+      "tags": [
+        "selecoes",
+        "selecao",
+        "mundo",
+        "copa do mundo",
+        "japao",
+        "jamaica",
+        "alemanha",
+        "senegal",
+        "colombia",
+        "inglaterra",
+        "croacia"
+      ]
     },
     {
       "tipo": "Box",
       "titulo": "Box Brasil",
       "url": "box-brasil.html",
-      "descricao": "A amarelinha ou a azul. Rumo à Copa 2026.",
+      "descricao": "A amarelinha ou a azul. Das clássicas do tetra e do penta às mais recentes.",
       "emoji": "🇧🇷",
       "preco": 149,
       "precoAntigo": 249.97,
-      "tags": ["brasil", "cbf", "amarelinha", "azul", "copa 2026", "hexa", "selecao brasileira", "canarinho"]
+      "tags": [
+        "brasil",
+        "cbf",
+        "amarelinha",
+        "azul",
+        "selecao brasileira",
+        "canarinho",
+        "tetra",
+        "penta"
+      ]
     },
     {
       "tipo": "Box",
@@ -47,9 +106,113 @@
       "url": "box-classica.html",
       "descricao": "Retrô, atual, clubes e seleções — o equilíbrio perfeito.",
       "emoji": "👕",
+      "imagem": "img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp",
       "preco": 119,
       "precoAntigo": 197.95,
-      "tags": ["classica", "mista", "variada", "surpresa", "retro", "atual", "clubes", "selecoes", "presente"]
+      "tags": [
+        "classica",
+        "mista",
+        "variada",
+        "surpresa",
+        "retro",
+        "atual",
+        "clubes",
+        "selecoes",
+        "presente"
+      ]
+    },
+    {
+      "tipo": "Box",
+      "titulo": "Box Masculino",
+      "url": "box-masculino.html",
+      "descricao": "Camisas masculinas de clubes e seleções do mundo todo.",
+      "emoji": "👕",
+      "imagem": "img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp",
+      "preco": 119,
+      "precoAntigo": 197.95,
+      "tags": [
+        "masculino",
+        "masculina",
+        "homem",
+        "ele",
+        "pra ele",
+        "presente pra ele",
+        "chelsea",
+        "gremio",
+        "sao paulo",
+        "atletico de madrid",
+        "regata",
+        "nba"
+      ]
+    },
+    {
+      "tipo": "Box",
+      "titulo": "Box Feminino",
+      "url": "box-feminino.html",
+      "descricao": "Camisas com modelagem feminina, de clubes e seleções.",
+      "emoji": "👚",
+      "imagem": "img/camisas/feminina/01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp",
+      "preco": 119,
+      "precoAntigo": 197.95,
+      "tags": [
+        "feminino",
+        "feminina",
+        "mulher",
+        "ela",
+        "pra ela",
+        "baby look",
+        "presente pra ela",
+        "senegal",
+        "alemanha",
+        "bahia",
+        "cruzeiro",
+        "atletico de madrid"
+      ]
+    },
+    {
+      "tipo": "Box",
+      "titulo": "Box Infantil",
+      "url": "box-infantil.html",
+      "descricao": "Kits e conjuntos infantis pra criar o próximo craque.",
+      "emoji": "🧒",
+      "imagem": "img/camisas/infantil/03-conjunto-infantil-colombia-202627-p.webp",
+      "preco": 99,
+      "precoAntigo": 169.9,
+      "tags": [
+        "infantil",
+        "crianca",
+        "kids",
+        "menino",
+        "menina",
+        "filho",
+        "filha",
+        "kit infantil",
+        "conjunto",
+        "dortmund",
+        "aston villa",
+        "colombia"
+      ]
+    },
+    {
+      "tipo": "Box",
+      "titulo": "Box Casal",
+      "url": "box-casal.html",
+      "descricao": "Uma camisa masculina + uma feminina. Mistério em dobro.",
+      "emoji": "💑",
+      "imagem": "img/camisas/masculina/05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp",
+      "preco": 219,
+      "precoAntigo": 379.9,
+      "tags": [
+        "casal",
+        "namorados",
+        "namorada",
+        "namorado",
+        "dia dos namorados",
+        "ele e ela",
+        "dupla",
+        "par",
+        "presente"
+      ]
     },
     {
       "tipo": "Ajuda",
@@ -57,7 +220,18 @@
       "url": "box-classica.html#tamanhos",
       "descricao": "Calcule seu tamanho pela altura e peso ou veja a tabela completa.",
       "emoji": "📏",
-      "tags": ["tamanho", "medidas", "tabela", "calculadora", "p", "m", "g", "gg", "infantil", "feminino"]
+      "tags": [
+        "tamanho",
+        "medidas",
+        "tabela",
+        "calculadora",
+        "p",
+        "m",
+        "g",
+        "gg",
+        "infantil",
+        "feminino"
+      ]
     },
     {
       "tipo": "Ajuda",
@@ -65,7 +239,27 @@
       "url": "index.html#quiz",
       "descricao": "4 perguntas rápidas e a gente indica a box ideal pra você.",
       "emoji": "🎯",
-      "tags": ["quiz", "montar", "indicacao", "qual box", "ajuda a escolher"]
+      "tags": [
+        "quiz",
+        "montar",
+        "indicacao",
+        "qual box",
+        "ajuda a escolher"
+      ]
+    },
+    {
+      "tipo": "Ajuda",
+      "titulo": "Camisas que podem vir",
+      "url": "index.html#camisas",
+      "descricao": "Exemplos reais do acervo: retrô, masculina, feminina e infantil.",
+      "emoji": "👕",
+      "tags": [
+        "camisas",
+        "acervo",
+        "exemplos",
+        "fotos",
+        "modelos"
+      ]
     },
     {
       "tipo": "Ajuda",
@@ -73,7 +267,12 @@
       "url": "index.html#como-funciona",
       "descricao": "Escolha a vibe, a gente escala a camisa e você revela.",
       "emoji": "📦",
-      "tags": ["como funciona", "caixa misteriosa", "passo a passo", "curadoria"]
+      "tags": [
+        "como funciona",
+        "caixa misteriosa",
+        "passo a passo",
+        "curadoria"
+      ]
     },
     {
       "tipo": "Ajuda",
@@ -81,7 +280,13 @@
       "url": "index.html#faq",
       "descricao": "Garantia de troca em 30 dias e troca de tamanho garantida.",
       "emoji": "🔄",
-      "tags": ["troca", "devolucao", "garantia", "30 dias", "tamanho errado"]
+      "tags": [
+        "troca",
+        "devolucao",
+        "garantia",
+        "30 dias",
+        "tamanho errado"
+      ]
     },
     {
       "tipo": "Ajuda",
@@ -89,7 +294,14 @@
       "url": "index.html#faq",
       "descricao": "Frete grátis acima de R$299 e entrega rastreada para todo o Brasil.",
       "emoji": "🚚",
-      "tags": ["frete", "entrega", "prazo", "rastreio", "frete gratis", "correios"]
+      "tags": [
+        "frete",
+        "entrega",
+        "prazo",
+        "rastreio",
+        "frete gratis",
+        "correios"
+      ]
     },
     {
       "tipo": "Ajuda",
@@ -97,7 +309,14 @@
       "url": "index.html#faq",
       "descricao": "Pix com 5% off ou cartão em até 2x sem juros.",
       "emoji": "💳",
-      "tags": ["pagamento", "pix", "cartao", "parcelar", "sem juros", "desconto"]
+      "tags": [
+        "pagamento",
+        "pix",
+        "cartao",
+        "parcelar",
+        "sem juros",
+        "desconto"
+      ]
     }
   ]
 }

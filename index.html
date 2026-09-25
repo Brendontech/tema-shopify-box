@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0c0c0c">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
@@ -22,6 +22,7 @@
     <a href="index.html" class="logo" aria-label="Da Sports Box — início"><img src="img/dasports-logo-branca.png" alt="Da Sports" width="157" height="22"><span class="logo-box">BOX</span></a>
     <nav class="nav-links" aria-label="Principal">
       <a href="index.html#boxes">Boxes</a>
+      <a href="index.html#camisas">Camisas</a>
       <a href="index.html#quiz">Monte a sua</a>
       <a href="index.html#como-funciona">Como funciona</a>
       <a href="index.html#avaliacoes">Avaliações</a>
@@ -30,7 +31,7 @@
     <div class="header-actions">
       <button class="icon-btn search-trigger" type="button" data-search-open aria-label="Buscar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <span class="label">Buscar box, clube, seleção…</span><kbd>Ctrl K</kbd>
+        <span class="label">Buscar…</span><kbd>Ctrl K</kbd>
       </button>
       <a class="icon-btn cart-btn" href="#" aria-label="Carrinho">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
@@ -44,6 +45,7 @@
     <div class="container">
       <nav aria-label="Menu mobile">
         <a href="index.html#boxes">Boxes</a>
+        <a href="index.html#camisas">Camisas</a>
         <a href="index.html#quiz">Monte a sua</a>
         <a href="index.html#como-funciona">Como funciona</a>
         <a href="index.html#avaliacoes">Avaliações</a>
@@ -78,44 +80,37 @@
     <div class="hero-orb orb-b"></div>
   </div>
   <div class="container hero-inner">
-    <div class="hero-copy">
-      <div class="hero-pill"><span class="pill-dot"></span>Da Sports · Caixa Misteriosa Oficial</div>
-      <h1 class="hero-h1 split-now" data-split>
-        <span class="l">Você não</span>
-        <span class="l">escolhe o</span>
-        <span class="l grad">manto.</span>
-      </h1>
-      <p class="hero-sub">Camisas de futebol nacionais e internacionais — retrô, clubes e seleções. Curadoria especializada, estoque no Brasil.</p>
-      <div class="hero-actions">
-        <a class="btn btn-main" href="#quiz">Montar minha box <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="#boxes">Ver as boxes</a>
-      </div>
-      <div class="hero-stats">
-        <div><div class="stat-n" data-count="9" data-prefix="+" data-suffix="mil">+9mil</div><div class="stat-l">camisas entregues</div></div>
-        <div><div class="stat-n" data-count="4.9" data-decimals="1" data-suffix="★">4.9★</div><div class="stat-l">avaliação média</div></div>
-        <div><div class="stat-n" data-count="2" data-suffix="x">2x</div><div class="stat-l">sem juros</div></div>
-        <div><div class="stat-n" data-count="30" data-suffix="d">30d</div><div class="stat-l">garantia de troca</div></div>
-      </div>
+    <div class="hero-pill"><span class="pill-dot"></span>Da Sports · Caixa Misteriosa Oficial</div>
+    <h1 class="hero-h1 split-now" data-split>
+      <span class="l">Você não escolhe</span>
+      <span class="l">o manto.</span>
+      <span class="l l-alt">O manto escolhe você.</span>
+    </h1>
+    <p class="hero-sub">Camisas de futebol nacionais e internacionais — retrô, clubes e seleções. Curadoria especializada, estoque no Brasil.</p>
+    <div class="hero-actions">
+      <a class="btn btn-main" href="#quiz">Montar minha box <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="#boxes">Ver as boxes</a>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
-      <div class="mbox-stage" id="mboxStage">
-        <div class="mbox-glow"></div>
-        <div class="orbit">
-          <span style="--a:0deg">🏆</span>
-          <span style="--a:72deg">⚡</span>
-          <span style="--a:144deg">🌍</span>
-          <span style="--a:216deg">🇧🇷</span>
-          <span style="--a:288deg">⚽</span>
-        </div>
+    <div class="hero-fan" id="heroFan" aria-hidden="true">
+      <div class="fan-item" style="--r:-14deg;--y:46px"><img src="img/camisas/retro/05-flamengo-retro-19921993-home-p.webp" alt="" width="420" height="420"></div>
+      <div class="fan-item" style="--r:-7deg;--y:12px"><img src="img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp" alt="" width="420" height="420"></div>
+      <div class="fan-item fan-box">
         <div class="mbox">
           <div class="mbox-lid"></div>
           <div class="mbox-q">?</div>
           <div class="mbox-tag">DA SPORTS BOX</div>
         </div>
-        <div class="hero-float f1"><b>🔥 Retrô</b><span>mais vendida</span></div>
-        <div class="hero-float f2"><b>R$ 89</b><span>por camisa no kit 5</span></div>
       </div>
+      <div class="fan-item" style="--r:7deg;--y:12px"><img src="img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp" alt="" width="420" height="420"></div>
+      <div class="fan-item" style="--r:14deg;--y:46px"><img src="img/camisas/retro/02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp" alt="" width="420" height="420"></div>
+    </div>
+
+    <div class="hero-stats">
+      <div><div class="stat-n" data-count="9" data-prefix="+" data-suffix="mil">+9mil</div><div class="stat-l">camisas entregues</div></div>
+      <div><div class="stat-n" data-count="4.9" data-decimals="1" data-suffix="★">4.9★</div><div class="stat-l">avaliação média</div></div>
+      <div><div class="stat-n" data-count="2" data-suffix="x">2x</div><div class="stat-l">sem juros</div></div>
+      <div><div class="stat-n" data-count="30" data-suffix="d">30d</div><div class="stat-l">garantia de troca</div></div>
     </div>
   </div>
 </section>
@@ -127,6 +122,110 @@
     <span>Real Madrid</span><i>✦</i><span>Milan</span><i>✦</i><span>Boca Juniors</span><i>✦</i><span>Ajax</span><i>✦</i><span>Japão</span><i>✦</i><span>Flamengo</span><i>✦</i><span>Juventus</span><i>✦</i><span>Nigéria</span><i>✦</i><span>Barcelona</span><i>✦</i><span>Holanda 88</span><i>✦</i>
   </div>
 </div>
+
+<!-- CAMISAS QUE PODEM VIR -->
+<section class="shirts section" id="camisas">
+  <div class="container">
+    <div class="s-head">
+      <div>
+        <p class="s-label" data-reveal>Direto do acervo</p>
+        <h2 class="s-title" data-split>Camisas que podem vir</h2>
+        <p class="s-sub" data-reveal style="--d:2">Alguns exemplos do que já saiu das nossas caixas. A sua é surpresa — mas é desse nível.</p>
+      </div>
+      <div class="shirt-tabs" role="tablist" data-reveal="left">
+        <button type="button" class="shirt-tab on" data-cat="retro">Retrô</button>
+        <button type="button" class="shirt-tab" data-cat="masculina">Masculina</button>
+        <button type="button" class="shirt-tab" data-cat="feminina">Feminina</button>
+        <button type="button" class="shirt-tab" data-cat="infantil">Infantil</button>
+        <span class="shirt-tab-ind" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="shirt-grid" id="shirtGrid">
+<!-- CAMISAS:INICIO -->
+      <figure class="shirt-card" data-cat="retro">
+        <div class="shirt-img"><img src="img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp" alt="Juventus — Retrô · listrada" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Juventus</span><span class="shirt-det">Retrô · listrada</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="retro">
+        <div class="shirt-img"><img src="img/camisas/retro/02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp" alt="Manchester United 98/99 — Retrô · Umbro" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Manchester United 98/99</span><span class="shirt-det">Retrô · Umbro</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="retro">
+        <div class="shirt-img"><img src="img/camisas/retro/03-camisa-inglaterra-retro-2013-branca-nike-p.webp" alt="Inglaterra 2013 — Retrô · seleção" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Inglaterra 2013</span><span class="shirt-det">Retrô · seleção</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="retro">
+        <div class="shirt-img"><img src="img/camisas/retro/04-camisa-inter-de-milao-retro-0405-masculino-p.webp" alt="Inter de Milão 04/05 — Retrô · Nike" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Inter de Milão 04/05</span><span class="shirt-det">Retrô · Nike</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="retro">
+        <div class="shirt-img"><img src="img/camisas/retro/05-flamengo-retro-19921993-home-p.webp" alt="Flamengo 92/93 — Retrô · home" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Flamengo 92/93</span><span class="shirt-det">Retrô · home</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="masculina">
+        <div class="shirt-img"><img src="img/camisas/masculina/01-regata-orlando-magic-masculina-preta-p.webp" alt="Orlando Magic — Regata NBA" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Orlando Magic</span><span class="shirt-det">Regata NBA</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="masculina">
+        <div class="shirt-img"><img src="img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp" alt="Chelsea 23/24 — Masculina · home" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Chelsea 23/24</span><span class="shirt-det">Masculina · home</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="masculina">
+        <div class="shirt-img"><img src="img/camisas/masculina/03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp" alt="Grêmio 24/25 — Masculina · torcedor" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Grêmio 24/25</span><span class="shirt-det">Masculina · torcedor</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="masculina">
+        <div class="shirt-img"><img src="img/camisas/masculina/04-camisa-sao-paulo-2526-goleiro-home-p.webp" alt="São Paulo 25/26 — Masculina · goleiro" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">São Paulo 25/26</span><span class="shirt-det">Masculina · goleiro</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="masculina">
+        <div class="shirt-img"><img src="img/camisas/masculina/05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp" alt="Atlético de Madrid 25/26 — Masculina · pré-jogo" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Atlético de Madrid 25/26</span><span class="shirt-det">Masculina · pré-jogo</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="feminina">
+        <div class="shirt-img"><img src="img/camisas/feminina/01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp" alt="Atlético de Madrid 25/26 — Feminina · torcedor" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Atlético de Madrid 25/26</span><span class="shirt-det">Feminina · torcedor</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="feminina">
+        <div class="shirt-img"><img src="img/camisas/feminina/02-camisa-feminina-senegal-202627-i-p.webp" alt="Senegal 26/27 — Feminina · seleção" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Senegal 26/27</span><span class="shirt-det">Feminina · seleção</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="feminina">
+        <div class="shirt-img"><img src="img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp" alt="Alemanha 26/27 — Feminina · seleção" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Alemanha 26/27</span><span class="shirt-det">Feminina · seleção</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="feminina">
+        <div class="shirt-img"><img src="img/camisas/feminina/04-camisa-bahia-2425-uniforme-2-jogo-feminina-p.webp" alt="Bahia 24/25 — Feminina · uniforme 2" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Bahia 24/25</span><span class="shirt-det">Feminina · uniforme 2</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="feminina">
+        <div class="shirt-img"><img src="img/camisas/feminina/05-camisa-cruzeiro-ii-202627-torcedor-adidas-feminina-brancoazu-p.webp" alt="Cruzeiro 26/27 — Feminina · uniforme 2" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Cruzeiro 26/27</span><span class="shirt-det">Feminina · uniforme 2</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="infantil">
+        <div class="shirt-img"><img src="img/camisas/infantil/01-kit-infantil-atletico-de-madrid-l-2425-p.webp" alt="Atlético de Madrid 24/25 — Kit infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Atlético de Madrid 24/25</span><span class="shirt-det">Kit infantil</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="infantil">
+        <div class="shirt-img"><img src="img/camisas/infantil/02-conjunto-infantil-aston-villa-home-2425-vinho-p.webp" alt="Aston Villa 24/25 — Conjunto infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Aston Villa 24/25</span><span class="shirt-det">Conjunto infantil</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="infantil">
+        <div class="shirt-img"><img src="img/camisas/infantil/03-conjunto-infantil-colombia-202627-p.webp" alt="Colômbia 26/27 — Conjunto infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Colômbia 26/27</span><span class="shirt-det">Conjunto infantil</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="infantil">
+        <div class="shirt-img"><img src="img/camisas/infantil/04-kit-infantil-borussia-dortmund-2324-amarelopreto-p.webp" alt="Borussia Dortmund 23/24 — Kit infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Borussia Dortmund 23/24</span><span class="shirt-det">Kit infantil</span></figcaption>
+      </figure>
+      <figure class="shirt-card" data-cat="infantil">
+        <div class="shirt-img"><img src="img/camisas/infantil/05-conjunto-infantil-borussia-dortmund-202627-p.webp" alt="Borussia Dortmund 26/27 — Conjunto infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">Borussia Dortmund 26/27</span><span class="shirt-det">Conjunto infantil</span></figcaption>
+      </figure>
+<!-- CAMISAS:FIM -->
+    </div>
+  </div>
+</section>
 
 <!-- BOXES -->
 <section class="boxes section" id="boxes">
@@ -183,7 +282,7 @@
         <span class="box-icon" style="animation-delay:.9s">🇧🇷</span>
         <div class="box-body">
           <div class="box-name">Box Brasil</div>
-          <div class="box-desc">A amarelinha ou a azul. Rumo à Copa 2026.</div>
+          <div class="box-desc">A amarelinha ou a azul. Das clássicas do tetra e do penta às mais recentes.</div>
           <div class="box-foot">
             <div><div class="box-price-old">R$ 249,97</div><div class="box-price">R$ 149<span>,00</span></div></div>
             <span class="box-btn">Escolher <span class="arr">→</span></span>
@@ -200,6 +299,32 @@
             <span class="box-btn">Escolher <span class="arr">→</span></span>
           </div>
         </div>
+      </a>
+    </div>
+
+    <div class="fit-head" data-reveal>
+      <h3>Pra quem é o manto?</h3>
+      <p>Boxes montadas por perfil — com a modelagem certa pra cada um.</p>
+    </div>
+    <div class="fit-grid" data-stagger="up">
+      <a href="box-masculino.html" class="fit-card spotlight">
+        <div class="fit-img"><img src="img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp" alt="" loading="lazy" width="420" height="420"></div>
+        <div class="fit-body"><span class="fit-kicker">Ele</span><div class="fit-name">Box Masculino</div><div class="fit-price">a partir de <b>R$ 119</b></div></div>
+      </a>
+      <a href="box-feminino.html" class="fit-card spotlight">
+        <div class="fit-img"><img src="img/camisas/feminina/02-camisa-feminina-senegal-202627-i-p.webp" alt="" loading="lazy" width="420" height="420"></div>
+        <div class="fit-body"><span class="fit-kicker">Ela</span><div class="fit-name">Box Feminino</div><div class="fit-price">a partir de <b>R$ 119</b></div></div>
+      </a>
+      <a href="box-infantil.html" class="fit-card spotlight">
+        <div class="fit-img"><img src="img/camisas/infantil/03-conjunto-infantil-colombia-202627-p.webp" alt="" loading="lazy" width="420" height="420"></div>
+        <div class="fit-body"><span class="fit-kicker">Kids</span><div class="fit-name">Box Infantil</div><div class="fit-price">a partir de <b>R$ 99</b></div></div>
+      </a>
+      <a href="box-casal.html" class="fit-card spotlight">
+        <div class="fit-img fit-duo">
+          <img src="img/camisas/masculina/05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp" alt="" loading="lazy" width="420" height="420">
+          <img src="img/camisas/feminina/01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp" alt="" loading="lazy" width="420" height="420">
+        </div>
+        <div class="fit-body"><span class="fit-kicker">Ele + Ela</span><div class="fit-name">Box Casal</div><div class="fit-price">a partir de <b>R$ 219</b> o par</div></div>
       </a>
     </div>
   </div>
@@ -303,7 +428,7 @@
     <div class="faq-list" data-stagger="up">
       <details class="faq-item" open>
         <summary>Como funciona a caixa misteriosa?</summary>
-        <div class="faq-a"><p>Você escolhe a categoria (Retrô, Atual, Seleções, Brasil ou Clássica), o kit e o tamanho de cada camisa. Nossa curadoria separa as camisas do acervo e você só descobre qual veio na hora de abrir.</p></div>
+        <div class="faq-a"><p>Você escolhe a box (por estilo — Retrô, Atual, Seleções, Brasil, Clássica — ou por perfil — Masculino, Feminino, Infantil, Casal), o kit e o tamanho de cada camisa. Nossa curadoria separa as camisas do acervo e você só descobre qual veio na hora de abrir.</p></div>
       </details>
       <details class="faq-item">
         <summary>E se o tamanho não servir?</summary>
@@ -343,6 +468,10 @@
           <a href="box-selecoes.html">Box Seleções</a>
           <a href="box-brasil.html">Box Brasil</a>
           <a href="box-classica.html">Box Clássica</a>
+          <a href="box-masculino.html">Box Masculino</a>
+          <a href="box-feminino.html">Box Feminino</a>
+          <a href="box-infantil.html">Box Infantil</a>
+          <a href="box-casal.html">Box Casal</a>
         </div>
       </div>
       <div>

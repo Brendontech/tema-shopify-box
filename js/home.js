@@ -16,16 +16,16 @@
         { e: '🏆', n: 'Retrô lendária',    d: 'Zidane, Ronaldo, Nedved', box: 'retro' },
         { e: '⚡', n: 'Atual dos clubões', d: 'Temporada recente',        box: 'atual' },
         { e: '🌍', n: 'Seleções do mundo', d: 'Japão, Alemanha, Jamaica', box: 'selecoes' },
-        { e: '🇧🇷', n: 'Brasil 2026',      d: 'A amarelinha da Copa',     box: 'brasil' }
+        { e: '🇧🇷', n: 'Seleção Brasileira', d: 'Amarelinha e azul',       box: 'brasil' }
       ]
     },
     {
-      label: 'Restrições', q: 'Algum clube que não pode vir?',
+      label: 'Pra quem', q: 'Pra quem é a box?',
       opts: [
-        { e: '🚫', n: 'Tenho restrições', d: 'Informo no pedido' },
-        { e: '✅', n: 'Sem restrição',    d: 'Confio na curadoria' },
-        { e: '🔄', n: 'Apenas um clube',  d: 'Informo no pedido' },
-        { e: '❓', n: 'Sem preferência',  d: 'Me surpreende' }
+        { e: '🙋‍♂️', n: 'Pra mim',        d: 'Modelagem masculina' },
+        { e: '🙋‍♀️', n: 'Pra ela',        d: 'Modelagem feminina', box: 'feminino' },
+        { e: '🧒', n: 'Pra criança',      d: 'Tamanhos infantis',   box: 'infantil' },
+        { e: '💑', n: 'Pro casal',        d: 'Uma dele + uma dela', box: 'casal' }
       ]
     },
     {
@@ -52,7 +52,10 @@
     retro:    { name: 'Box Retrô',    e: '🏆', url: 'box-retro.html',    price: 'R$ 174', desc: 'Camisas históricas de 1970 a 2020. Os mantos que escreveram a história.' },
     atual:    { name: 'Box Atual',    e: '⚡', url: 'box-atual.html',    price: 'R$ 119', desc: 'Temporada recente dos clubões e modelos fora do padrão.' },
     selecoes: { name: 'Box Seleções', e: '🌍', url: 'box-selecoes.html', price: 'R$ 149', desc: 'Do Japão à Jamaica — seleções que ninguém tem.' },
-    brasil:   { name: 'Box Brasil',   e: '🇧🇷', url: 'box-brasil.html',   price: 'R$ 149', desc: 'A amarelinha ou a azul. Rumo à Copa 2026.' }
+    brasil:   { name: 'Box Brasil',   e: '🇧🇷', url: 'box-brasil.html',   price: 'R$ 149', desc: 'A amarelinha ou a azul — das clássicas às mais recentes.' },
+    feminino: { name: 'Box Feminino', e: '👚', url: 'box-feminino.html', price: 'R$ 119', desc: 'Camisas com modelagem feminina, de clubes e seleções.' },
+    infantil: { name: 'Box Infantil', e: '🧒', url: 'box-infantil.html', price: 'R$ 99',  desc: 'Kits e conjuntos infantis pra criar o próximo craque.' },
+    casal:    { name: 'Box Casal',    e: '💑', url: 'box-casal.html',    price: 'R$ 219', desc: 'Uma camisa masculina + uma feminina. Mistério em dobro.' }
   };
 
   var stage   = document.getElementById('qStage');
@@ -161,7 +164,9 @@
   backBtn.addEventListener('click', function () { if (current > 0) goTo(current - 1); });
 
   function showResult() {
-    var box = BOXES[QUESTIONS[0].opts[answers[0]].box];
+    // O perfil (pergunta 2) tem prioridade; senão vale a vibe (pergunta 1)
+    var perfil = QUESTIONS[1].opts[answers[1]].box;
+    var box = BOXES[perfil || QUESTIONS[0].opts[answers[0]].box];
     var wantsCalc = QUESTIONS[3].opts[answers[3]].calc;
     footer.hidden = true;
     renderSteps(true);
@@ -220,21 +225,53 @@
 
   renderQuestion();
 
-  // ---------- PARALLAX DA CAIXA NO HERO ----------
-  var mstage = document.getElementById('mboxStage');
-  if (mstage && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+  // ---------- PARALLAX DO LEQUE DE CAMISAS ----------
+  var fan = document.getElementById('heroFan');
+  if (fan && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
     var hero = document.querySelector('.hero');
     hero.addEventListener('pointermove', function (e) {
       var r = hero.getBoundingClientRect();
       var x = (e.clientX - r.left) / r.width - .5;
       var y = (e.clientY - r.top) / r.height - .5;
-      mstage.style.setProperty('--rx', (x * 16).toFixed(2) + 'deg');
-      mstage.style.setProperty('--ry', (-y * 12).toFixed(2) + 'deg');
+      fan.style.transform = 'translate(' + (x * 22).toFixed(1) + 'px,' + (y * 12).toFixed(1) + 'px)';
     });
-    hero.addEventListener('pointerleave', function () {
-      mstage.style.setProperty('--rx', '0deg');
-      mstage.style.setProperty('--ry', '0deg');
+    hero.addEventListener('pointerleave', function () { fan.style.transform = ''; });
+  }
+
+  // ---------- CAMISAS: abas por categoria ----------
+  var tabs = document.querySelectorAll('.shirt-tab');
+  var ind = document.querySelector('.shirt-tab-ind');
+  var cards = document.querySelectorAll('.shirt-card');
+  function moveInd(tab) {
+    if (!ind || !tab) return;
+    ind.style.width = tab.offsetWidth + 'px';
+    ind.style.transform = 'translateX(' + tab.offsetLeft + 'px)';
+  }
+  function showCat(cat) {
+    var i = 0;
+    cards.forEach(function (c) {
+      var on = c.getAttribute('data-cat') === cat;
+      c.hidden = !on;
+      c.classList.remove('in');
+      if (on) {
+        c.style.setProperty('--i', i++);
+        void c.offsetWidth;
+        c.classList.add('in');
+      }
     });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.classList.toggle('on', x === t); x.setAttribute('aria-selected', x === t); });
+      moveInd(t);
+      showCat(t.getAttribute('data-cat'));
+    });
+  });
+  if (tabs.length) {
+    showCat(tabs[0].getAttribute('data-cat'));
+    requestAnimationFrame(function () { moveInd(document.querySelector('.shirt-tab.on')); });
+    window.addEventListener('resize', function () { moveInd(document.querySelector('.shirt-tab.on')); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { moveInd(document.querySelector('.shirt-tab.on')); });
   }
 
   // ---------- FAQ COM ABRIR/FECHAR ANIMADO ----------

@@ -7,7 +7,11 @@
     { "source": "/box-retro",     "destination": "/box-retro.html" },
     { "source": "/box-atual",     "destination": "/box-atual.html" },
     { "source": "/box-selecoes",  "destination": "/box-selecoes.html" },
-    { "source": "/box-brasil",    "destination": "/box-brasil.html" }
+    { "source": "/box-brasil",    "destination": "/box-brasil.html" },
+    { "source": "/box-masculino", "destination": "/box-masculino.html" },
+    { "source": "/box-feminino",  "destination": "/box-feminino.html" },
+    { "source": "/box-infantil",  "destination": "/box-infantil.html" },
+    { "source": "/box-casal",     "destination": "/box-casal.html" }
   ],
   "headers": [
     {

@@ -6,9 +6,10 @@
 
 :root {
   /* Largura padrão do site — tudo usa .container */
-  --container: 1400px;
+  --container: 1200px;
   --gutter: clamp(16px, 4vw, 32px);
   --header-h: 68px;
+  --font-display: 'Archivo', 'Inter', system-ui, sans-serif;
 
   --ink: #0c0c0c;
   --ink-2: #161616;
@@ -95,7 +96,7 @@ a { color: inherit; }
 
 /* ---------- TICKER ---------- */
 .ticker { background: #fff; padding: 9px 0; overflow: hidden; position: relative; z-index: 101; }
-.ticker-inner { display: flex; width: max-content; white-space: nowrap; animation: marquee 30s linear infinite; }
+.ticker-inner { display: flex; width: max-content; white-space: nowrap; animation: marquee 90s linear infinite; }
 .ticker:hover .ticker-inner { animation-play-state: paused; }
 .ticker-inner span { font-size: 12px; font-weight: 700; letter-spacing: .08em; padding: 0 1.25rem; color: #0c0c0c; }
 .ticker-inner span::before { content: "✦"; margin-right: 2.5rem; }
@@ -128,10 +129,10 @@ a { color: inherit; }
 .logo-box { font-size: 11px; font-weight: 900; letter-spacing: .2em; color: #0c0c0c; background: #fff; padding: 4px 8px 4px 10px; border-radius: 6px; transition: transform .5s var(--ease-back); }
 .logo:hover .logo-box { transform: rotate(-6deg) scale(1.06); }
 .site-header.is-scrolled .logo img { height: 19px; }
-.nav-links { display: flex; gap: 4px; }
+.nav-links { display: flex; gap: 0; }
 .nav-links a {
   position: relative; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.6);
-  text-decoration: none; padding: 8px 12px; border-radius: 8px; transition: color .2s, background .2s;
+  text-decoration: none; padding: 8px 10px; border-radius: 8px; transition: color .2s, background .2s; white-space: nowrap;
 }
 .nav-links a::after {
   content: ''; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; border-radius: 2px;
@@ -152,7 +153,7 @@ a { color: inherit; }
 .icon-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.18); color: #fff; }
 .icon-btn:active { transform: scale(.95); }
 .icon-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
-.search-trigger { min-width: 220px; justify-content: flex-start; color: rgba(255,255,255,.45); font-weight: 500; }
+.search-trigger { min-width: 170px; justify-content: flex-start; color: rgba(255,255,255,.45); font-weight: 500; white-space: nowrap; }
 .search-trigger kbd {
   margin-left: auto; font: 600 10px/1 inherit; color: rgba(255,255,255,.5);
   border: 1px solid rgba(255,255,255,.15); border-radius: 5px; padding: 4px 6px;
@@ -336,7 +337,7 @@ a { color: inherit; }
   color: var(--accent); margin-bottom: .8rem;
 }
 .s-label::before { content: ''; width: 18px; height: 2px; background: currentColor; border-radius: 2px; }
-.s-title { font-size: clamp(30px, 4.6vw, 54px); font-weight: 900; letter-spacing: -.035em; line-height: 1.02; margin-bottom: .8rem; }
+.s-title { font-family: var(--font-display); font-stretch: 112%; font-size: clamp(30px, 4.2vw, 50px); font-weight: 800; letter-spacing: -.025em; line-height: 1.02; margin-bottom: .8rem; }
 .s-sub   { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 560px; }
 .s-head  { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
 
@@ -405,6 +406,10 @@ a { color: inherit; }
 .to-top:hover { color: #fff; }
 
 /* ---------- RESPONSIVO ---------- */
+@media (max-width: 1240px) {
+  .search-trigger kbd { display: none; }
+  .search-trigger { min-width: 0; }
+}
 @media (max-width: 1100px) {
   .search-trigger { min-width: 0; }
   .search-trigger .label, .search-trigger kbd { display: none; }
@@ -433,4 +438,11 @@ a { color: inherit; }
 }
 
 /* Emojis decorativos em escala de cinza — identidade 100% preto e branco */
-.orbit span, .box-icon, .quiz-summary b, .search-title, .hero-float b, .q-emoji, .q-result-emoji, .search-thumb, .mi-big, .tb, .xs-emoji, .ki, .trust b, .cta-emojis span, .search-empty b { filter: grayscale(1); }
+.box-icon, .quiz-summary b, .search-title, .q-emoji, .q-result-emoji, .search-thumb:not(:has(img)), .mi-big, .tb:not(.tb-photo), .xs-emoji, .ki, .trust b, .cta-emojis span, .search-empty b { filter: grayscale(1); }
+
+/* Fonte display (Archivo expandida) nos títulos e números */
+.hero-h1, .cta-title, .box-name, .box-price, .ih1, .q-question, .q-result-name, .stat-n, .rev-big,
+.xs-name, .xs-price, .hw-title, .hw-num, .mi-lbl, .tot-main, .kc-name, .kc-price, .sticky-total,
+.faq-item summary, .modal-title, .calc-result b, .fit-name, .shirt-name {
+  font-family: var(--font-display); font-stretch: 112%;
+}

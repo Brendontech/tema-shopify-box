@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0c0c0c">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/box.css">
 </head>
@@ -22,6 +22,7 @@
     <a href="index.html" class="logo" aria-label="Da Sports Box — início"><img src="img/dasports-logo-branca.png" alt="Da Sports" width="157" height="22"><span class="logo-box">BOX</span></a>
     <nav class="nav-links" aria-label="Principal">
       <a href="index.html#boxes">Boxes</a>
+      <a href="index.html#camisas">Camisas</a>
       <a href="index.html#quiz">Monte a sua</a>
       <a href="index.html#como-funciona">Como funciona</a>
       <a href="index.html#avaliacoes">Avaliações</a>
@@ -30,7 +31,7 @@
     <div class="header-actions">
       <button class="icon-btn search-trigger" type="button" data-search-open aria-label="Buscar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <span class="label">Buscar box, clube, seleção…</span><kbd>Ctrl K</kbd>
+        <span class="label">Buscar…</span><kbd>Ctrl K</kbd>
       </button>
       <a class="icon-btn cart-btn" href="#" aria-label="Carrinho">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
@@ -44,6 +45,7 @@
     <div class="container">
       <nav aria-label="Menu mobile">
         <a href="index.html#boxes">Boxes</a>
+        <a href="index.html#camisas">Camisas</a>
         <a href="index.html#quiz">Monte a sua</a>
         <a href="index.html#como-funciona">Como funciona</a>
         <a href="index.html#avaliacoes">Avaliações</a>
@@ -79,19 +81,20 @@
 
       <!-- Galeria -->
       <div class="gallery">
-        <div class="mi" id="mi">
+        <div class="mi has-photo" id="mi">
+          <img class="mi-photo" id="miPhoto" src="img/camisas/retro/05-flamengo-retro-19921993-home.webp" alt="Flamengo 92/93 — exemplo do acervo" width="900" height="900">
+          <div class="mi-fan" id="miFan" hidden></div>
           <div class="mi-tag">★ BOX RETRÔ ★</div>
           <div class="mi-off">DOS ANOS 70 AO 2020</div>
-          <div class="mi-big" id="miBig">🏆</div>
-          <div class="mi-lbl" id="miLbl">RETRÔ</div>
-          <div class="mi-sub">HISTÓRIA BORDADA</div>
+          <div class="mi-lbl" id="miLbl">Flamengo 92/93</div>
+          <div class="mi-sub" id="miSub">EXEMPLO DO ACERVO · A SUA É SURPRESA</div>
         </div>
-        <div class="tbs" role="tablist">
-          <button type="button" class="tb on" data-icon="🏆" data-label="RETRÔ" aria-label="RETRÔ">🏆</button>
-          <button type="button" class="tb" data-icon="⚽" data-label="COPA 70" aria-label="COPA 70">⚽</button>
-          <button type="button" class="tb" data-icon="🥇" data-label="CAMPEÕES" aria-label="CAMPEÕES">🥇</button>
-          <button type="button" class="tb" data-icon="📦" data-label="A CAIXA" aria-label="A CAIXA">📦</button>
-          <button type="button" class="tb" data-icon="🎽" data-label="KIT" aria-label="KIT">🎽</button>
+        <div class="tbs" role="tablist" style="--n:5">
+          <button type="button" class="tb tb-photo on" data-src="img/camisas/retro/05-flamengo-retro-19921993-home.webp" data-label="Flamengo 92/93" aria-label="Flamengo 92/93"><img src="img/camisas/retro/05-flamengo-retro-19921993-home-p.webp" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca.webp" data-label="Juventus" aria-label="Juventus"><img src="img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="img/camisas/retro/02-camisa-manchester-united-home-1-199899-umbro-retro-masculina.webp" data-label="Manchester United 98/99" aria-label="Manchester United 98/99"><img src="img/camisas/retro/02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="img/camisas/retro/04-camisa-inter-de-milao-retro-0405-masculino.webp" data-label="Inter de Milão 04/05" aria-label="Inter de Milão 04/05"><img src="img/camisas/retro/04-camisa-inter-de-milao-retro-0405-masculino-p.webp" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="img/camisas/retro/03-camisa-inglaterra-retro-2013-branca-nike.webp" data-label="Inglaterra 2013" aria-label="Inglaterra 2013"><img src="img/camisas/retro/03-camisa-inglaterra-retro-2013-branca-nike-p.webp" alt="" loading="lazy" width="420" height="420"></button>
         </div>
         <div class="trust">
           <div><b>🚚</b>Frete grátis acima de R$ 299</div>
@@ -152,7 +155,7 @@
         </div>
         <div class="kc-sizes"><div class="kc-sizes-inner">
           <div class="sz-tabs"></div>
-          <div class="sz-btns-label">Tamanho · Camisa 1</div>
+          <div class="sz-btns-label">Tamanho</div>
           <div class="sz-btns"></div>
         </div></div>
       </div>
@@ -172,7 +175,7 @@
         </div>
         <div class="kc-sizes"><div class="kc-sizes-inner">
           <div class="sz-tabs"></div>
-          <div class="sz-btns-label">Tamanho · Camisa 1</div>
+          <div class="sz-btns-label">Tamanho</div>
           <div class="sz-btns"></div>
         </div></div>
       </div>
@@ -192,7 +195,7 @@
         </div>
         <div class="kc-sizes"><div class="kc-sizes-inner">
           <div class="sz-tabs"></div>
-          <div class="sz-btns-label">Tamanho · Camisa 1</div>
+          <div class="sz-btns-label">Tamanho</div>
           <div class="sz-btns"></div>
         </div></div>
       </div>
@@ -256,18 +259,18 @@
       </div>
       <div class="xs-grid" data-stagger="up">
       <a href="box-atual.html" class="xs-card spotlight">
-        <span class="xs-emoji">⚡</span>
+        <span class="xs-photo"><img src="img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Atual</div>
-          <div class="xs-desc">Temporada recente dos clubões.</div>
+          <div class="xs-desc">Temporada recente dos clubões e modelos fora do padrão.</div>
         </div>
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
       </a>
       <a href="box-selecoes.html" class="xs-card spotlight">
-        <span class="xs-emoji">🌍</span>
+        <span class="xs-photo"><img src="img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Seleções</div>
-          <div class="xs-desc">Do Japão à Jamaica.</div>
+          <div class="xs-desc">Do Japão à Jamaica — seleções que ninguém tem.</div>
         </div>
         <div class="xs-price"><s>R$ 249,97</s>R$ 149,00</div>
       </a>
@@ -275,17 +278,49 @@
         <span class="xs-emoji">🇧🇷</span>
         <div>
           <div class="xs-name">Box Brasil</div>
-          <div class="xs-desc">A amarelinha ou a azul.</div>
+          <div class="xs-desc">A amarelinha ou a azul. Das clássicas do tetra e do penta às mais recentes.</div>
         </div>
         <div class="xs-price"><s>R$ 249,97</s>R$ 149,00</div>
       </a>
       <a href="box-classica.html" class="xs-card spotlight">
-        <span class="xs-emoji">👕</span>
+        <span class="xs-photo"><img src="img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Clássica</div>
-          <div class="xs-desc">O equilíbrio perfeito.</div>
+          <div class="xs-desc">Retrô, atual, clubes e seleções — o equilíbrio perfeito.</div>
         </div>
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
+      </a>
+      <a href="box-masculino.html" class="xs-card spotlight">
+        <span class="xs-photo"><img src="img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Masculino</div>
+          <div class="xs-desc">Camisas masculinas de clubes e seleções do mundo todo.</div>
+        </div>
+        <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
+      </a>
+      <a href="box-feminino.html" class="xs-card spotlight">
+        <span class="xs-photo"><img src="img/camisas/feminina/01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Feminino</div>
+          <div class="xs-desc">Camisas com modelagem feminina, de clubes e seleções.</div>
+        </div>
+        <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
+      </a>
+      <a href="box-infantil.html" class="xs-card spotlight">
+        <span class="xs-photo"><img src="img/camisas/infantil/03-conjunto-infantil-colombia-202627-p.webp" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Infantil</div>
+          <div class="xs-desc">Kits e conjuntos infantis pra criar o próximo craque.</div>
+        </div>
+        <div class="xs-price"><s>R$ 169,90</s>R$ 99,00</div>
+      </a>
+      <a href="box-casal.html" class="xs-card spotlight">
+        <span class="xs-photo"><img src="img/camisas/masculina/05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Casal</div>
+          <div class="xs-desc">Uma camisa masculina + uma feminina. Mistério em dobro.</div>
+        </div>
+        <div class="xs-price"><s>R$ 379,90</s>R$ 219,00</div>
       </a>
       </div>
     </div>
@@ -316,7 +351,7 @@
     <div class="modal-body">
       <form class="calc-card" id="calcForm">
         <div class="calc-title">Descubra seu tamanho</div>
-        <div class="calc-sub">Informe sua altura e peso — calculamos o tamanho ideal para você.</div>
+        <div class="calc-sub">Informe altura e peso — calculamos o tamanho ideal pela tabela do modelo selecionado.</div>
         <div class="calc-fields">
           <div class="cf"><label for="cH">Altura (cm)</label><input type="number" id="cH" inputmode="numeric" min="90" max="230" placeholder="Ex: 178"></div>
           <div class="cf"><label for="cW">Peso (kg)</label><input type="number" id="cW" inputmode="numeric" min="12" max="250" placeholder="Ex: 82"></div>
@@ -329,7 +364,7 @@
       </button>
       <div class="table-section" id="tableSection"><div>
         <div class="model-tabs">
-          <button type="button" class="mt on" data-model="masculino">Masculino</button>
+          <button type="button" class="mt" data-model="masculino">Masculino</button>
           <button type="button" class="mt" data-model="feminino">Feminino</button>
           <button type="button" class="mt" data-model="infantil">Infantil</button>
           <button type="button" class="mt" data-model="jogador">Jogador</button>
@@ -357,6 +392,10 @@
           <a href="box-selecoes.html">Box Seleções</a>
           <a href="box-brasil.html">Box Brasil</a>
           <a href="box-classica.html">Box Clássica</a>
+          <a href="box-masculino.html">Box Masculino</a>
+          <a href="box-feminino.html">Box Feminino</a>
+          <a href="box-infantil.html">Box Infantil</a>
+          <a href="box-casal.html">Box Casal</a>
         </div>
       </div>
       <div>
@@ -384,13 +423,60 @@
 <script>
   // Dados da box (em produção virão da Shopify)
   window.BOX = {
-    name: "Box Retrô",
-    emoji: "🏆",
-    prices: [
-      { t: 174, o: 289.97 },
-      { t: 418, o: 869.91 },
-      { t: 522, o: 1449.85 },
-      { t: 580, o: 2029.79 }
+    "name": "Box Retrô",
+    "emoji": "🏆",
+    "mode": null,
+    "sizes": null,
+    "model": "masculino",
+    "photos": [
+      {
+        "src": "img/camisas/retro/05-flamengo-retro-19921993-home.webp",
+        "thumb": "img/camisas/retro/05-flamengo-retro-19921993-home-p.webp",
+        "nome": "Flamengo 92/93",
+        "cat": "retro"
+      },
+      {
+        "src": "img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca.webp",
+        "thumb": "img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp",
+        "nome": "Juventus",
+        "cat": "retro"
+      },
+      {
+        "src": "img/camisas/retro/02-camisa-manchester-united-home-1-199899-umbro-retro-masculina.webp",
+        "thumb": "img/camisas/retro/02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp",
+        "nome": "Manchester United 98/99",
+        "cat": "retro"
+      },
+      {
+        "src": "img/camisas/retro/04-camisa-inter-de-milao-retro-0405-masculino.webp",
+        "thumb": "img/camisas/retro/04-camisa-inter-de-milao-retro-0405-masculino-p.webp",
+        "nome": "Inter de Milão 04/05",
+        "cat": "retro"
+      },
+      {
+        "src": "img/camisas/retro/03-camisa-inglaterra-retro-2013-branca-nike.webp",
+        "thumb": "img/camisas/retro/03-camisa-inglaterra-retro-2013-branca-nike-p.webp",
+        "nome": "Inglaterra 2013",
+        "cat": "retro"
+      }
+    ],
+    "prices": [
+      {
+        "t": 174,
+        "o": 289.97
+      },
+      {
+        "t": 418,
+        "o": 869.91
+      },
+      {
+        "t": 522,
+        "o": 1449.85
+      },
+      {
+        "t": 580,
+        "o": 2029.79
+      }
     ]
   };
 </script>

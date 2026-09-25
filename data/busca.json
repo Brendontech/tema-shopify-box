@@ -1,0 +1,103 @@
+{
+  "populares": ["Retrô", "Brasil 2026", "Seleções", "Zidane", "Guia de tamanhos"],
+  "itens": [
+    {
+      "tipo": "Box",
+      "titulo": "Box Retrô",
+      "url": "box-retro.html",
+      "descricao": "Camisas históricas de 1970 a 2020. Os clássicos que marcaram época.",
+      "emoji": "🏆",
+      "preco": 174,
+      "precoAntigo": 289.97,
+      "tags": ["retro", "classica", "historica", "vintage", "anos 70", "anos 80", "anos 90", "copa", "zidane", "ronaldo", "nedved", "bebeto", "campeoes", "colecao"]
+    },
+    {
+      "tipo": "Box",
+      "titulo": "Box Atual",
+      "url": "box-atual.html",
+      "descricao": "Temporada recente dos clubões e modelos fora do padrão.",
+      "emoji": "⚡",
+      "preco": 119,
+      "precoAntigo": 197.97,
+      "tags": ["atual", "temporada", "lancamento", "clubes", "clubao", "europa", "premier league", "la liga", "serie a", "2025", "2026"]
+    },
+    {
+      "tipo": "Box",
+      "titulo": "Box Seleções",
+      "url": "box-selecoes.html",
+      "descricao": "Do Japão à Jamaica — seleções que ninguém tem.",
+      "emoji": "🌍",
+      "preco": 149,
+      "precoAntigo": 249.97,
+      "tags": ["selecoes", "selecao", "mundo", "copa do mundo", "japao", "jamaica", "alemanha", "franca", "argentina", "italia", "holanda", "nigeria"]
+    },
+    {
+      "tipo": "Box",
+      "titulo": "Box Brasil",
+      "url": "box-brasil.html",
+      "descricao": "A amarelinha ou a azul. Rumo à Copa 2026.",
+      "emoji": "🇧🇷",
+      "preco": 149,
+      "precoAntigo": 249.97,
+      "tags": ["brasil", "cbf", "amarelinha", "azul", "copa 2026", "hexa", "selecao brasileira", "canarinho"]
+    },
+    {
+      "tipo": "Box",
+      "titulo": "Box Clássica",
+      "url": "box-classica.html",
+      "descricao": "Retrô, atual, clubes e seleções — o equilíbrio perfeito.",
+      "emoji": "👕",
+      "preco": 119,
+      "precoAntigo": 197.95,
+      "tags": ["classica", "mista", "variada", "surpresa", "retro", "atual", "clubes", "selecoes", "presente"]
+    },
+    {
+      "tipo": "Ajuda",
+      "titulo": "Guia de tamanhos",
+      "url": "box-classica.html#tamanhos",
+      "descricao": "Calcule seu tamanho pela altura e peso ou veja a tabela completa.",
+      "emoji": "📏",
+      "tags": ["tamanho", "medidas", "tabela", "calculadora", "p", "m", "g", "gg", "infantil", "feminino"]
+    },
+    {
+      "tipo": "Ajuda",
+      "titulo": "Monte sua box (quiz)",
+      "url": "index.html#quiz",
+      "descricao": "4 perguntas rápidas e a gente indica a box ideal pra você.",
+      "emoji": "🎯",
+      "tags": ["quiz", "montar", "indicacao", "qual box", "ajuda a escolher"]
+    },
+    {
+      "tipo": "Ajuda",
+      "titulo": "Como funciona",
+      "url": "index.html#como-funciona",
+      "descricao": "Escolha a vibe, a gente escala a camisa e você revela.",
+      "emoji": "📦",
+      "tags": ["como funciona", "caixa misteriosa", "passo a passo", "curadoria"]
+    },
+    {
+      "tipo": "Ajuda",
+      "titulo": "Trocas e garantia",
+      "url": "index.html#faq",
+      "descricao": "Garantia de troca em 30 dias e troca de tamanho garantida.",
+      "emoji": "🔄",
+      "tags": ["troca", "devolucao", "garantia", "30 dias", "tamanho errado"]
+    },
+    {
+      "tipo": "Ajuda",
+      "titulo": "Frete e entrega",
+      "url": "index.html#faq",
+      "descricao": "Frete grátis acima de R$299 e entrega rastreada para todo o Brasil.",
+      "emoji": "🚚",
+      "tags": ["frete", "entrega", "prazo", "rastreio", "frete gratis", "correios"]
+    },
+    {
+      "tipo": "Ajuda",
+      "titulo": "Pagamento",
+      "url": "index.html#faq",
+      "descricao": "Pix com 5% off ou cartão em até 2x sem juros.",
+      "emoji": "💳",
+      "tags": ["pagamento", "pix", "cartao", "parcelar", "sem juros", "desconto"]
+    }
+  ]
+}

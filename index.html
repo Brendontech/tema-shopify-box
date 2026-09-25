@@ -5,161 +5,369 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Da Sports Box — Caixa Misteriosa de Camisas de Futebol</title>
   <meta name="description" content="Caixa misteriosa de camisas de futebol. Retrô, clubes e seleções. Curadoria especializada, estoque no Brasil.">
+  <meta name="theme-color" content="#0c0c0c">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
-<body>
+<body class="page-home">
 
-<div class="ticker"><div class="ticker-inner" id="tick"></div></div>
+<div class="ticker" aria-hidden="true"><div class="ticker-inner" id="tick"></div></div>
 
-<nav class="nav">
-  <div class="logo">DA SPORTS <b>BOX</b></div>
-  <div class="nav-links">
-    <a href="#como-funciona">Como funciona</a>
-    <a href="#boxes">Boxes</a>
-    <a href="#avaliacoes">Avaliações</a>
-  </div>
-  <button class="nav-cta" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Montar minha box</button>
-</nav>
-
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-pill"><span class="pill-dot"></span>Da Sports · Caixa Misteriosa Oficial</div>
-  <h1 class="hero-h1">
-    <span class="line1">Você não</span>
-    <span class="line2">escolhe o</span>
-    <span class="line3">manto.</span>
-  </h1>
-  <p class="hero-sub">Camisas de futebol nacionais e internacionais — retrô, clubes e seleções. Curadoria especializada, estoque no Brasil.</p>
-  <div class="hero-actions">
-    <button class="btn-main" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Montar minha box →</button>
-    <button class="btn-ghost" onclick="document.getElementById('boxes').scrollIntoView({behavior:'smooth'})">Ver as boxes</button>
-  </div>
-  <div class="hero-stats">
-    <div><div class="stat-n">+9mil</div><div class="stat-l">camisas entregues</div></div>
-    <div><div class="stat-n">4.9★</div><div class="stat-l">avaliação média</div></div>
-    <div><div class="stat-n">2x</div><div class="stat-l">sem juros</div></div>
-    <div><div class="stat-n">30d</div><div class="stat-l">garantia de troca</div></div>
-  </div>
-</section>
-
-<section class="quiz" id="quiz">
-  <div style="max-width:680px;margin:0 auto;">
-    <p class="s-label">Monte a sua</p>
-    <h2 class="s-title">4 toques.<br>Camisa cravada.</h2>
-    <p class="s-sub">Responda rápido e a gente monta a box perfeita pra você.</p>
-    <div class="q-steps">
-      <div class="q-step done"   id="step1">✓</div>
-      <div class="q-line done"></div>
-      <div class="q-step active" id="step2">2</div>
-      <div class="q-line"        id="line2"></div>
-      <div class="q-step"        id="step3">3</div>
-      <div class="q-line"        id="line3"></div>
-      <div class="q-step"        id="step4">4</div>
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo" aria-label="Da Sports Box — início"><img src="img/dasports-logo-branca.png" alt="Da Sports" width="157" height="22"><span class="logo-box">BOX</span></a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="index.html#boxes">Boxes</a>
+      <a href="index.html#quiz">Monte a sua</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#avaliacoes">Avaliações</a>
+      <a href="index.html#faq">Dúvidas</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn search-trigger" type="button" data-search-open aria-label="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="label">Buscar box, clube, seleção…</span><kbd>Ctrl K</kbd>
+      </button>
+      <a class="icon-btn cart-btn" href="#" aria-label="Carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span class="cart-count" data-n="0">0</span>
+      </a>
+      <a class="nav-cta" href="index.html#quiz">Montar minha box</a>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
     </div>
-    <div class="q-card">
-      <p class="q-question" id="qQuestion">Qual é a sua vibe?</p>
-      <div class="q-opts" id="qOpts"></div>
-      <div class="q-footer">
-        <div class="q-prog-bar"><div class="q-prog-fill" id="qProg"></div></div>
-        <button class="btn-main" style="padding:10px 22px;font-size:13px;animation:none;" onclick="nextStep()">Próximo →</button>
+  </div>
+  <div class="mobile-menu">
+    <div class="container">
+      <nav aria-label="Menu mobile">
+        <a href="index.html#boxes">Boxes</a>
+        <a href="index.html#quiz">Monte a sua</a>
+        <a href="index.html#como-funciona">Como funciona</a>
+        <a href="index.html#avaliacoes">Avaliações</a>
+        <a href="index.html#faq">Dúvidas</a>
+      </nav>
+    </div>
+  </div>
+  <div class="scroll-progress"></div>
+</header>
+
+<!-- BUSCA AJAX -->
+<div class="search" id="search" role="dialog" aria-modal="true" aria-label="Buscar" hidden>
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="searchInput" placeholder="Buscar box, clube, seleção, jogador…" autocomplete="off" spellcheck="false" aria-label="Termo de busca">
+      <span class="search-spinner"></span>
+      <button class="search-close" type="button" data-search-close>ESC</button>
+    </div>
+    <div class="search-body" aria-live="polite"></div>
+    <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd>navegar</span><span><kbd>Enter</kbd>abrir</span><span><kbd>Esc</kbd>fechar</span></div>
+  </div>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <div class="hero-orb orb-a"></div>
+    <div class="hero-orb orb-b"></div>
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="hero-pill"><span class="pill-dot"></span>Da Sports · Caixa Misteriosa Oficial</div>
+      <h1 class="hero-h1 split-now" data-split>
+        <span class="l">Você não</span>
+        <span class="l">escolhe o</span>
+        <span class="l grad">manto.</span>
+      </h1>
+      <p class="hero-sub">Camisas de futebol nacionais e internacionais — retrô, clubes e seleções. Curadoria especializada, estoque no Brasil.</p>
+      <div class="hero-actions">
+        <a class="btn btn-main" href="#quiz">Montar minha box <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#boxes">Ver as boxes</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-n" data-count="9" data-prefix="+" data-suffix="mil">+9mil</div><div class="stat-l">camisas entregues</div></div>
+        <div><div class="stat-n" data-count="4.9" data-decimals="1" data-suffix="★">4.9★</div><div class="stat-l">avaliação média</div></div>
+        <div><div class="stat-n" data-count="2" data-suffix="x">2x</div><div class="stat-l">sem juros</div></div>
+        <div><div class="stat-n" data-count="30" data-suffix="d">30d</div><div class="stat-l">garantia de troca</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="mbox-stage" id="mboxStage">
+        <div class="mbox-glow"></div>
+        <div class="orbit">
+          <span style="--a:0deg">🏆</span>
+          <span style="--a:72deg">⚡</span>
+          <span style="--a:144deg">🌍</span>
+          <span style="--a:216deg">🇧🇷</span>
+          <span style="--a:288deg">⚽</span>
+        </div>
+        <div class="mbox">
+          <div class="mbox-lid"></div>
+          <div class="mbox-q">?</div>
+          <div class="mbox-tag">DA SPORTS BOX</div>
+        </div>
+        <div class="hero-float f1"><b>🔥 Retrô</b><span>mais vendida</span></div>
+        <div class="hero-float f2"><b>R$ 89</b><span>por camisa no kit 5</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="boxes" id="boxes">
-  <div style="max-width:920px;margin:0 auto;">
-    <p class="s-label" style="color:#2563eb;">Elenco completo</p>
-    <h2 class="s-title" style="color:#fff;">Escolha sua box</h2>
-    <p class="s-sub" style="color:rgba(255,255,255,.4);">1 camisa misteriosa + embalagem colecionável por box.</p>
-    <div class="boxes-grid">
-      <a href="box-retro.html" class="box-card feat">
-        <span class="box-feat-badge">MAIS VENDIDA</span>
-        <span class="box-icon">🏆</span>
-        <div class="box-name">Box Retrô</div>
-        <div class="box-desc">Camisas históricas de 1970 a 2020. Os clássicos que marcaram época.</div>
-        <div class="box-price-old">R$ 289,97</div>
-        <div class="box-price">R$ 174<span>,00</span></div>
-        <button class="box-btn">Escolher essa →</button>
-      </a>
-      <a href="box-atual.html" class="box-card">
-        <span class="box-icon" style="animation-delay:.3s">⚡</span>
-        <div class="box-name">Box Atual</div>
-        <div class="box-desc">Temporada recente dos clubões e modelos fora do padrão.</div>
-        <div class="box-price-old">R$ 197,97</div>
-        <div class="box-price">R$ 119<span>,00</span></div>
-        <button class="box-btn">Escolher essa →</button>
-      </a>
-      <a href="box-selecoes.html" class="box-card">
-        <span class="box-icon" style="animation-delay:.6s">🌍</span>
-        <div class="box-name">Box Seleções</div>
-        <div class="box-desc">Do Japão à Jamaica — seleções que ninguém tem.</div>
-        <div class="box-price-old">R$ 249,97</div>
-        <div class="box-price">R$ 149<span>,00</span></div>
-        <button class="box-btn">Escolher essa →</button>
-      </a>
-      <a href="box-brasil.html" class="box-card">
-        <span class="box-icon" style="animation-delay:.9s">🇧🇷</span>
-        <div class="box-name">Box Brasil</div>
-        <div class="box-desc">A amarelinha ou a azul. Rumo à Copa 2026.</div>
-        <div class="box-price-old">R$ 249,97</div>
-        <div class="box-price">R$ 149<span>,00</span></div>
-        <button class="box-btn">Escolher essa →</button>
-      </a>
-    </div>
+<!-- FAIXA DE CLUBES -->
+<div class="clubs" aria-hidden="true">
+  <div class="clubs-track">
+    <span>Real Madrid</span><i>✦</i><span>Milan</span><i>✦</i><span>Boca Juniors</span><i>✦</i><span>Ajax</span><i>✦</i><span>Japão</span><i>✦</i><span>Flamengo</span><i>✦</i><span>Juventus</span><i>✦</i><span>Nigéria</span><i>✦</i><span>Barcelona</span><i>✦</i><span>Holanda 88</span><i>✦</i>
+    <span>Real Madrid</span><i>✦</i><span>Milan</span><i>✦</i><span>Boca Juniors</span><i>✦</i><span>Ajax</span><i>✦</i><span>Japão</span><i>✦</i><span>Flamengo</span><i>✦</i><span>Juventus</span><i>✦</i><span>Nigéria</span><i>✦</i><span>Barcelona</span><i>✦</i><span>Holanda 88</span><i>✦</i>
   </div>
-</section>
-
-<section class="how" id="como-funciona">
-  <div style="max-width:920px;margin:0 auto;">
-    <p class="s-label">Simples assim</p>
-    <h2 class="s-title">3 passos até o gol</h2>
-    <div class="how-steps">
-      <div class="hw-step reveal"><div class="hw-num">1</div><div class="hw-title">Escolha a vibe</div><div class="hw-desc">Categoria, tamanho e preferências. Leva menos de 2 minutos.</div></div>
-      <div class="hw-step reveal"><div class="hw-num">2</div><div class="hw-title">A gente escala</div><div class="hw-desc">Nossa curadoria separa a camisa certa do acervo pra você.</div></div>
-      <div class="hw-step reveal"><div class="hw-num">3</div><div class="hw-title">Abre e posta</div><div class="hw-desc">Filma a revelação, marca @dasportsbox e ganha 20% off.</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="cta-banner">
-  <div class="cta-title">O manto está esperando por você.</div>
-  <div class="cta-sub">Mais de 9 mil camisas entregues. A sua é a próxima.</div>
-  <button class="cta-btn" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Montar minha box agora →</button>
 </div>
 
-<section class="reviews" id="avaliacoes">
-  <div style="max-width:920px;margin:0 auto;">
-    <p class="s-label" style="color:#2563eb;">Quem abriu, aprovou</p>
-    <h2 class="s-title" style="color:#fff;">+700 avaliações</h2>
-    <div class="rev-grid">
-      <div class="rev-card reveal"><div class="rev-stars">★★★★★</div><div class="rev-text">"Chegou a camisa do Zidane na França 98. Melhor presente pra mim mesmo."</div><div class="rev-name">Lucas M. · Compra verificada</div></div>
-      <div class="rev-card reveal"><div class="rev-stars">★★★★★</div><div class="rev-text">"De presente pro meu namorado. Ele não parava de gritar na revelação!"</div><div class="rev-name">Ana R. · Compra verificada</div></div>
-      <div class="rev-card reveal"><div class="rev-stars">★★★★★</div><div class="rev-text">"Comprei 3 caixas e nenhuma repetiu. Qualidade muito acima do esperado."</div><div class="rev-name">Pedro S. · Compra verificada</div></div>
+<!-- BOXES -->
+<section class="boxes section" id="boxes">
+  <div class="container">
+    <div class="s-head">
+      <div>
+        <p class="s-label" data-reveal>Elenco completo</p>
+        <h2 class="s-title" data-split>Escolha sua box</h2>
+        <p class="s-sub" data-reveal style="--d:2">1 camisa misteriosa + embalagem colecionável por box. Quanto mais camisas no kit, menor o preço de cada uma.</p>
+      </div>
+      <button class="btn btn-ghost" type="button" data-search-open data-reveal="left">🔎 Buscar clube ou seleção</button>
+    </div>
+
+    <div class="boxes-grid" data-stagger="up">
+      <a href="box-retro.html" class="box-card feat spotlight">
+        <span class="box-feat-badge">MAIS VENDIDA</span>
+        <span class="box-icon">🏆</span>
+        <div class="box-body">
+          <div class="box-kicker">1970 — 2020</div>
+          <div class="box-name">Box Retrô</div>
+          <div class="box-desc">Camisas históricas de 1970 a 2020. Os clássicos que marcaram época — Zidane, Ronaldo, Nedved, Bebeto.</div>
+          <div class="box-foot">
+            <div>
+              <div class="box-price-old">R$ 289,97</div>
+              <div class="box-price">R$ 174<span>,00</span></div>
+            </div>
+            <span class="box-btn">Escolher essa <span class="arr">→</span></span>
+          </div>
+        </div>
+      </a>
+      <a href="box-atual.html" class="box-card spotlight">
+        <span class="box-icon" style="animation-delay:.3s">⚡</span>
+        <div class="box-body">
+          <div class="box-name">Box Atual</div>
+          <div class="box-desc">Temporada recente dos clubões e modelos fora do padrão.</div>
+          <div class="box-foot">
+            <div><div class="box-price-old">R$ 197,97</div><div class="box-price">R$ 119<span>,00</span></div></div>
+            <span class="box-btn">Escolher <span class="arr">→</span></span>
+          </div>
+        </div>
+      </a>
+      <a href="box-selecoes.html" class="box-card spotlight">
+        <span class="box-icon" style="animation-delay:.6s">🌍</span>
+        <div class="box-body">
+          <div class="box-name">Box Seleções</div>
+          <div class="box-desc">Do Japão à Jamaica — seleções que ninguém tem.</div>
+          <div class="box-foot">
+            <div><div class="box-price-old">R$ 249,97</div><div class="box-price">R$ 149<span>,00</span></div></div>
+            <span class="box-btn">Escolher <span class="arr">→</span></span>
+          </div>
+        </div>
+      </a>
+      <a href="box-brasil.html" class="box-card spotlight">
+        <span class="box-icon" style="animation-delay:.9s">🇧🇷</span>
+        <div class="box-body">
+          <div class="box-name">Box Brasil</div>
+          <div class="box-desc">A amarelinha ou a azul. Rumo à Copa 2026.</div>
+          <div class="box-foot">
+            <div><div class="box-price-old">R$ 249,97</div><div class="box-price">R$ 149<span>,00</span></div></div>
+            <span class="box-btn">Escolher <span class="arr">→</span></span>
+          </div>
+        </div>
+      </a>
+      <a href="box-classica.html" class="box-card spotlight">
+        <span class="box-icon" style="animation-delay:1.2s">👕</span>
+        <div class="box-body">
+          <div class="box-name">Box Clássica</div>
+          <div class="box-desc">Retrô, atual, clubes e seleções — o equilíbrio perfeito.</div>
+          <div class="box-foot">
+            <div><div class="box-price-old">R$ 197,95</div><div class="box-price">R$ 119<span>,00</span></div></div>
+            <span class="box-btn">Escolher <span class="arr">→</span></span>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
-<footer class="foot">
-  <div class="foot-top">
-    <div>
-      <div class="foot-brand">DA SPORTS <b>BOX</b></div>
-      <div class="foot-tagline">Extensão oficial da Da Sports · Caixas misteriosas de futebol</div>
+<!-- QUIZ -->
+<section class="quiz section" id="quiz">
+  <div class="container quiz-inner">
+    <div class="quiz-intro">
+      <p class="s-label" data-reveal>Monte a sua</p>
+      <h2 class="s-title" data-split>4 toques.<br>Camisa cravada.</h2>
+      <p class="s-sub" data-reveal style="--d:2">Responda rápido e a gente indica a box perfeita pra você.</p>
+      <ul class="quiz-summary" id="qSummary" data-reveal style="--d:3"></ul>
     </div>
-    <div class="foot-links">
-      <a href="#">Como funciona</a>
-      <a href="#">Trocas e devoluções</a>
-      <a href="#">Frete e entrega</a>
-      <a href="#">Privacidade</a>
-      <a href="#">Contato</a>
+
+    <div class="q-card" data-reveal="scale">
+      <div class="q-steps" id="qSteps">
+        <div class="q-step active">1</div><div class="q-line"><i></i></div>
+        <div class="q-step">2</div><div class="q-line"><i></i></div>
+        <div class="q-step">3</div><div class="q-line"><i></i></div>
+        <div class="q-step">4</div>
+      </div>
+      <div class="q-stage" id="qStage">
+        <p class="q-count" id="qCount">Pergunta 1 de 4</p>
+        <p class="q-question" id="qQuestion">Qual é a sua vibe?</p>
+        <div class="q-opts" id="qOpts" role="radiogroup"></div>
+      </div>
+      <div class="q-footer">
+        <button class="q-back" type="button" id="qBack" disabled>← Voltar</button>
+        <div class="q-prog-bar"><div class="q-prog-fill" id="qProg"></div></div>
+        <button class="btn btn-main" type="button" id="qNext" disabled>Próximo <span class="arr">→</span></button>
+      </div>
     </div>
   </div>
-  <div class="foot-copy">© 2026 Da Sports Box · Todos os direitos reservados</div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="how section" id="como-funciona">
+  <div class="container">
+    <div class="s-head">
+      <div>
+        <p class="s-label" data-reveal>Simples assim</p>
+        <h2 class="s-title" data-split>3 passos até o gol</h2>
+      </div>
+    </div>
+    <div class="how-steps" data-stagger="up">
+      <div class="hw-step spotlight"><div class="hw-num">1</div><div class="hw-title">Escolha a vibe</div><div class="hw-desc">Categoria, tamanho e preferências. Leva menos de 2 minutos.</div></div>
+      <div class="hw-step spotlight"><div class="hw-num">2</div><div class="hw-title">A gente escala</div><div class="hw-desc">Nossa curadoria separa a camisa certa do acervo pra você.</div></div>
+      <div class="hw-step spotlight"><div class="hw-num">3</div><div class="hw-title">Abre e posta</div><div class="hw-desc">Filma a revelação, marca @dasportsbox e ganha 20% off.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-wrap">
+  <div class="container">
+    <div class="cta-banner" data-reveal="scale">
+      <div class="cta-emojis" aria-hidden="true"><span>⚽</span><span>👕</span><span>🏆</span><span>📦</span></div>
+      <h2 class="cta-title">O manto está esperando por você.</h2>
+      <p class="cta-sub">Mais de 9 mil camisas entregues. A sua é a próxima.</p>
+      <a class="btn btn-white" href="#quiz">Montar minha box agora <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section class="reviews section" id="avaliacoes">
+  <div class="container">
+    <div class="s-head">
+      <div>
+        <p class="s-label" data-reveal>Quem abriu, aprovou</p>
+        <h2 class="s-title" data-split>+700 avaliações</h2>
+      </div>
+    </div>
+    <div class="rev-grid" data-stagger="up">
+      <div class="rev-score">
+        <div class="rev-big" data-count="4.9" data-decimals="1">4.9</div>
+        <div class="rev-stars">★★★★★</div>
+        <div class="rev-meta">Média de +700 avaliações de compras verificadas</div>
+        <div class="rev-bars">
+          <div><span>5★</span><i style="--w:92%"></i></div>
+          <div><span>4★</span><i style="--w:6%"></i></div>
+          <div><span>3★</span><i style="--w:2%"></i></div>
+        </div>
+      </div>
+      <div class="rev-card spotlight"><div class="rev-stars">★★★★★</div><div class="rev-text">"Chegou a camisa do Zidane na França 98. Melhor presente pra mim mesmo."</div><div class="rev-name"><span class="rev-av">L</span>Lucas M. · Compra verificada</div></div>
+      <div class="rev-card spotlight"><div class="rev-stars">★★★★★</div><div class="rev-text">"De presente pro meu namorado. Ele não parava de gritar na revelação!"</div><div class="rev-name"><span class="rev-av">A</span>Ana R. · Compra verificada</div></div>
+      <div class="rev-card spotlight"><div class="rev-stars">★★★★★</div><div class="rev-text">"Comprei 3 caixas e nenhuma repetiu. Qualidade muito acima do esperado."</div><div class="rev-name"><span class="rev-av">P</span>Pedro S. · Compra verificada</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section" id="faq">
+  <div class="container faq-inner">
+    <div>
+      <p class="s-label" data-reveal>Dúvidas</p>
+      <h2 class="s-title" data-split>Perguntas frequentes</h2>
+      <p class="s-sub" data-reveal style="--d:2">Não achou o que procurava? Use a busca ou fale com a gente.</p>
+    </div>
+    <div class="faq-list" data-stagger="up">
+      <details class="faq-item" open>
+        <summary>Como funciona a caixa misteriosa?</summary>
+        <div class="faq-a"><p>Você escolhe a categoria (Retrô, Atual, Seleções, Brasil ou Clássica), o kit e o tamanho de cada camisa. Nossa curadoria separa as camisas do acervo e você só descobre qual veio na hora de abrir.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>E se o tamanho não servir?</summary>
+        <div class="faq-a"><p>A troca de tamanho é garantida e você tem 30 dias de garantia de troca. Antes de comprar, use a calculadora do guia de tamanhos na página da box.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Pode vir camisa repetida?</summary>
+        <div class="faq-a"><p>Não. A gente controla o histórico de cada cliente para não repetir camisa entre as suas compras.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Quais as formas de pagamento?</summary>
+        <div class="faq-a"><p>Pix com 5% de desconto ou cartão em até 2x sem juros.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Qual o frete e o prazo?</summary>
+        <div class="faq-a"><p>O estoque é no Brasil e a entrega é rastreada para todo o país. O frete é grátis acima de R$ 299.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- RODAPÉ -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><img src="img/dasports-logo-branca.png" alt="Da Sports" width="186" height="26" loading="lazy"><span class="logo-box">BOX</span></div>
+        <p class="foot-tagline">Extensão oficial da Da Sports · Caixas misteriosas de camisas de futebol com curadoria especializada e estoque no Brasil.</p>
+      </div>
+      <div>
+        <div class="foot-title">Boxes</div>
+        <div class="foot-links">
+          <a href="box-retro.html">Box Retrô</a>
+          <a href="box-atual.html">Box Atual</a>
+          <a href="box-selecoes.html">Box Seleções</a>
+          <a href="box-brasil.html">Box Brasil</a>
+          <a href="box-classica.html">Box Clássica</a>
+        </div>
+      </div>
+      <div>
+        <div class="foot-title">Ajuda</div>
+        <div class="foot-links">
+          <a href="index.html#como-funciona">Como funciona</a>
+          <a href="index.html#faq">Trocas e devoluções</a>
+          <a href="index.html#faq">Frete e entrega</a>
+          <a href="#">Privacidade</a>
+          <a href="#">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div class="foot-title">Pagamento</div>
+        <div class="foot-pay"><span>Pix -5%</span><span>Visa</span><span>Mastercard</span><span>Elo</span><span>2x sem juros</span></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year>2026</span> Da Sports Box · Todos os direitos reservados</span>
+      <button class="to-top" type="button" data-to-top>Voltar ao topo ↑</button>
+    </div>
+  </div>
 </footer>
 
-<script src="js/quiz.js"></script>
+<script src="js/site.js"></script>
+<script src="js/home.js"></script>
 </body>
 </html>

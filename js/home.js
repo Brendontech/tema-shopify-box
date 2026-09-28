@@ -225,59 +225,105 @@
 
   renderQuestion();
 
-  // ---------- CAIXA MISTERIOSA ABRINDO ----------
+  // ---------- CAIXA MISTERIOSA ABRINDO (toque = embaralhar) ----------
   var reveal = document.getElementById('heroFan');
   if (reveal) {
     var sparksEl = document.getElementById('rvSparks');
+    var shirtImgs = Array.prototype.slice.call(reveal.querySelectorAll('.rv-shirt img'));
     var timers = [];
     var played = false;
+    var busy = false;
+
+    // Todas as fotos do acervo (grade "Camisas que podem vir")
+    var pool = Array.prototype.slice.call(document.querySelectorAll('#shirtGrid img')).map(function (i) { return i.getAttribute('src'); });
+    var current = shirtImgs.map(function (i) { return i.getAttribute('src'); });
 
     function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+
+    function nextSet() {
+      var fresh = pool.filter(function (s) { return current.indexOf(s) < 0; });
+      for (var i = fresh.length - 1; i > 0; i--) {           // embaralha
+        var k = Math.floor(Math.random() * (i + 1));
+        var t = fresh[i]; fresh[i] = fresh[k]; fresh[k] = t;
+      }
+      return fresh.slice(0, shirtImgs.length);
+    }
+    function preload(list) { list.forEach(function (src) { var im = new Image(); im.src = src; }); }
 
     function burst() {
       sparksEl.innerHTML = '';
       var w = reveal.offsetWidth;
-      for (var i = 0; i < 26; i++) {
+      for (var i = 0; i < 18; i++) {
         var s = document.createElement('span');
         s.className = 'rv-spark';
-        var ang = -Math.PI * Math.random();              // só para cima e para os lados
-        var dist = w * (.12 + Math.random() * .32);
+        var ang = -Math.PI * (.1 + Math.random() * .8);
+        var dist = w * (.1 + Math.random() * .25);
         s.style.setProperty('--dx', (Math.cos(ang) * dist).toFixed(0) + 'px');
-        s.style.setProperty('--dy', (Math.sin(ang) * dist * .8).toFixed(0) + 'px');
-        s.style.setProperty('--s', (3 + Math.random() * 6).toFixed(1) + 'px');
-        s.style.setProperty('--t', (.8 + Math.random() * .9).toFixed(2) + 's');
+        s.style.setProperty('--dy', (Math.sin(ang) * dist).toFixed(0) + 'px');
+        s.style.setProperty('--s', (2 + Math.random() * 4).toFixed(1) + 'px');
+        s.style.setProperty('--t', (.7 + Math.random() * .8).toFixed(2) + 's');
         sparksEl.appendChild(s);
       }
-      // estrelinhas que continuam piscando ao redor
-      for (var k = 0; k < 9; k++) {
+      for (var k = 0; k < 6; k++) {
         var st = document.createElement('span');
         st.className = 'rv-star';
         st.textContent = '✦';
-        var a2 = -Math.PI * (.05 + Math.random() * .9);
-        var d2 = w * (.1 + Math.random() * .3);
+        var a2 = -Math.PI * (.15 + Math.random() * .7);
+        var d2 = w * (.08 + Math.random() * .2);
         st.style.left = (Math.cos(a2) * d2).toFixed(0) + 'px';
-        st.style.top = (Math.sin(a2) * d2 * .9).toFixed(0) + 'px';
-        st.style.setProperty('--s', (9 + Math.random() * 12).toFixed(0) + 'px');
-        st.style.setProperty('--dl', (Math.random() * 2.4).toFixed(2) + 's');
+        st.style.top = (Math.sin(a2) * d2).toFixed(0) + 'px';
+        st.style.setProperty('--s', (8 + Math.random() * 8).toFixed(0) + 'px');
+        st.style.setProperty('--dl', (Math.random() * 2.6).toFixed(2) + 's');
         sparksEl.appendChild(st);
       }
     }
 
-    function play() {
-      timers.forEach(clearTimeout);
-      timers = [];
-      played = true;
-      reveal.classList.remove('shake', 'open', 'done');
-      sparksEl.innerHTML = '';
-      void reveal.offsetWidth;
-      if (reduceMotion) { reveal.classList.add('open', 'done'); return; }
+    function open() {
       reveal.classList.add('shake');
       later(function () {
         reveal.classList.remove('shake');
         reveal.classList.add('open');
         burst();
       }, 950);
-      later(function () { reveal.classList.add('done'); }, 2300);
+      later(function () { reveal.classList.add('done'); busy = false; }, 2200);
+    }
+
+    function play() {
+      if (busy) return;
+      busy = true;
+      played = true;
+      timers.forEach(clearTimeout);
+      timers = [];
+
+      if (reduceMotion) {
+        if (reveal.classList.contains('open')) swapShirts();
+        reveal.classList.add('open', 'done');
+        busy = false;
+        return;
+      }
+
+      if (reveal.classList.contains('open')) {
+        // Camisas voltam para a caixa, a tampa fecha, e abre de novo com outras
+        var next = nextSet();
+        preload(next);
+        reveal.classList.remove('open', 'done');
+        reveal.classList.add('closing');
+        sparksEl.innerHTML = '';
+        later(function () {
+          reveal.classList.remove('closing');
+          next.forEach(function (src, i) { shirtImgs[i].src = src; });
+          current = next;
+          open();
+        }, 650);
+      } else {
+        open();
+      }
+    }
+
+    function swapShirts() {
+      var next = nextSet();
+      next.forEach(function (src, i) { shirtImgs[i].src = src; });
+      current = next;
     }
 
     document.getElementById('rvBox').addEventListener('click', play);
@@ -286,7 +332,8 @@
     if ('IntersectionObserver' in window) {
       var ro = new IntersectionObserver(function (entries) {
         if (entries[0].isIntersecting && !played) {
-          setTimeout(play, 900);
+          played = true;
+          setTimeout(function () { played = false; play(); }, 900);
           ro.disconnect();
         }
       }, { threshold: .2 });
@@ -302,7 +349,7 @@
         var r = hero.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - .5;
         var y = (e.clientY - r.top) / r.height - .5;
-        reveal.style.transform = 'translate(' + (x * 22).toFixed(1) + 'px,' + (y * 12).toFixed(1) + 'px)';
+        reveal.style.transform = 'translate(' + (x * 16).toFixed(1) + 'px,' + (y * 8).toFixed(1) + 'px)';
       });
       hero.addEventListener('pointerleave', function () { reveal.style.transform = ''; });
     }

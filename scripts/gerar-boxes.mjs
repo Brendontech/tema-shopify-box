@@ -29,7 +29,7 @@ const KITS_CASAL = [
 // Preços das boxes por perfil (masculino, feminino, infantil, casal) são provisórios.
 const BOXES = [
   {
-    slug: 'box-retro', name: 'Box Retrô', short: 'RETRÔ', emoji: '🏆',
+    slug: 'box-retro', cover: true, name: 'Box Retrô', short: 'RETRÔ', emoji: '🏆',
     tag: '★ BOX RETRÔ ★', off: 'DOS ANOS 70 AO 2020', sub: 'HISTÓRIA BORDADA',
     isub: 'Zidane, Ronaldo, Nedved, Bebeto — os mantos que escreveram a história.',
     rating: '4.9', reviews: 214,
@@ -40,7 +40,7 @@ const BOXES = [
     tags: ['retro', 'classica', 'historica', 'vintage', 'anos 90', 'copa', 'zidane', 'ronaldo', 'nedved', 'bebeto', 'flamengo', 'juventus', 'manchester united', 'inter de milao', 'inglaterra']
   },
   {
-    slug: 'box-atual', name: 'Box Atual', short: 'ATUAL', emoji: '⚡',
+    slug: 'box-atual', cover: true, name: 'Box Atual', short: 'ATUAL', emoji: '⚡',
     tag: '★ BOX ATUAL ★', off: 'ÚLTIMA TEMPORADA', sub: 'TEMPORADA RECENTE',
     isub: 'Premier League, La Liga, Série A — o que os craques estão vestindo agora.',
     rating: '4.8', reviews: 189,
@@ -51,7 +51,7 @@ const BOXES = [
     tags: ['atual', 'temporada', 'lancamento', 'clubes', 'europa', 'premier league', 'la liga', 'serie a', 'chelsea', 'atletico de madrid', 'gremio', 'sao paulo']
   },
   {
-    slug: 'box-selecoes', name: 'Box Seleções', short: 'SELEÇÕES', emoji: '🌍',
+    slug: 'box-selecoes', cover: true, name: 'Box Seleções', short: 'SELEÇÕES', emoji: '🌍',
     tag: '★ BOX SELEÇÕES ★', off: '32 PAÍSES', sub: 'DO MUNDO INTEIRO',
     isub: 'Do Japão à Jamaica, da Croácia ao Senegal — seleções raras que ninguém tem.',
     rating: '4.9', reviews: 97,
@@ -62,9 +62,9 @@ const BOXES = [
     tags: ['selecoes', 'selecao', 'mundo', 'copa do mundo', 'japao', 'jamaica', 'alemanha', 'senegal', 'colombia', 'inglaterra', 'croacia']
   },
   {
-    slug: 'box-brasil', name: 'Box Brasil', short: 'BRASIL', emoji: '🇧🇷',
+    slug: 'box-brasil', cover: true, name: 'Box Brasil', short: 'BRASIL', emoji: '🇧🇷',
     tag: '★ BOX BRASIL ★', off: 'CBF OFICIAL', sub: 'AMARELINHA E AZUL',
-    thumbs: [['🇧🇷', 'BRASIL'], ['💛', 'AMARELINHA'], ['💙', 'AZUL'], ['📦', 'A CAIXA'], ['🎽', 'KIT']],
+    photos: [],
     isub: 'Amarelinha e azul da CBF — das clássicas do tetra e do penta aos modelos mais recentes.',
     rating: '5.0', reviews: 241,
     prices: [[149, 249.97], [378, 749.91], [477, 1249.85], [526, 1749.79]],
@@ -73,7 +73,7 @@ const BOXES = [
     tags: ['brasil', 'cbf', 'amarelinha', 'azul', 'selecao brasileira', 'canarinho', 'tetra', 'penta']
   },
   {
-    slug: 'box-classica', name: 'Box Clássica', short: 'CLÁSSICA', emoji: '👕',
+    slug: 'box-classica', cover: true, name: 'Box Clássica', short: 'CLÁSSICA', emoji: '👕',
     tag: '★ BOX CLÁSSICA ★', off: 'ATÉ 40% OFF', sub: 'ESTOQUE LENDÁRIO',
     isub: 'Retrô, atual, clubes e seleções — o equilíbrio perfeito.',
     rating: '4.9', reviews: 163,
@@ -119,7 +119,7 @@ const BOXES = [
     tags: ['infantil', 'crianca', 'kids', 'menino', 'menina', 'filho', 'filha', 'kit infantil', 'conjunto', 'dortmund', 'aston villa', 'colombia']
   },
   {
-    slug: 'box-casal', name: 'Box Casal', short: 'CASAL', emoji: '💑',
+    slug: 'box-casal', cover: true, name: 'Box Casal', short: 'CASAL', emoji: '💑',
     tag: '★ BOX CASAL ★', off: 'ELE + ELA', sub: 'MISTÉRIO EM DOBRO',
     isub: 'Uma camisa masculina e uma feminina no mesmo box — pra vestir o manto junto.',
     rating: '5.0', reviews: 0,
@@ -132,6 +132,14 @@ const BOXES = [
     tags: ['casal', 'namorados', 'namorada', 'namorado', 'dia dos namorados', 'ele e ela', 'dupla', 'par', 'presente']
   }
 ];
+
+// Fotos da galeria: a arte da box (quando existe) vem primeiro
+function galleryPhotos(box) {
+  const list = (box.photos || []).map(id => ({ src: foto(byId[id]), thumb: foto(byId[id], true), nome: byId[id].nome }));
+  if (box.cover) list.unshift({ src: `img/boxes/${box.slug}.webp`, thumb: `img/boxes/${box.slug}-p.webp`, nome: box.name, cover: true });
+  return list;
+}
+const cardImage = box => box.cover ? `img/boxes/${box.slug}-p.webp` : (box.photos && box.photos.length ? foto(byId[box.photos[0]], true) : null);
 
 const brl = (v, dec = 2) => 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
@@ -169,20 +177,21 @@ function kitHtml(box, k, i) {
 }
 
 function galleryHtml(box) {
-  if (box.photos) {
-    const ph = box.photos.map(id => byId[id]);
+  const ph = galleryPhotos(box);
+  if (ph.length) {
+    const sub = ph[0].cover ? box.sub : 'EXEMPLO DO ACERVO · A SUA É SURPRESA';
     return `
-        <div class="mi has-photo" id="mi">
-          <img class="mi-photo" id="miPhoto" src="${foto(ph[0])}" alt="${esc(ph[0].nome)} — exemplo do acervo" width="900" height="900">
+        <div class="mi has-photo${ph[0].cover ? ' is-cover' : ''}" id="mi">
+          <img class="mi-photo" id="miPhoto" src="${ph[0].src}" alt="${esc(ph[0].nome)}" width="1000" height="1000">
           <div class="mi-fan" id="miFan" hidden></div>
           <div class="mi-tag">${box.tag}</div>
           <div class="mi-off">${box.off}</div>
-          <div class="mi-lbl" id="miLbl">${esc(ph[0].nome)}</div>
-          <div class="mi-sub" id="miSub">EXEMPLO DO ACERVO · A SUA É SURPRESA</div>
+          <div class="mi-lbl" id="miLbl">${ph[0].cover ? '' : esc(ph[0].nome)}</div>
+          <div class="mi-sub" id="miSub">${sub}</div>
         </div>
-        <div class="tbs" role="tablist" style="--n:${ph.length}">
-${ph.map((c, i) => `          <button type="button" class="tb tb-photo${i === 0 ? ' on' : ''}" data-src="${foto(c)}" data-label="${esc(c.nome)}" aria-label="${esc(c.nome)}"><img src="${foto(c, true)}" alt="" loading="lazy" width="420" height="420"></button>`).join('\n')}
-        </div>`;
+        ${ph.length > 1 ? `<div class="tbs" role="tablist" style="--n:${ph.length}">
+${ph.map((c, i) => `          <button type="button" class="tb tb-photo${i === 0 ? ' on' : ''}" data-src="${c.src}" data-label="${c.cover ? '' : esc(c.nome)}" data-cover="${c.cover ? 1 : 0}" aria-label="${esc(c.nome)}"><img src="${c.thumb}" alt="" loading="lazy" width="420" height="420"></button>`).join('\n')}
+        </div>` : ''}`;
   }
   return `
         <div class="mi" id="mi">
@@ -199,8 +208,9 @@ ${box.thumbs.map(([e, l], i) => `          <button type="button" class="tb${i ==
 
 function crossSell(box) {
   return BOXES.filter(b => b.slug !== box.slug).slice(0, 8).map(b => {
-    const media = b.photos
-      ? `<span class="xs-photo"><img src="${foto(byId[b.photos[0]], true)}" alt="" loading="lazy" width="420" height="420"></span>`
+    const img = cardImage(b);
+    const media = img
+      ? `<span class="xs-photo"><img src="${img}" alt="" loading="lazy" width="420" height="420"></span>`
       : `<span class="xs-emoji">${b.emoji}</span>`;
     return `
       <a href="${b.slug}.html" class="xs-card spotlight">
@@ -397,7 +407,7 @@ ${foot}
     mode: box.mode || null,
     sizes: box.sizes || null,
     model: box.model || 'masculino',
-    photos: box.photos ? box.photos.map(id => ({ src: foto(byId[id]), thumb: foto(byId[id], true), nome: byId[id].nome, cat: byId[id].cat })) : null,
+    photos: galleryPhotos(box).length ? galleryPhotos(box) : null,
     prices: box.prices.map(([t, o]) => ({ t, o }))
   }, null, 2).replace(/\n/g, '\n  ')};
 </script>
@@ -432,7 +442,7 @@ const AJUDA = [
 function searchIndex() {
   const itens = BOXES.map(b => ({
     tipo: 'Box', titulo: b.name, url: `${b.slug}.html`, descricao: b.desc, emoji: b.emoji,
-    imagem: b.photos ? foto(byId[b.photos[0]], true) : undefined,
+    imagem: cardImage(b) || undefined,
     preco: b.prices[0][0], precoAntigo: b.prices[0][1], tags: b.tags
   }));
   return { populares: ['Retrô', 'Feminino', 'Infantil', 'Casal', 'Guia de tamanhos'], itens: itens.concat(AJUDA) };

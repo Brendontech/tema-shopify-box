@@ -365,3 +365,8 @@ body { background: var(--paper); color: #111; }
   width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,.5); color: #fff; font-size: 18px;
   -webkit-mask-image: none; mask-image: none; backdrop-filter: blur(6px);
 }
+
+/* Capa da box (arte com o nome): sem legenda por cima e sem sombreado forte */
+.mi.is-cover .mi-lbl { display: none; }
+.mi.is-cover::after { height: 22%; background: linear-gradient(to top, rgba(0,0,0,.6), transparent); }
+.mi.is-cover .mi-off, .mi.is-cover .mi-tag { display: none; }

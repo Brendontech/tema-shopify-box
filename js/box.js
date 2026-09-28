@@ -231,9 +231,11 @@
 
     if (miPhoto && BOX.photos) {
       if (n > 1) {
+        var shots = BOX.photos.filter(function (p) { return !p.cover; });
+        if (!shots.length) shots = BOX.photos;
         var k = Math.min(n, 5), html = '';
         for (var i = 0; i < k; i++) {
-          var p = BOX.photos[i % BOX.photos.length];
+          var p = shots[i % shots.length];
           var rot = (i - (k - 1) / 2) * 7;
           html += '<img src="' + p.thumb + '" alt="" style="--i:' + i + ';--r:' + rot + 'deg;--x:' + ((i - (k - 1) / 2) * 34) + '%">';
         }
@@ -243,6 +245,8 @@
       } else {
         miFan.hidden = true;
         mi.classList.remove('fanned');
+        miPhoto.src = BOX.photos[0].src;
+        mi.classList.toggle('is-cover', !!BOX.photos[0].cover);
         var first = document.querySelector('.tb');
         if (first) first.classList.add('on');
       }
@@ -262,6 +266,7 @@
       miLbl.textContent = tb.getAttribute('data-label');
       swap(miLbl, 'swap');
       if (miPhoto) {
+        mi.classList.toggle('is-cover', tb.getAttribute('data-cover') === '1');
         miFan.hidden = true;
         mi.classList.remove('fanned');
         miPhoto.src = tb.getAttribute('data-src');
@@ -283,7 +288,7 @@
       var thumbs = Array.prototype.slice.call(document.querySelectorAll('.tb-photo'));
       var cur = Math.max(0, thumbs.indexOf(document.querySelector('.tb-photo.on')));
       DSB.lightbox.open(BOX.photos.map(function (p) {
-        return { src: p.src, caption: p.nome + ' · exemplo do acervo' };
+        return { src: p.src, caption: p.cover ? p.nome : p.nome + ' · exemplo do acervo' };
       }), mi.classList.contains('fanned') ? 0 : cur);
     });
   }
@@ -397,7 +402,7 @@
     return {
       name: BOX.name || document.title,
       url: location.pathname.split('/').pop() || 'index.html',
-      image: BOX.photos ? BOX.photos[0].thumb : null,
+      image: BOX.photos ? BOX.photos[0].thumb : null, // capa da box
       emoji: BOX.emoji,
       kit: CASAL ? kitLabel(state.n).toLowerCase().replace(/^./, function (c) { return c.toUpperCase(); }) + ' · ' + state.n + ' camisas'
                  : state.n + (state.n > 1 ? ' camisas' : ' camisa'),

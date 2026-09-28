@@ -13,7 +13,7 @@
       "url": "box-retro.html",
       "descricao": "Camisas históricas de 1970 a 2020. Os clássicos que marcaram época.",
       "emoji": "🏆",
-      "imagem": "img/camisas/retro/05-flamengo-retro-19921993-home-p.webp",
+      "imagem": "img/boxes/box-retro-p.webp",
       "preco": 174,
       "precoAntigo": 289.97,
       "tags": [
@@ -40,7 +40,7 @@
       "url": "box-atual.html",
       "descricao": "Temporada recente dos clubões e modelos fora do padrão.",
       "emoji": "⚡",
-      "imagem": "img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp",
+      "imagem": "img/boxes/box-atual-p.webp",
       "preco": 119,
       "precoAntigo": 197.95,
       "tags": [
@@ -64,7 +64,7 @@
       "url": "box-selecoes.html",
       "descricao": "Do Japão à Jamaica — seleções que ninguém tem.",
       "emoji": "🌍",
-      "imagem": "img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp",
+      "imagem": "img/boxes/box-selecoes-p.webp",
       "preco": 149,
       "precoAntigo": 249.97,
       "tags": [
@@ -87,6 +87,7 @@
       "url": "box-brasil.html",
       "descricao": "A amarelinha ou a azul. Das clássicas do tetra e do penta às mais recentes.",
       "emoji": "🇧🇷",
+      "imagem": "img/boxes/box-brasil-p.webp",
       "preco": 149,
       "precoAntigo": 249.97,
       "tags": [
@@ -106,7 +107,7 @@
       "url": "box-classica.html",
       "descricao": "Retrô, atual, clubes e seleções — o equilíbrio perfeito.",
       "emoji": "👕",
-      "imagem": "img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp",
+      "imagem": "img/boxes/box-classica-p.webp",
       "preco": 119,
       "precoAntigo": 197.95,
       "tags": [
@@ -199,7 +200,7 @@
       "url": "box-casal.html",
       "descricao": "Uma camisa masculina + uma feminina. Mistério em dobro.",
       "emoji": "💑",
-      "imagem": "img/camisas/masculina/05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp",
+      "imagem": "img/boxes/box-casal-p.webp",
       "preco": 219,
       "precoAntigo": 379.9,
       "tags": [

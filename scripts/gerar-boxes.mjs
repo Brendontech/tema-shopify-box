@@ -402,6 +402,8 @@ ${foot}
   }, null, 2).replace(/\n/g, '\n  ')};
 </script>
 <script src="js/site.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/lightbox.js"></script>
 <script src="js/box.js"></script>
 </body>
 </html>

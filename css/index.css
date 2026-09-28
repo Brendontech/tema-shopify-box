@@ -414,7 +414,7 @@ body { background: var(--ink); color: #fff; }
   .quiz-summary { display: none; }
 }
 @media (max-width: 600px) {
-  .hero-h1 .l-alt { font-size: .6em; }
+  .hero-h1 .l-alt { font-size: .5em; letter-spacing: 0; }
   .hero-h1 .l-alt .split-word > span { -webkit-text-stroke-width: 1.2px; }
   .hero-stats { grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }
   .fan-item:nth-child(1), .fan-item:nth-child(5) { display: none; }
@@ -431,3 +431,6 @@ body { background: var(--ink); color: #fff; }
   .q-opt { padding: 12px; }
   .q-stage { min-height: 320px; }
 }
+
+.shirt-card { cursor: zoom-in; }
+.shirt-card:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }

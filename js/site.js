@@ -53,7 +53,7 @@
     if (header) {
       header.style.setProperty('--progress', max > 0 ? (y / max).toFixed(4) : 0);
       header.classList.toggle('is-scrolled', y > 24);
-      var locked = document.body.classList.contains('menu-open') || document.body.classList.contains('search-open');
+      var locked = document.body.classList.contains('drawer-open') || document.body.classList.contains('search-open');
       if (!locked && y > 320 && y > lastY + 4) header.classList.add('is-hidden');
       else if (y < lastY - 4 || y <= 320) header.classList.remove('is-hidden');
     }
@@ -65,20 +65,62 @@
   }, { passive: true });
   onScroll();
 
-  // ---------- MENU MOBILE ----------
-  var menuBtn = $('.menu-toggle');
-  if (menuBtn) {
-    menuBtn.addEventListener('click', function () {
-      var open = document.body.classList.toggle('menu-open');
-      menuBtn.setAttribute('aria-expanded', open);
-    });
-    $$('.mobile-menu a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        document.body.classList.remove('menu-open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
+  // ---------- TRAVA DE ROLAGEM (sem "pulo" da barra de rolagem) ----------
+  var lockCount = 0;
+  DSB.lockScroll = function (on) {
+    lockCount = Math.max(0, lockCount + (on ? 1 : -1));
+    var root = document.documentElement;
+    if (lockCount === 1 && on) {
+      root.style.paddingRight = (window.innerWidth - root.clientWidth) + 'px';
+      root.style.overflow = 'hidden';
+    } else if (lockCount === 0) {
+      root.style.overflow = '';
+      root.style.paddingRight = '';
+    }
+  };
+
+  // ---------- PAINÉIS LATERAIS (menu e carrinho) ----------
+  var openDrawerEl = null;
+  var drawerFocus = null;
+
+  DSB.openDrawer = function (id) {
+    var d = document.getElementById(id);
+    if (!d || d === openDrawerEl) return;
+    if (openDrawerEl) DSB.closeDrawer(true);
+    drawerFocus = document.activeElement;
+    d.hidden = false;
+    openDrawerEl = d;
+    document.body.classList.add('drawer-open');
+    DSB.lockScroll(true);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { d.classList.add('is-open'); }); });
+    setTimeout(function () {
+      var f = d.querySelector('.drawer-x');
+      if (f) f.focus({ preventScroll: true });
+    }, 350);
+    d.dispatchEvent(new CustomEvent('drawer:open'));
+  };
+
+  DSB.closeDrawer = function (instant) {
+    var d = openDrawerEl;
+    if (!d) return;
+    openDrawerEl = null;
+    d.classList.remove('is-open');
+    document.body.classList.remove('drawer-open');
+    DSB.lockScroll(false);
+    setTimeout(function () { if (!d.classList.contains('is-open')) d.hidden = true; }, instant ? 0 : 450);
+    if (!instant && drawerFocus && drawerFocus.focus) drawerFocus.focus({ preventScroll: true });
+  };
+
+  document.addEventListener('click', function (e) {
+    var opener = e.target.closest('[data-drawer-open]');
+    if (opener) { e.preventDefault(); DSB.openDrawer(opener.getAttribute('data-drawer-open')); return; }
+    if (e.target.closest('[data-drawer-close]')) { DSB.closeDrawer(); return; }
+    // links dentro do menu fecham o painel
+    if (openDrawerEl && openDrawerEl.id === 'menuDrawer' && e.target.closest('#menuDrawer a')) DSB.closeDrawer(true);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && openDrawerEl && !document.body.classList.contains('search-open')) DSB.closeDrawer();
+  });
 
   // ---------- LINK ATIVO NO MENU (por seção visível) ----------
   var navLinks = $$('.nav-links a[href*="#"]');
@@ -233,52 +275,6 @@
     }, opts.duration || 3200);
   };
 
-  // ---------- CARRINHO (contador persistente) ----------
-  var CART_KEY = 'dsb_cart_count';
-  function readCart() {
-    try { return parseInt(localStorage.getItem(CART_KEY), 10) || 0; } catch (e) { return 0; }
-  }
-  function writeCart(n) {
-    try { localStorage.setItem(CART_KEY, String(n)); } catch (e) { /* modo privado */ }
-  }
-  function renderCart(bump) {
-    var n = readCart();
-    $$('.cart-count').forEach(function (el) {
-      el.textContent = n;
-      el.setAttribute('data-n', n);
-      if (bump) {
-        el.classList.remove('bump');
-        void el.offsetWidth;
-        el.classList.add('bump');
-      }
-    });
-  }
-  renderCart(false);
-
-  DSB.addToCart = function (qty, fromEl, emoji) {
-    var target = $('.cart-btn');
-    var done = function () {
-      writeCart(readCart() + qty);
-      renderCart(true);
-    };
-    if (!fromEl || !target || reduceMotion) { done(); return; }
-    var a = fromEl.getBoundingClientRect();
-    var b = target.getBoundingClientRect();
-    var fly = document.createElement('div');
-    fly.className = 'fly';
-    fly.textContent = emoji || '👕';
-    fly.style.left = (a.left + a.width / 2 - 14) + 'px';
-    fly.style.top  = (a.top + a.height / 2 - 14) + 'px';
-    document.body.appendChild(fly);
-    if (header) header.classList.remove('is-hidden');
-    requestAnimationFrame(function () {
-      fly.style.transform = 'translate(' + (b.left + b.width / 2 - a.left - a.width / 2) + 'px,'
-        + (b.top + b.height / 2 - a.top - a.height / 2) + 'px) scale(.4) rotate(-25deg)';
-      fly.style.opacity = '.4';
-    });
-    setTimeout(function () { fly.remove(); done(); }, 800);
-  };
-
   // ---------- BUSCA AJAX ----------
   // Em produção na Shopify usa o Predictive Search (/search/suggest.json).
   // Fora dela (preview/Vercel), busca no índice estático data/busca.json.
@@ -298,8 +294,8 @@
 
   function openSearch(prefill) {
     lastFocus = document.activeElement;
+    if (DSB.closeDrawer) DSB.closeDrawer(true);
     document.body.classList.add('search-open');
-    document.body.classList.remove('menu-open');
     search.hidden = false;
     requestAnimationFrame(function () { search.classList.add('is-open'); });
     if (typeof prefill === 'string') input.value = prefill;
@@ -307,6 +303,7 @@
     if (input.value.trim()) runSearch(input.value); else renderIdle();
   }
   function closeSearch() {
+    input.blur();
     search.classList.remove('is-open');
     document.body.classList.remove('search-open');
     setTimeout(function () { if (!search.classList.contains('is-open')) search.hidden = true; }, 260);
@@ -378,7 +375,7 @@
         return { item: it, score: score };
       }).filter(Boolean).sort(function (a, b) { return b.score - a.score; }).slice(0, 8).map(function (r) {
         var it = r.item;
-        return { tipo: it.tipo, titulo: it.titulo, url: it.url, descricao: it.descricao, emoji: it.emoji, preco: it.preco, precoAntigo: it.precoAntigo };
+        return { tipo: it.tipo, titulo: it.titulo, url: it.url, descricao: it.descricao, emoji: it.emoji, imagem: it.imagem, preco: it.preco, precoAntigo: it.precoAntigo };
       });
     });
   }

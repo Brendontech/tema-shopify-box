@@ -33,37 +33,62 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <span class="label">Buscar…</span><kbd>Ctrl K</kbd>
       </button>
-      <a class="icon-btn cart-btn" href="#" aria-label="Carrinho">
+      <button class="icon-btn cart-btn" type="button" data-drawer-open="cartDrawer" aria-label="Abrir carrinho">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
         <span class="cart-count" data-n="0">0</span>
-      </a>
+      </button>
       <a class="nav-cta" href="index.html#quiz">Montar minha box</a>
-      <button class="icon-btn menu-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
-    </div>
-  </div>
-  <div class="mobile-menu">
-    <div class="container">
-      <nav aria-label="Menu mobile">
-        <a href="index.html#boxes">Boxes</a>
-        <a href="index.html#camisas">Camisas</a>
-        <a href="index.html#quiz">Monte a sua</a>
-        <a href="index.html#como-funciona">Como funciona</a>
-        <a href="index.html#avaliacoes">Avaliações</a>
-        <a href="index.html#faq">Dúvidas</a>
-      </nav>
+      <button class="icon-btn menu-toggle" type="button" data-drawer-open="menuDrawer" aria-label="Abrir menu"><span></span></button>
     </div>
   </div>
   <div class="scroll-progress"></div>
 </header>
+
+<!-- MENU (painel lateral) -->
+<div class="drawer drawer-left" id="menuDrawer" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="drawer-backdrop" data-drawer-close></div>
+  <aside class="drawer-panel menu-panel">
+    <div class="drawer-head">
+      <a href="index.html" class="logo"><img src="img/dasports-logo-branca.png" alt="Da Sports" width="157" height="22"><span class="logo-box">BOX</span></a>
+      <button class="drawer-x" type="button" data-drawer-close aria-label="Fechar menu">✕</button>
+    </div>
+    <button class="menu-search" type="button" data-search-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      Buscar box, clube, seleção…
+    </button>
+    <nav class="menu-links" aria-label="Menu">
+      <a href="index.html#boxes"><span class="n">01</span>Boxes<i>→</i></a>
+      <a href="index.html#camisas"><span class="n">02</span>Camisas<i>→</i></a>
+      <a href="index.html#quiz"><span class="n">03</span>Monte a sua<i>→</i></a>
+      <a href="index.html#como-funciona"><span class="n">04</span>Como funciona<i>→</i></a>
+      <a href="index.html#avaliacoes"><span class="n">05</span>Avaliações<i>→</i></a>
+      <a href="index.html#faq"><span class="n">06</span>Dúvidas<i>→</i></a>
+    </nav>
+    <div class="menu-label">Boxes</div>
+    <div class="menu-boxes">
+      <a href="box-retro.html"><img src="img/camisas/retro/05-flamengo-retro-19921993-home-p.webp" alt="" loading="lazy" width="420" height="420"><span>Retrô</span></a>
+      <a href="box-masculino.html"><img src="img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp" alt="" loading="lazy" width="420" height="420"><span>Masculino</span></a>
+      <a href="box-feminino.html"><img src="img/camisas/feminina/02-camisa-feminina-senegal-202627-i-p.webp" alt="" loading="lazy" width="420" height="420"><span>Feminino</span></a>
+      <a href="box-infantil.html"><img src="img/camisas/infantil/03-conjunto-infantil-colombia-202627-p.webp" alt="" loading="lazy" width="420" height="420"><span>Infantil</span></a>
+      <a href="box-casal.html"><img src="img/camisas/masculina/05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp" alt="" loading="lazy" width="420" height="420"><span>Casal</span></a>
+      <a href="box-atual.html"><img src="img/camisas/masculina/03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp" alt="" loading="lazy" width="420" height="420"><span>Atual</span></a>
+      <a href="box-selecoes.html"><img src="img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp" alt="" loading="lazy" width="420" height="420"><span>Seleções</span></a>
+    </div>
+    <div class="menu-foot">
+      <a class="btn btn-white btn-block" href="index.html#quiz">Montar minha box <span class="arr">→</span></a>
+      <p>Frete grátis acima de R$ 299 · Troca em 30 dias · 2x sem juros</p>
+    </div>
+  </aside>
+</div>
 
 <!-- BUSCA AJAX -->
 <div class="search" id="search" role="dialog" aria-modal="true" aria-label="Buscar" hidden>
   <div class="search-panel">
     <div class="search-field">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input type="search" id="searchInput" placeholder="Buscar box, clube, seleção, jogador…" autocomplete="off" spellcheck="false" aria-label="Termo de busca">
+      <input type="search" id="searchInput" placeholder="Buscar box, clube, seleção…" autocomplete="off" spellcheck="false" aria-label="Termo de busca">
       <span class="search-spinner"></span>
-      <button class="search-close" type="button" data-search-close>ESC</button>
+      <button class="search-close" type="button" data-search-close aria-label="Fechar busca"><span class="k-desk">ESC</span><span class="k-touch">Cancelar</span></button>
     </div>
     <div class="search-body" aria-live="polite"></div>
     <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd>navegar</span><span><kbd>Enter</kbd>abrir</span><span><kbd>Esc</kbd>fechar</span></div>
@@ -480,6 +505,8 @@
   };
 </script>
 <script src="js/site.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/lightbox.js"></script>
 <script src="js/box.js"></script>
 </body>
 </html>

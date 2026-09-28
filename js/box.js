@@ -275,6 +275,19 @@
     });
   });
 
+  // Toque/clique na foto abre o visualizador em tela cheia
+  if (miPhoto && BOX.photos && DSB.lightbox) {
+    mi.classList.add('zoomable');
+    mi.addEventListener('click', function (e) {
+      if (e.target.closest('.mi-tag, .mi-off')) return;
+      var thumbs = Array.prototype.slice.call(document.querySelectorAll('.tb-photo'));
+      var cur = Math.max(0, thumbs.indexOf(document.querySelector('.tb-photo.on')));
+      DSB.lightbox.open(BOX.photos.map(function (p) {
+        return { src: p.src, caption: p.nome + ' · exemplo do acervo' };
+      }), mi.classList.contains('fanned') ? 0 : cur);
+    });
+  }
+
   // Inclinação 3D seguindo o mouse
   if (mi && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
     mi.addEventListener('pointermove', function (e) {
@@ -377,6 +390,24 @@
   var cartHtml = btnCart.innerHTML;
   var pixHtml  = btnPix.innerHTML;
 
+  function cartItem() {
+    var sizes = [];
+    for (var i = 1; i <= state.n; i++) sizes.push((state.n > 1 ? labelFor(i) + ': ' : 'Tamanho ') + state.sizes[i]);
+    var price = PRICES[state.kit];
+    return {
+      name: BOX.name || document.title,
+      url: location.pathname.split('/').pop() || 'index.html',
+      image: BOX.photos ? BOX.photos[0].thumb : null,
+      emoji: BOX.emoji,
+      kit: CASAL ? kitLabel(state.n).toLowerCase().replace(/^./, function (c) { return c.toUpperCase(); }) + ' · ' + state.n + ' camisas'
+                 : state.n + (state.n > 1 ? ' camisas' : ' camisa'),
+      sizes: sizes.join(' · '),
+      unit: price.t,
+      old: price.o,
+      qty: state.qty
+    };
+  }
+
   btnCart.addEventListener('click', function () {
     if (!validate()) return;
     btnCart.classList.add('is-loading');
@@ -385,8 +416,7 @@
       btnCart.classList.remove('is-loading');
       btnCart.classList.add('ok');
       btnCart.innerHTML = '✓ Adicionado ao carrinho!';
-      if (DSB.addToCart) DSB.addToCart(state.qty, btnCart, '👕');
-      toast((BOX.name || 'Box') + ' · ' + (CASAL ? kitLabel(state.n).toLowerCase() : state.n + ' camisa' + (state.n > 1 ? 's' : '')) + ' no carrinho', { action: { href: '#', label: 'Ver carrinho' } });
+      if (DSB.cart) DSB.cart.add(cartItem(), btnCart);
       setTimeout(function () {
         btnCart.classList.remove('ok');
         btnCart.innerHTML = cartHtml;

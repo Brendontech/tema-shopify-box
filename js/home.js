@@ -274,6 +274,33 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { moveInd(document.querySelector('.shirt-tab.on')); });
   }
 
+  // ---------- CAMISAS: abrir em tela cheia e deslizar ----------
+  var grid = document.getElementById('shirtGrid');
+  if (grid && window.DSB && DSB.lightbox) {
+    grid.querySelectorAll('.shirt-card').forEach(function (c) {
+      c.setAttribute('tabindex', '0');
+      c.setAttribute('role', 'button');
+    });
+    function openShirt(card) {
+      var visible = Array.prototype.slice.call(grid.querySelectorAll('.shirt-card:not([hidden])'));
+      DSB.lightbox.open(visible.map(function (c) {
+        var img = c.querySelector('img');
+        return {
+          src: img.getAttribute('src').replace(/-p\.webp$/, '.webp'),
+          caption: c.querySelector('.shirt-name').textContent + ' · ' + c.querySelector('.shirt-det').textContent
+        };
+      }), visible.indexOf(card));
+    }
+    grid.addEventListener('click', function (e) {
+      var card = e.target.closest('.shirt-card');
+      if (card) openShirt(card);
+    });
+    grid.addEventListener('keydown', function (e) {
+      var card = e.target.closest('.shirt-card');
+      if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openShirt(card); }
+    });
+  }
+
   // ---------- FAQ COM ABRIR/FECHAR ANIMADO ----------
   document.querySelectorAll('.faq-item').forEach(function (d) {
     if (d.open) d.classList.add('is-open');

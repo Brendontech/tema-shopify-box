@@ -60,50 +60,192 @@ body { background: var(--ink); color: #fff; }
 }
 .hero-actions { display: flex; gap: 12px; justify-content: center; margin-top: 2rem; flex-wrap: wrap; animation: fadeUp .8s .55s var(--ease) both; }
 
-/* Leque de camisas saindo da caixa */
-.hero-fan {
-  position: relative; width: 100%; max-width: 920px; margin-top: clamp(2.5rem, 5vw, 4rem);
-  display: flex; justify-content: center; align-items: flex-end;
+/* ---------- CAIXA MISTERIOSA ABRINDO ----------
+   Etapas (classes em .reveal): shake → open → done
+   O dourado é o único tom fora do P&B: é a "luz de item raro". */
+.reveal {
+  --gold: 255, 204, 77;
+  position: relative; width: 100%; max-width: 940px; aspect-ratio: 940 / 470;
+  margin-top: clamp(2rem, 4vw, 3rem); container-type: inline-size;
   transition: transform .6s var(--ease);
 }
-.fan-item {
-  position: relative; width: 20%; margin-inline: -1.2%;
-  transform: translateY(var(--y, 0)) rotate(var(--r, 0deg));
-  animation: fanIn 1s var(--ease-back) both; transition: transform .6s var(--ease);
-}
-.fan-item:nth-child(1), .fan-item:nth-child(5) { animation-delay: .8s; }
-.fan-item:nth-child(2), .fan-item:nth-child(4) { animation-delay: .68s; }
-@keyframes fanIn { from { opacity: 0; transform: translateY(110px) rotate(0) scale(.5); } }
-.fan-item img {
-  width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 18px;
-  border: 3px solid #fff; box-shadow: 0 28px 50px -12px rgba(0,0,0,.7);
-  animation: float 5s ease-in-out infinite;
-}
-.fan-item:nth-child(2) img { animation-delay: -1s; } .fan-item:nth-child(4) img { animation-delay: -2.5s; } .fan-item:nth-child(5) img { animation-delay: -3.5s; }
-.hero-fan:hover .fan-item:nth-child(1) { transform: translate(-26%, 26px) rotate(-20deg); }
-.hero-fan:hover .fan-item:nth-child(2) { transform: translate(-12%, -8px) rotate(-10deg); }
-.hero-fan:hover .fan-item:nth-child(4) { transform: translate(12%, -8px) rotate(10deg); }
-.hero-fan:hover .fan-item:nth-child(5) { transform: translate(26%, 26px) rotate(20deg); }
-.fan-box { width: 23%; z-index: 2; margin-inline: 1%; animation-delay: .5s; }
 
-.mbox {
-  position: relative; width: 100%; aspect-ratio: 1; border-radius: 22%;
-  background: linear-gradient(145deg, #ffffff 0%, #e4e4e4 55%, #bdbdbd 100%);
-  box-shadow: 0 40px 90px -20px rgba(255,255,255,.22), inset 0 2px 0 #fff, inset 0 -20px 40px rgba(0,0,0,.12);
-  display: grid; place-items: center; overflow: hidden;
-  animation: float 5s ease-in-out infinite;
+/* Raios girando */
+.rv-rays {
+  position: absolute; left: 50%; top: 54%; width: 130cqw; aspect-ratio: 1; margin: -65cqw 0 0 -65cqw;
+  pointer-events: none; opacity: 0; transform: scale(.2);
+  transition: opacity .8s ease, transform 1.1s var(--ease);
+  mask-image: radial-gradient(circle, #000 8%, transparent 52%);
+  -webkit-mask-image: radial-gradient(circle, #000 8%, transparent 52%);
 }
-.mbox::before {
-  content: ''; position: absolute; inset: -50%;
-  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.7) 50%, transparent 60%);
-  animation: boxShine 4.5s ease-in-out infinite;
+.rv-rays i {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: repeating-conic-gradient(rgba(var(--gold), .34) 0 4deg, transparent 4deg 15deg);
+  animation: spin 40s linear infinite;
 }
-@keyframes boxShine { 0%, 30% { transform: translateX(-60%); } 70%, 100% { transform: translateX(60%); } }
-.mbox-lid { position: absolute; top: 0; left: 0; right: 0; height: 22%; background: rgba(0,0,0,.08); border-bottom: 2px solid rgba(0,0,0,.12); }
-.mbox-lid::after { content: ''; position: absolute; left: 50%; top: 0; bottom: -400%; width: 14%; transform: translateX(-50%); background: rgba(0,0,0,.9); }
-.mbox-q { font-family: var(--font-display); font-size: clamp(56px, 9vw, 116px); font-weight: 900; color: #0c0c0c; position: relative; z-index: 1; -webkit-text-stroke: 6px #fff; paint-order: stroke fill; animation: qWiggle 3.2s ease-in-out infinite; }
-@keyframes qWiggle { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(-10deg) scale(1.05); } 90% { transform: rotate(8deg) scale(1.05); } 95% { transform: rotate(-4deg); } }
-.mbox-tag { position: absolute; z-index: 1; bottom: 10%; font-size: clamp(7px, .9vw, 10px); font-weight: 900; letter-spacing: .2em; color: #fff; background: #0c0c0c; padding: 5px 10px; border-radius: 6px; white-space: nowrap; }
+.reveal.open .rv-rays { opacity: 1; transform: none; }
+
+/* Brilho e feixe de luz saindo da caixa */
+.rv-glow {
+  position: absolute; left: 50%; top: 55%; width: 70cqw; aspect-ratio: 1; margin: -35cqw 0 0 -35cqw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--gold), .75) 0%, rgba(var(--gold), .28) 30%, transparent 62%);
+  filter: blur(10px); opacity: 0; transform: scale(.4); pointer-events: none;
+  transition: opacity .7s ease, transform 1s var(--ease);
+}
+.reveal.shake .rv-glow { opacity: .35; transform: scale(.55); transition-duration: 1s; }
+.reveal.open .rv-glow { opacity: 1; transform: none; animation: glowPulse 3s 1.2s ease-in-out infinite; }
+@keyframes glowPulse { 50% { opacity: .7; transform: scale(1.06); } }
+
+.rv-beam {
+  position: absolute; left: 50%; bottom: 44%; width: 30cqw; height: 34cqw; margin-left: -15cqw;
+  background: linear-gradient(to top, rgba(255, 236, 170, .95), rgba(var(--gold), .35) 45%, transparent);
+  clip-path: polygon(22% 100%, 78% 100%, 100% 0, 0 0);
+  filter: blur(5px); opacity: 0; transform: scaleY(0); transform-origin: bottom; pointer-events: none;
+  transition: opacity .5s ease, transform .7s var(--ease);
+}
+.reveal.open .rv-beam { opacity: .9; transform: none; }
+.reveal.done .rv-beam { opacity: .55; transition-duration: 1.5s; }
+
+/* Caixa */
+.rv-box {
+  position: absolute; left: 50%; bottom: 3%; width: 25cqw; height: 22cqw; margin-left: -12.5cqw;
+  background: none; border: none; padding: 0; cursor: pointer; z-index: 3;
+  -webkit-tap-highlight-color: transparent;
+}
+.rv-box:focus-visible { outline: 2px solid #fff; outline-offset: 8px; border-radius: 3cqw; }
+.rv-base {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 76%; border-radius: 1.6cqw 1.6cqw 3cqw 3cqw; overflow: hidden;
+  background: linear-gradient(160deg, #ffffff 0%, #dedede 55%, #a8a8a8 100%);
+  box-shadow: 0 3cqw 6cqw -1cqw rgba(0,0,0,.7), inset 0 -2cqw 4cqw rgba(0,0,0,.14);
+}
+.rv-base::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 15%; margin-left: -7.5%; background: #0c0c0c; }
+.rv-mouth {
+  position: absolute; left: 3%; right: 3%; top: -2cqw; height: 4cqw; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 244, 200, 1), rgba(var(--gold), .9) 40%, rgba(var(--gold), 0) 72%);
+  opacity: 0; transition: opacity .3s;
+}
+.reveal.open .rv-mouth { opacity: 1; }
+.rv-q {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 900; font-size: 10cqw; color: #0c0c0c;
+  -webkit-text-stroke: .9cqw #fff; paint-order: stroke fill; line-height: 1;
+  transition: transform .5s var(--ease-back), opacity .4s;
+}
+.reveal.open .rv-q { transform: scale(0) rotate(-40deg); opacity: 0; }
+.rv-tag {
+  position: absolute; left: 50%; bottom: 11%; transform: translateX(-50%); white-space: nowrap;
+  font-size: max(7px, 1.05cqw); font-weight: 900; letter-spacing: .2em; color: #fff;
+  background: #0c0c0c; padding: .5cqw 1cqw; border-radius: .6cqw;
+}
+
+.rv-lid {
+  position: absolute; left: -7%; right: -7%; top: 0; height: 28%; border-radius: 1.4cqw; z-index: 2;
+  background: linear-gradient(170deg, #ffffff 0%, #e6e6e6 60%, #bcbcbc 100%);
+  box-shadow: 0 1cqw 2cqw rgba(0,0,0,.35);
+  transform-origin: 30% 100%;
+}
+.rv-lid::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 13%; margin-left: -6.5%; background: #0c0c0c; }
+.rv-bow { position: absolute; left: 50%; bottom: 90%; width: 0; height: 0; }
+.rv-bow i {
+  position: absolute; bottom: 0; width: 6cqw; height: 4.2cqw; border: 1.1cqw solid #0c0c0c; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+.rv-bow i:first-child { right: -.4cqw; transform: rotate(-24deg); transform-origin: right bottom; }
+.rv-bow i:last-child  { left: -.4cqw;  transform: rotate(24deg);  transform-origin: left bottom; }
+.rv-bow::after { content: ''; position: absolute; left: -1.3cqw; bottom: -1cqw; width: 2.6cqw; height: 2.6cqw; border-radius: 50%; background: #0c0c0c; }
+
+/* Luz vazando pela fresta durante o tremor */
+.rv-leak {
+  position: absolute; left: 2%; right: 2%; top: 26%; height: .5cqw; border-radius: 1cqw; z-index: 1;
+  background: rgb(var(--gold)); box-shadow: 0 0 2cqw 1cqw rgba(var(--gold), .8);
+  opacity: 0;
+}
+.reveal.shake .rv-leak { animation: leak .95s ease-in forwards; }
+@keyframes leak { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+.reveal.shake .rv-box { animation: boxShake .95s ease-in-out both; }
+@keyframes boxShake {
+  0%, 100% { transform: none; }
+  10% { transform: rotate(-2deg); } 20% { transform: rotate(2deg); }
+  30% { transform: rotate(-3deg) translateY(-1%); } 40% { transform: rotate(3deg); }
+  50% { transform: rotate(-4deg) translateY(-2%); } 60% { transform: rotate(4deg) translateY(-1%); }
+  70% { transform: rotate(-5deg) translateY(-3%) scale(1.02); } 80% { transform: rotate(5deg) translateY(-2%) scale(1.03); }
+  90% { transform: rotate(-3deg) translateY(-4%) scale(1.04); }
+}
+.reveal.open .rv-lid { animation: lidPop .8s var(--ease-back) forwards; }
+.reveal.done .rv-lid { animation: lidFloat 4s ease-in-out infinite; transform: translate(-3cqw, -15cqw) rotate(-14deg); }
+@keyframes lidPop {
+  0%   { transform: none; }
+  40%  { transform: translate(-1cqw, -18cqw) rotate(-22deg); }
+  100% { transform: translate(-3cqw, -15cqw) rotate(-14deg); }
+}
+@keyframes lidFloat {
+  0%, 100% { transform: translate(-3cqw, -15cqw) rotate(-14deg); }
+  50%      { transform: translate(-3cqw, -16.5cqw) rotate(-11deg); }
+}
+.reveal.done .rv-box { animation: boxBreath 4s ease-in-out infinite; }
+@keyframes boxBreath { 50% { transform: translateY(-1.5%); } }
+
+/* Clarão */
+.rv-flash {
+  position: absolute; left: 50%; top: 58%; width: 60cqw; aspect-ratio: 1; margin: -30cqw 0 0 -30cqw; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 240, 190, .8) 25%, transparent 60%);
+  opacity: 0; pointer-events: none; z-index: 4;
+}
+.reveal.open .rv-flash { animation: flash .7s ease-out; }
+@keyframes flash { 0% { opacity: 0; transform: scale(.3); } 25% { opacity: 1; } 100% { opacity: 0; transform: scale(1.3); } }
+
+/* Camisas saindo da caixa */
+.rv-shirts { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.rv-shirt {
+  position: absolute; left: 50%; top: 0; width: 19cqw; margin-left: -9.5cqw;
+  opacity: 0; transform: translate(0, 26cqw) scale(.1) rotate(0deg);
+  transition: transform 1s var(--ease-back), opacity .25s ease;
+}
+.reveal.open .rv-shirt {
+  opacity: 1; transform: translate(var(--x), var(--y)) rotate(var(--r));
+  transition-delay: calc(.12s + var(--delay)), calc(.12s + var(--delay));
+}
+.rv-shirt img {
+  width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 1.8cqw;
+  border: .35cqw solid #fff; box-shadow: 0 3cqw 5cqw -1cqw rgba(0,0,0,.75), 0 0 4cqw rgba(var(--gold), .25);
+}
+.reveal.done .rv-shirt img { animation: float 5s ease-in-out infinite; }
+.reveal.done .rv-shirt:nth-child(2) img { animation-delay: -1.2s; }
+.reveal.done .rv-shirt:nth-child(3) img { animation-delay: -2.4s; }
+.reveal.done .rv-shirt:nth-child(4) img { animation-delay: -3.6s; }
+
+/* Faíscas */
+.rv-sparks { position: absolute; left: 50%; top: 58%; width: 0; height: 0; z-index: 3; pointer-events: none; }
+.rv-spark {
+  position: absolute; left: 0; top: 0; width: var(--s, 6px); height: var(--s, 6px); border-radius: 50%;
+  background: #fff; box-shadow: 0 0 8px 2px rgba(var(--gold), .9);
+  animation: spark var(--t, 1s) cubic-bezier(.15, .7, .3, 1) forwards;
+}
+@keyframes spark {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; }
+}
+.rv-star {
+  position: absolute; color: rgb(var(--gold)); font-size: var(--s, 14px); text-shadow: 0 0 10px rgba(var(--gold), .9);
+  animation: twinkle 2.4s ease-in-out infinite; animation-delay: var(--dl, 0s);
+}
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+
+.rv-hint {
+  position: absolute; left: 50%; bottom: -1.6rem; transform: translateX(-50%);
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; color: rgba(255,255,255,.4); white-space: nowrap;
+  opacity: 0; transition: opacity .6s .6s;
+}
+.reveal.done .rv-hint { opacity: 1; }
+
+/* Celular: duas camisas maiores */
+@container (max-width: 560px) {
+  .rv-shirt.far { display: none; }
+  .rv-shirt { width: 33cqw; margin-left: -16.5cqw; }
+  .rv-shirt:nth-child(2) { --x: -30cqw !important; --y: 4cqw !important; }
+  .rv-shirt:nth-child(3) { --x: 30cqw !important; --y: 4cqw !important; }
+  .rv-box { width: 40cqw; height: 35cqw; margin-left: -20cqw; }
+}
 
 .hero-stats {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
@@ -417,9 +559,7 @@ body { background: var(--ink); color: #fff; }
   .hero-h1 .l-alt { font-size: .5em; letter-spacing: 0; }
   .hero-h1 .l-alt .split-word > span { -webkit-text-stroke-width: 1.2px; }
   .hero-stats { grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }
-  .fan-item:nth-child(1), .fan-item:nth-child(5) { display: none; }
-  .fan-item { width: 32%; }
-  .fan-box { width: 36%; }
+  .reveal { aspect-ratio: 1 / .78; }
   .shirt-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .shirt-tabs { width: 100%; overflow-x: auto; }
   .shirt-tab { padding: 9px 12px; flex-shrink: 0; }

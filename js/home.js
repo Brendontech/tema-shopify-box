@@ -225,17 +225,87 @@
 
   renderQuestion();
 
-  // ---------- PARALLAX DO LEQUE DE CAMISAS ----------
-  var fan = document.getElementById('heroFan');
-  if (fan && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
-    var hero = document.querySelector('.hero');
-    hero.addEventListener('pointermove', function (e) {
-      var r = hero.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width - .5;
-      var y = (e.clientY - r.top) / r.height - .5;
-      fan.style.transform = 'translate(' + (x * 22).toFixed(1) + 'px,' + (y * 12).toFixed(1) + 'px)';
-    });
-    hero.addEventListener('pointerleave', function () { fan.style.transform = ''; });
+  // ---------- CAIXA MISTERIOSA ABRINDO ----------
+  var reveal = document.getElementById('heroFan');
+  if (reveal) {
+    var sparksEl = document.getElementById('rvSparks');
+    var timers = [];
+    var played = false;
+
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+
+    function burst() {
+      sparksEl.innerHTML = '';
+      var w = reveal.offsetWidth;
+      for (var i = 0; i < 26; i++) {
+        var s = document.createElement('span');
+        s.className = 'rv-spark';
+        var ang = -Math.PI * Math.random();              // só para cima e para os lados
+        var dist = w * (.12 + Math.random() * .32);
+        s.style.setProperty('--dx', (Math.cos(ang) * dist).toFixed(0) + 'px');
+        s.style.setProperty('--dy', (Math.sin(ang) * dist * .8).toFixed(0) + 'px');
+        s.style.setProperty('--s', (3 + Math.random() * 6).toFixed(1) + 'px');
+        s.style.setProperty('--t', (.8 + Math.random() * .9).toFixed(2) + 's');
+        sparksEl.appendChild(s);
+      }
+      // estrelinhas que continuam piscando ao redor
+      for (var k = 0; k < 9; k++) {
+        var st = document.createElement('span');
+        st.className = 'rv-star';
+        st.textContent = '✦';
+        var a2 = -Math.PI * (.05 + Math.random() * .9);
+        var d2 = w * (.1 + Math.random() * .3);
+        st.style.left = (Math.cos(a2) * d2).toFixed(0) + 'px';
+        st.style.top = (Math.sin(a2) * d2 * .9).toFixed(0) + 'px';
+        st.style.setProperty('--s', (9 + Math.random() * 12).toFixed(0) + 'px');
+        st.style.setProperty('--dl', (Math.random() * 2.4).toFixed(2) + 's');
+        sparksEl.appendChild(st);
+      }
+    }
+
+    function play() {
+      timers.forEach(clearTimeout);
+      timers = [];
+      played = true;
+      reveal.classList.remove('shake', 'open', 'done');
+      sparksEl.innerHTML = '';
+      void reveal.offsetWidth;
+      if (reduceMotion) { reveal.classList.add('open', 'done'); return; }
+      reveal.classList.add('shake');
+      later(function () {
+        reveal.classList.remove('shake');
+        reveal.classList.add('open');
+        burst();
+      }, 950);
+      later(function () { reveal.classList.add('done'); }, 2300);
+    }
+
+    document.getElementById('rvBox').addEventListener('click', play);
+
+    // Abre sozinha quando aparece na tela (depois da animação do título)
+    if ('IntersectionObserver' in window) {
+      var ro = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !played) {
+          setTimeout(play, 900);
+          ro.disconnect();
+        }
+      }, { threshold: .2 });
+      ro.observe(reveal);
+    } else {
+      play();
+    }
+
+    // Parallax leve com o mouse
+    if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+      var hero = document.querySelector('.hero');
+      hero.addEventListener('pointermove', function (e) {
+        var r = hero.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5;
+        var y = (e.clientY - r.top) / r.height - .5;
+        reveal.style.transform = 'translate(' + (x * 22).toFixed(1) + 'px,' + (y * 12).toFixed(1) + 'px)';
+      });
+      hero.addEventListener('pointerleave', function () { reveal.style.transform = ''; });
+    }
   }
 
   // ---------- CAMISAS: abas por categoria ----------

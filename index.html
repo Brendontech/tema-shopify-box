@@ -117,18 +117,24 @@
       <a class="btn btn-ghost" href="#boxes">Ver as boxes</a>
     </div>
 
-    <div class="hero-fan" id="heroFan" aria-hidden="true">
-      <div class="fan-item" style="--r:-14deg;--y:46px"><img src="img/camisas/retro/05-flamengo-retro-19921993-home-p.webp" alt="" width="420" height="420"></div>
-      <div class="fan-item" style="--r:-7deg;--y:12px"><img src="img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp" alt="" width="420" height="420"></div>
-      <div class="fan-item fan-box">
-        <div class="mbox">
-          <div class="mbox-lid"></div>
-          <div class="mbox-q">?</div>
-          <div class="mbox-tag">DA SPORTS BOX</div>
-        </div>
+    <div class="reveal" id="heroFan">
+      <div class="rv-rays" aria-hidden="true"><i></i></div>
+      <div class="rv-glow" aria-hidden="true"></div>
+      <div class="rv-beam" aria-hidden="true"></div>
+      <div class="rv-sparks" id="rvSparks" aria-hidden="true"></div>
+      <div class="rv-shirts" aria-hidden="true">
+        <div class="rv-shirt far" style="--x:-38cqw;--y:14cqw;--r:-14deg;--delay:.08s"><img src="img/camisas/retro/05-flamengo-retro-19921993-home-p.webp" alt="" width="420" height="420"></div>
+        <div class="rv-shirt" style="--x:-19cqw;--y:2cqw;--r:-7deg;--delay:0s"><img src="img/camisas/retro/01-camisa-juventus-retro-2010-preta-e-branca-p.webp" alt="" width="420" height="420"></div>
+        <div class="rv-shirt" style="--x:19cqw;--y:2cqw;--r:7deg;--delay:.04s"><img src="img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp" alt="" width="420" height="420"></div>
+        <div class="rv-shirt far" style="--x:38cqw;--y:14cqw;--r:14deg;--delay:.12s"><img src="img/camisas/retro/02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp" alt="" width="420" height="420"></div>
       </div>
-      <div class="fan-item" style="--r:7deg;--y:12px"><img src="img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp" alt="" width="420" height="420"></div>
-      <div class="fan-item" style="--r:14deg;--y:46px"><img src="img/camisas/retro/02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp" alt="" width="420" height="420"></div>
+      <button type="button" class="rv-box" id="rvBox" aria-label="Abrir a caixa misteriosa">
+        <span class="rv-lid"><span class="rv-bow"><i></i><i></i></span></span>
+        <span class="rv-leak"></span>
+        <span class="rv-base"><span class="rv-mouth"></span><span class="rv-q">?</span><span class="rv-tag">DA SPORTS BOX</span></span>
+      </button>
+      <div class="rv-flash" aria-hidden="true"></div>
+      <span class="rv-hint">Toque na caixa</span>
     </div>
 
     <div class="hero-stats">

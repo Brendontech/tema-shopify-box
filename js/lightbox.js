@@ -76,17 +76,21 @@
     lb.classList.toggle('single', list.length < 2);
     lb.hidden = false;
     if (DSB.lockScroll) DSB.lockScroll(true);
+    if (DSB.trapFocus) DSB.trapFocus(lb);
     setPos(0, 0, false);
     update();
     requestAnimationFrame(function () { requestAnimationFrame(function () { lb.classList.add('is-open'); }); });
     setTimeout(function () { lb.querySelector('.lb-x').focus({ preventScroll: true }); }, 50);
   }
 
+  var closing = false;
   function close() {
-    if (lb.hidden) return;
+    if (lb.hidden || closing) return;
+    closing = true;
     lb.classList.remove('is-open');
     if (DSB.lockScroll) DSB.lockScroll(false);
-    setTimeout(function () { if (!lb.classList.contains('is-open')) lb.hidden = true; }, 300);
+    if (DSB.releaseFocus) DSB.releaseFocus(lb);
+    setTimeout(function () { closing = false; if (!lb.classList.contains('is-open')) lb.hidden = true; }, 300);
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
 
@@ -98,7 +102,7 @@
     if (d) go(Array.prototype.indexOf.call(dotsEl.children, d));
   });
   document.addEventListener('keydown', function (e) {
-    if (lb.hidden) return;
+    if (lb.hidden || closing) return;
     if (e.key === 'Escape') close();
     else if (e.key === 'ArrowRight') go(index + 1);
     else if (e.key === 'ArrowLeft') go(index - 1);

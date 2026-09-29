@@ -276,12 +276,14 @@ a { color: inherit; }
   transform: translateX(-120%); transition: transform .7s var(--ease);
 }
 .btn:hover::after { transform: translateX(120%); }
-.btn:active { transform: scale(.97); }
+.btn.btn:active { transform: scale(.97); transition-duration: .1s; }
+.btn:disabled { cursor: not-allowed; animation: none; }
+.btn:disabled::after { display: none; }
 .btn .arr { transition: transform .3s var(--ease); display: inline-block; }
 .btn:hover .arr { transform: translateX(4px); }
 
 .btn-main { background: var(--accent); color: var(--accent-ink); animation: glow 3s ease infinite; }
-.btn-main:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(var(--accent-rgb),.35); }
+.btn-main:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(var(--accent-rgb),.35); animation: none; }
 .btn-ghost { background: transparent; color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.18); }
 .btn-ghost:hover { border-color: rgba(255,255,255,.45); color: #fff; background: rgba(255,255,255,.05); transform: translateY(-2px); }
 .btn-dark { background: #111; color: #fff; }
@@ -342,7 +344,7 @@ a { color: inherit; }
 .spotlight { position: relative; }
 .spotlight::after {
   content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(96,165,250,.14), transparent 45%);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--accent-rgb),.09), transparent 45%);
   opacity: 0; transition: opacity .35s;
 }
 .spotlight:hover::after { opacity: 1; }
@@ -409,7 +411,7 @@ a { color: inherit; }
 
 /* Respeita quem prefere menos movimento */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
   [data-reveal], .split-word > span { opacity: 1; transform: none; }
 }
 
@@ -481,6 +483,7 @@ a { color: inherit; }
 .menu-boxes a { flex: 0 0 104px; scroll-snap-align: start; text-decoration: none; color: #fff; }
 .menu-boxes img { width: 104px; height: 104px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255,255,255,.1); transition: transform .4s var(--ease); }
 .menu-boxes a:active img { transform: scale(.95); }
+.menu-boxes a:hover img { transform: translateY(-3px); }
 .menu-boxes span { display: block; font-size: 13px; font-weight: 700; margin-top: 6px; }
 .menu-foot { margin-top: auto; padding: 22px 20px 20px; }
 .menu-foot p { font-size: 12px; color: rgba(255,255,255,.4); text-align: center; margin-top: 12px; }
@@ -585,4 +588,15 @@ a { color: inherit; }
   .search-field input { font-size: 16px; height: 60px; }
   .search-body { max-height: none; flex: 1; }
   .lb-nav { display: none; }
+}
+
+/* Telas de toque: o :hover "gruda" depois do toque, então os cards
+   não ficam levantados/deslocados depois de tocados */
+@media (hover: none) {
+  html .box-card:hover, html .fit-card:hover, html .rev-card:hover, html .hw-step:hover,
+  html .xs-card:hover, html .kc:hover, html .q-opt:hover, html .tb:hover, html .sz-tab:hover,
+  html .szb:not(.on):hover, html .btn:hover, html .nav-cta:hover, html .foot-links a:hover { transform: none; }
+  html .box-card:hover .box-cover img, html .fit-card:hover .fit-img img,
+  html .shirt-card:hover .shirt-img img, html .xs-card:hover .xs-photo img { transform: none; }
+  .spotlight::after { display: none; }
 }

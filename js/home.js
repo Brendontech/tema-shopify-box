@@ -139,7 +139,8 @@
   }
 
   function next() {
-    if (answers[current] == null) return;
+    clearTimeout(autoTimer);
+    if (answers[current] == null || current >= QUESTIONS.length) return;
     if (current < QUESTIONS.length - 1) goTo(current + 1);
     else transition(1, showResult);
   }
@@ -175,7 +176,7 @@
     stage.innerHTML = '<div class="q-result">'
       + '<span class="q-result-emoji">' + box.e + '</span>'
       + '<div class="q-result-kicker">Sua box ideal</div>'
-      + '<div class="q-result-name">' + box.name + '</div>'
+      + '<div class="q-result-name" tabindex="-1">' + box.name + '</div>'
       + '<p class="q-result-desc">' + box.desc + '</p>'
       + '<p class="q-result-price">a partir de <b>' + box.price + '</b></p>'
       + '<div class="q-result-actions">'
@@ -185,6 +186,7 @@
       + '<p style="margin-top:1rem"><button type="button" class="q-restart">Refazer o quiz</button></p>'
       + '</div>';
     stage.querySelector('.q-restart').addEventListener('click', restart);
+    stage.querySelector('.q-result-name').focus({ preventScroll: true });
     confetti(stage.querySelector('.q-result-emoji'));
   }
 
@@ -236,12 +238,12 @@
 
     // Todas as fotos do acervo (grade "Camisas que podem vir")
     var pool = Array.prototype.slice.call(document.querySelectorAll('#shirtGrid img')).map(function (i) { return i.getAttribute('src'); });
-    var current = shirtImgs.map(function (i) { return i.getAttribute('src'); });
+    var onShow = shirtImgs.map(function (i) { return i.getAttribute('src'); });   // fotos na tela agora
 
     function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
 
     function nextSet() {
-      var fresh = pool.filter(function (s) { return current.indexOf(s) < 0; });
+      var fresh = pool.filter(function (s) { return onShow.indexOf(s) < 0; });
       for (var i = fresh.length - 1; i > 0; i--) {           // embaralha
         var k = Math.floor(Math.random() * (i + 1));
         var t = fresh[i]; fresh[i] = fresh[k]; fresh[k] = t;
@@ -327,7 +329,7 @@
         later(function () {
           reveal.classList.remove('closing');
           next.forEach(function (src, i) { shirtImgs[i].src = src; });
-          current = next;
+          onShow = next;
           open();
         }, 650);
       } else {
@@ -338,7 +340,7 @@
     function swapShirts() {
       var next = nextSet();
       next.forEach(function (src, i) { shirtImgs[i].src = src; });
-      current = next;
+      onShow = next;
     }
 
     document.getElementById('rvBox').addEventListener('click', play);
@@ -379,8 +381,10 @@
     ind.style.width = tab.offsetWidth + 'px';
     ind.style.transform = 'translateX(' + tab.offsetLeft + 'px)';
   }
+  var shirtGrid = document.getElementById('shirtGrid');
   function showCat(cat) {
     var i = 0;
+    if (shirtGrid) shirtGrid.scrollLeft = 0;     // carrossel do celular volta ao início
     cards.forEach(function (c) {
       var on = c.getAttribute('data-cat') === cat;
       c.hidden = !on;
@@ -392,11 +396,28 @@
       }
     });
   }
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function () {
-      tabs.forEach(function (x) { x.classList.toggle('on', x === t); x.setAttribute('aria-selected', x === t); });
-      moveInd(t);
-      showCat(t.getAttribute('data-cat'));
+  function pickTab(t) {
+    if (t.classList.contains('on')) return;
+    tabs.forEach(function (x) {
+      x.classList.toggle('on', x === t);
+      x.setAttribute('aria-selected', x === t);
+      x.tabIndex = x === t ? 0 : -1;
+    });
+    moveInd(t);
+    showCat(t.getAttribute('data-cat'));
+    if (t.parentNode.scrollWidth > t.parentNode.clientWidth) {
+      t.parentNode.scrollTo({ left: t.offsetLeft - 24, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+  }
+  tabs.forEach(function (t, i) {
+    t.tabIndex = i === 0 ? 0 : -1;
+    t.addEventListener('click', function () { pickTab(t); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+      n.focus();
+      pickTab(n);
     });
   });
   if (tabs.length) {

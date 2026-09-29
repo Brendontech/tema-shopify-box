@@ -306,7 +306,7 @@ body { background: var(--ink); color: #fff; }
 .boxes .s-sub, .reviews .s-sub, .faq .s-sub { color: rgba(255,255,255,.45); }
 
 /* ---------- CAMISAS QUE PODEM VIR ---------- */
-.shirts { background: var(--ink); }
+.shirts { background: var(--ink); padding-bottom: 0; }
 .shirts .s-sub { color: rgba(255,255,255,.45); }
 .shirt-tabs {
   position: relative; display: inline-flex; padding: 5px; border-radius: 14px;
@@ -318,6 +318,7 @@ body { background: var(--ink); color: #fff; }
   transition: color .3s;
 }
 .shirt-tab:hover { color: #fff; }
+.shirt-tab:focus-visible { outline-offset: -2px; }
 .shirt-tab.on { color: #0c0c0c; }
 .shirt-tab-ind {
   position: absolute; top: 5px; bottom: 5px; left: 0; width: 0; border-radius: 10px; background: #fff;
@@ -485,6 +486,7 @@ body { background: var(--ink); color: #fff; }
 @keyframes resultPop { 0% { transform: scale(0) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
 .q-result-kicker { font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--accent); text-transform: uppercase; margin-top: 1rem; }
 .q-result-name { font-size: clamp(30px, 3.2vw, 42px); font-weight: 900; letter-spacing: -.035em; margin: .3rem 0 .6rem; }
+.q-result-name:focus { outline: none; }
 .q-result-desc { font-size: 15px; color: #666; max-width: 420px; margin: 0 auto 1.25rem; line-height: 1.6; }
 .q-result-price { font-size: 15px; color: #888; margin-bottom: 1.5rem; }
 .q-result-price b { font-size: 28px; color: #111; letter-spacing: -.02em; }
@@ -526,12 +528,14 @@ body { background: var(--ink); color: #fff; }
 .cta-emojis span:nth-child(2) { right: 8%; top: 12%; animation-delay: -1.5s; }
 .cta-emojis span:nth-child(3) { left: 12%; bottom: 12%; animation-delay: -3s; }
 .cta-emojis span:nth-child(4) { right: 14%; bottom: 16%; animation-delay: -4.5s; }
+.cta-emojis { position: absolute; inset: 0; pointer-events: none; }
 .cta-title { position: relative; font-size: clamp(30px, 5vw, 60px); font-weight: 900; letter-spacing: -.04em; color: #fff; margin-bottom: .75rem; line-height: 1.02; }
 .cta-sub   { position: relative; font-size: 17px; color: rgba(255,255,255,.75); margin-bottom: 2rem; }
 
 /* ---------- AVALIAÇÕES ---------- */
 .reviews { background: var(--ink); }
 .rev-grid { display: grid; grid-template-columns: 1.1fr repeat(3, 1fr); gap: 14px; }
+.rev-cards { display: contents; }
 .rev-score { padding: 1.75rem; border-radius: 22px; background: linear-gradient(160deg, #202020, var(--ink-2)); border: 1px solid rgba(var(--accent-rgb),.3); }
 .rev-big { font-size: 72px; font-weight: 900; letter-spacing: -.05em; line-height: 1; }
 .rev-meta { font-size: 13px; color: rgba(255,255,255,.45); margin: 6px 0 1.25rem; line-height: 1.5; }
@@ -586,13 +590,29 @@ body { background: var(--ink); color: #fff; }
   .quiz-summary { display: none; }
 }
 @media (max-width: 600px) {
+  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 340px; }
   .hero-h1 .l-alt { font-size: .5em; letter-spacing: 0; }
   .hero-h1 .l-alt .split-word > span { -webkit-text-stroke-width: 1.2px; }
   .hero-stats { grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }
   .reveal { aspect-ratio: 1 / .8; }
-  .shirt-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .shirt-tabs { width: 100%; overflow-x: auto; }
-  .shirt-tab { padding: 9px 12px; flex-shrink: 0; }
+  /* Camisas e avaliações viram carrossel com arraste lateral */
+  .shirt-grid, .rev-cards {
+    display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 62%; gap: 10px;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
+  }
+  .shirt-grid::-webkit-scrollbar, .rev-cards::-webkit-scrollbar { display: none; }
+  .shirt-card, .rev-card { scroll-snap-align: start; }
+  .shirt-tabs { width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .shirt-tabs::-webkit-scrollbar { display: none; }
+  .shirt-tab { padding: 9px 12px; flex: 1 0 auto; }
+  .rev-cards { grid-auto-columns: 84%; padding-bottom: 4px; }
+  .cta-emojis span { font-size: 30px; opacity: .12; }
+  .cta-emojis span:nth-child(1) { left: 5%; top: 5%; }
+  .cta-emojis span:nth-child(2) { right: 5%; top: 5%; }
+  .cta-emojis span:nth-child(3) { left: 7%; bottom: 5%; }
+  .cta-emojis span:nth-child(4) { right: 7%; bottom: 5%; }
+  .cta-banner { border-radius: 24px; }
   .fit-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .fit-name { font-size: 16px; }
   .rev-grid { grid-template-columns: 1fr; }

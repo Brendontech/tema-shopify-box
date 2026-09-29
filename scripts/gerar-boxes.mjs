@@ -153,7 +153,7 @@ function kitHtml(box, k, i) {
     ? `\n            <div class="kc-eco"><span class="eco-b">ECONOMIZE ${brl(Math.floor(o - t), 0)}</span><span class="eco-p">${brl(Math.round(t / k.n), 0)}/camisa</span></div>`
     : '';
   const name = k.label || `${k.n} CAMISA${k.n > 1 ? 'S' : ''}`;
-  const promo = k.pay ? ` <span class="kc-promo">· você paga ${k.pay}</span>` : (k.sub ? ` <span class="kc-promo">· ${k.sub}</span>` : '');
+  const promo = k.pay ? ` <span class="kc-promo">você paga ${k.pay}</span>` : (k.sub ? ` <span class="kc-promo">${k.sub}</span>` : '');
   return `
       <div class="kc${k.hot ? ' hot' : ''}" data-kit="${i}" data-qty="${k.n}" role="radio" aria-checked="false" tabindex="0">
         ${k.hot ? '<span class="kc-badge">MAIS VENDIDO</span>' : ''}
@@ -189,7 +189,7 @@ function galleryHtml(box) {
           <div class="mi-lbl" id="miLbl">${ph[0].cover ? '' : esc(ph[0].nome)}</div>
           <div class="mi-sub" id="miSub">${sub}</div>
         </div>
-        ${ph.length > 1 ? `<div class="tbs" role="tablist" style="--n:${ph.length}">
+        ${ph.length > 1 ? `<div class="tbs" style="--n:${ph.length}">
 ${ph.map((c, i) => `          <button type="button" class="tb tb-photo${i === 0 ? ' on' : ''}" data-src="${c.src}" data-label="${c.cover ? '' : esc(c.nome)}" data-cover="${c.cover ? 1 : 0}" aria-label="${esc(c.nome)}"><img src="${c.thumb}" alt="" loading="lazy" width="420" height="420"></button>`).join('\n')}
         </div>` : ''}`;
   }
@@ -201,7 +201,7 @@ ${ph.map((c, i) => `          <button type="button" class="tb tb-photo${i === 0 
           <div class="mi-lbl" id="miLbl">${box.short}</div>
           <div class="mi-sub" id="miSub">${box.sub}</div>
         </div>
-        <div class="tbs" role="tablist">
+        <div class="tbs">
 ${box.thumbs.map(([e, l], i) => `          <button type="button" class="tb${i === 0 ? ' on' : ''}" data-icon="${e}" data-label="${l}" aria-label="${l}">${e}</button>`).join('\n')}
         </div>`;
 }

@@ -111,7 +111,7 @@ body { background: var(--paper); color: #111; }
 .kc.sel .kc-radio::after { transform: scale(1); }
 .kc-main { flex: 1; min-width: 0; }
 .kc-name  { font-size: 15px; font-weight: 800; }
-.kc-promo { font-size: 12px; color: var(--muted); font-weight: 500; }
+.kc-promo { display: block; font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 1px; }
 .kc-icons { display: flex; gap: 3px; margin-top: 6px; }
 .ki { font-size: 15px; display: inline-block; transition: transform .3s var(--ease-back); }
 .ki.dim { opacity: .25; }
@@ -137,17 +137,16 @@ body { background: var(--paper); color: #111; }
 .kc-sizes-inner > :last-child { margin-bottom: 16px; }
 .kc.sel .kc-sizes-inner { border-top: 1px solid var(--line); }
 
-.sz-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; margin-bottom: 12px; scrollbar-width: none; }
-.sz-tabs::-webkit-scrollbar { display: none; }
+.sz-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 6px; margin-bottom: 12px; }
 .sz-tab {
-  flex: 1; min-width: 74px; border: 2px solid #e5e5e0; border-radius: 11px; padding: 7px 4px;
-  cursor: pointer; background: #fff; text-align: center; flex-shrink: 0; font: inherit; color: #111;
+  min-width: 0; border: 2px solid #e5e5e0; border-radius: 11px; padding: 7px 4px;
+  cursor: pointer; background: #fff; text-align: center; font: inherit; color: #111;
   transition: border-color .2s, background .25s, color .25s, transform .3s var(--ease);
 }
 .sz-tab:hover { transform: translateY(-2px); }
 .sz-tab.on   { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 .sz-tab.done { border-color: #111; color: #fff; background: #111; }
-.sz-tab.missing { animation: shake .45s ease; border-color: #fca5a5; }
+.sz-tab.missing { animation: shake .45s ease; border-color: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.12); }
 .sz-tab-label { font-size: 9px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; display: block; margin-bottom: 2px; opacity: .7; }
 .sz-tab-val   { font-size: 13px; font-weight: 800; }
 .sz-btns-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
@@ -160,6 +159,7 @@ body { background: var(--paper); color: #111; }
 }
 .szb:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 .szb.on { background: #111; border-color: #111; color: #fff; transform: scale(1.06); }
+.szb:focus-visible, .sz-tab:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
 .sz-done { font-size: 12px; font-weight: 700; color: var(--accent); margin-top: 10px; animation: fadeUp .4s var(--ease) both; }
 
 /* ---------- QUANTIDADE ---------- */
@@ -307,11 +307,25 @@ body { background: var(--paper); color: #111; }
 }
 @media (min-width: 901px) { .sticky-buy { display: none; } }
 @media (max-width: 560px) {
-  .trust { grid-template-columns: 1fr; }
-  .xs-grid { grid-template-columns: 1fr; }
+  /* Selos compactos lado a lado */
+  .trust { gap: 8px; }
+  .trust div { flex-direction: column; text-align: center; gap: 4px; padding: 10px 6px; font-size: 11px; }
+  /* Outras boxes: carrossel com arraste lateral */
+  .xs-grid {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; gap: 10px;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
+  }
+  .xs-grid::-webkit-scrollbar { display: none; }
+  .xs-card { scroll-snap-align: start; padding: 1rem; border-radius: 20px; }
+  /* Kits: promoção embaixo do nome e economia empilhada, sem cobrir os ícones */
+  .kc-eco { flex-direction: column; align-items: flex-end; gap: 3px; }
+  .kc-badge { left: 46px; }
+  .model-tabs { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .model-tabs::-webkit-scrollbar { display: none; }
+  .mt { flex: 1 0 auto; padding-inline: 12px; }
   .feats { grid-template-columns: 1fr; }
   .sz-btns { grid-template-columns: repeat(min(var(--cols, 7), 4), 1fr); }
-  .model-tabs { grid-template-columns: repeat(3, 1fr); }
   .kc-head { padding: 14px; gap: 10px; }
   .kc-sizes-inner > * { margin-inline: 14px; }
 

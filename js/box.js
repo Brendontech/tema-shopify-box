@@ -88,7 +88,7 @@
   var kitEls = Array.prototype.slice.call(kitsEl.querySelectorAll('.kc'));
 
   // ---- SELEÇÃO DE KIT ----
-  function selectKit(idx) {
+  function selectKit(idx, silent) {
     if (state.kit === idx) return;
     var el = kitEls[idx];
     state.kit = idx;
@@ -104,7 +104,7 @@
 
     if (state.n > 1) buildTabs();
     buildButtons();
-    renderGallery(state.n);
+    if (!silent) renderGallery(state.n);
     updateTotals();
   }
 
@@ -230,9 +230,9 @@
     swap(miLbl, 'swap');
 
     if (miPhoto && BOX.photos) {
-      if (n > 1) {
-        var shots = BOX.photos.filter(function (p) { return !p.cover; });
-        if (!shots.length) shots = BOX.photos;
+      var shots = BOX.photos.filter(function (p) { return !p.cover; });
+      // Leque só com fotos do acervo (repetir a mesma capa 5x não faz sentido)
+      if (n > 1 && shots.length) {
         var k = Math.min(n, 5), html = '';
         for (var i = 0; i < k; i++) {
           var p = shots[i % shots.length];
@@ -444,12 +444,15 @@
   var sticky = $('stickyBuy');
   var buyEl  = $('buy');
   if ('IntersectionObserver' in window) {
+    // A área observada se estende para baixo sem limite: "fora" significa
+    // que os botões já ficaram acima da tela. Assim um salto direto para o
+    // topo (voltar ao topo, tecla Home) também esconde a barra.
     new IntersectionObserver(function (entries) {
-      var e = entries[0];
-      var passed = !e.isIntersecting && e.boundingClientRect.top < 0;
+      var passed = !entries[0].isIntersecting;
       sticky.classList.toggle('is-visible', passed);
       sticky.setAttribute('aria-hidden', !passed);
-    }).observe(buyEl);
+      sticky.inert = !passed;
+    }, { rootMargin: '0px 0px 100000px 0px' }).observe(buyEl);
   }
   $('stickyBtn').addEventListener('click', function () {
     if (state.kit < 0 || firstMissing()) { validate(); return; }
@@ -461,18 +464,22 @@
   var lastFocus = null;
 
   function openModal() {
+    if (modal.classList.contains('is-open')) return;
     lastFocus = document.activeElement;
     modal.hidden = false;
-    document.body.style.overflow = 'hidden';
+    if (DSB.lockScroll) DSB.lockScroll(true);
+    if (DSB.trapFocus) DSB.trapFocus(modal);
     requestAnimationFrame(function () { modal.classList.add('is-open'); });
     setTimeout(function () { $('cH').focus(); }, 60);
   }
   function closeModal() {
+    if (modal.hidden || !modal.classList.contains('is-open')) return;
     modal.classList.remove('is-open');
-    document.body.style.overflow = '';
+    if (DSB.lockScroll) DSB.lockScroll(false);
+    if (DSB.releaseFocus) DSB.releaseFocus(modal);
     setTimeout(function () { if (!modal.classList.contains('is-open')) modal.hidden = true; }, 260);
     if (location.hash === '#tamanhos') history.replaceState(null, '', location.pathname + location.search);
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
 
   document.querySelectorAll('[data-open-sizes]').forEach(function (b) { b.addEventListener('click', openModal); });
@@ -481,6 +488,10 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !modal.hidden) closeModal();
   });
+  // Kit de 1 camisa já vem marcado: o total exibido corresponde a ele e o
+  // cliente só precisa tocar no tamanho
+  if (kitEls.length) selectKit(0, true);
+
   function checkHash() { if (location.hash === '#tamanhos' && modal.hidden) openModal(); }
   window.addEventListener('hashchange', checkHash);
   checkHash();

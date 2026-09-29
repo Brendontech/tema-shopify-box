@@ -66,13 +66,15 @@
     </nav>
     <div class="menu-label">Boxes</div>
     <div class="menu-boxes">
-      <a href="box-retro.html"><img src="img/camisas/retro/05-flamengo-retro-19921993-home-p.webp" alt="" loading="lazy" width="420" height="420"><span>Retrô</span></a>
+      <a href="box-retro.html"><img src="img/boxes/box-retro-p.webp" alt="" loading="lazy" width="480" height="480"><span>Retrô</span></a>
+      <a href="box-atual.html"><img src="img/boxes/box-atual-p.webp" alt="" loading="lazy" width="480" height="480"><span>Atual</span></a>
+      <a href="box-selecoes.html"><img src="img/boxes/box-selecoes-p.webp" alt="" loading="lazy" width="480" height="480"><span>Seleções</span></a>
+      <a href="box-brasil.html"><img src="img/boxes/box-brasil-p.webp" alt="" loading="lazy" width="480" height="480"><span>Brasil</span></a>
+      <a href="box-classica.html"><img src="img/boxes/box-classica-p.webp" alt="" loading="lazy" width="480" height="480"><span>Clássica</span></a>
       <a href="box-masculino.html"><img src="img/camisas/masculina/02-camisa-chelsea-i-2324-nike-azul-p.webp" alt="" loading="lazy" width="420" height="420"><span>Masculino</span></a>
       <a href="box-feminino.html"><img src="img/camisas/feminina/02-camisa-feminina-senegal-202627-i-p.webp" alt="" loading="lazy" width="420" height="420"><span>Feminino</span></a>
       <a href="box-infantil.html"><img src="img/camisas/infantil/03-conjunto-infantil-colombia-202627-p.webp" alt="" loading="lazy" width="420" height="420"><span>Infantil</span></a>
-      <a href="box-casal.html"><img src="img/camisas/masculina/05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp" alt="" loading="lazy" width="420" height="420"><span>Casal</span></a>
-      <a href="box-atual.html"><img src="img/camisas/masculina/03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp" alt="" loading="lazy" width="420" height="420"><span>Atual</span></a>
-      <a href="box-selecoes.html"><img src="img/camisas/feminina/03-camisa-feminina-alemanha-202627-i-p.webp" alt="" loading="lazy" width="420" height="420"><span>Seleções</span></a>
+      <a href="box-casal.html"><img src="img/boxes/box-casal-p.webp" alt="" loading="lazy" width="480" height="480"><span>Casal</span></a>
     </div>
     <div class="menu-foot">
       <a class="btn btn-white btn-block" href="index.html#quiz">Montar minha box <span class="arr">→</span></a>
@@ -165,11 +167,11 @@
         <h2 class="s-title" data-split>Camisas que podem vir</h2>
         <p class="s-sub" data-reveal style="--d:2">Alguns exemplos do que já saiu das nossas caixas. A sua é surpresa — mas é desse nível.</p>
       </div>
-      <div class="shirt-tabs" role="tablist" data-reveal="left">
-        <button type="button" class="shirt-tab on" data-cat="retro">Retrô</button>
-        <button type="button" class="shirt-tab" data-cat="masculina">Masculina</button>
-        <button type="button" class="shirt-tab" data-cat="feminina">Feminina</button>
-        <button type="button" class="shirt-tab" data-cat="infantil">Infantil</button>
+      <div class="shirt-tabs" role="tablist" aria-label="Categoria" data-reveal="left">
+        <button type="button" class="shirt-tab on" role="tab" aria-selected="true" aria-controls="shirtGrid" data-cat="retro">Retrô</button>
+        <button type="button" class="shirt-tab" role="tab" aria-selected="false" aria-controls="shirtGrid" data-cat="masculina">Masculina</button>
+        <button type="button" class="shirt-tab" role="tab" aria-selected="false" aria-controls="shirtGrid" data-cat="feminina">Feminina</button>
+        <button type="button" class="shirt-tab" role="tab" aria-selected="false" aria-controls="shirtGrid" data-cat="infantil">Infantil</button>
         <span class="shirt-tab-ind" aria-hidden="true"></span>
       </div>
     </div>
@@ -429,8 +431,8 @@
         <h2 class="s-title" data-split>+700 avaliações</h2>
       </div>
     </div>
-    <div class="rev-grid" data-stagger="up">
-      <div class="rev-score">
+    <div class="rev-grid">
+      <div class="rev-score" data-reveal>
         <div class="rev-big" data-count="4.9" data-decimals="1">4.9</div>
         <div class="rev-stars">★★★★★</div>
         <div class="rev-meta">Média de +700 avaliações de compras verificadas</div>
@@ -440,9 +442,11 @@
           <div><span>3★</span><i style="--w:2%"></i></div>
         </div>
       </div>
+      <div class="rev-cards" data-stagger="up">
       <div class="rev-card spotlight"><div class="rev-stars">★★★★★</div><div class="rev-text">"Chegou a camisa do Zidane na França 98. Melhor presente pra mim mesmo."</div><div class="rev-name"><span class="rev-av">L</span>Lucas M. · Compra verificada</div></div>
       <div class="rev-card spotlight"><div class="rev-stars">★★★★★</div><div class="rev-text">"De presente pro meu namorado. Ele não parava de gritar na revelação!"</div><div class="rev-name"><span class="rev-av">A</span>Ana R. · Compra verificada</div></div>
       <div class="rev-card spotlight"><div class="rev-stars">★★★★★</div><div class="rev-text">"Comprei 3 caixas e nenhuma repetiu. Qualidade muito acima do esperado."</div><div class="rev-name"><span class="rev-av">P</span>Pedro S. · Compra verificada</div></div>
+      </div>
     </div>
   </div>
 </section>

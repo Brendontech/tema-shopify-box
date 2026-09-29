@@ -79,6 +79,26 @@
     }
   };
 
+  // ---------- FOCO PRESO NA CAMADA ABERTA ----------
+  // Tab / Shift+Tab circulam só dentro do painel/modal que está por cima.
+  var focusStack = [];
+  var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
+  DSB.trapFocus = function (el) { DSB.releaseFocus(el); focusStack.push(el); };
+  DSB.releaseFocus = function (el) {
+    var i = focusStack.indexOf(el);
+    if (i > -1) focusStack.splice(i, 1);
+  };
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab' || !focusStack.length) return;
+    var scope = focusStack[focusStack.length - 1];
+    var list = $$(FOCUSABLE, scope).filter(function (x) { return x.offsetWidth || x.offsetHeight || x.getClientRects().length; });
+    if (!list.length) return;
+    var first = list[0], last = list[list.length - 1];
+    if (!scope.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
   // ---------- PAINÉIS LATERAIS (menu e carrinho) ----------
   var openDrawerEl = null;
   var drawerFocus = null;
@@ -92,6 +112,7 @@
     openDrawerEl = d;
     document.body.classList.add('drawer-open');
     DSB.lockScroll(true);
+    DSB.trapFocus(d);
     requestAnimationFrame(function () { requestAnimationFrame(function () { d.classList.add('is-open'); }); });
     setTimeout(function () {
       var f = d.querySelector('.drawer-x');
@@ -107,6 +128,7 @@
     d.classList.remove('is-open');
     document.body.classList.remove('drawer-open');
     DSB.lockScroll(false);
+    DSB.releaseFocus(d);
     setTimeout(function () { if (!d.classList.contains('is-open')) d.hidden = true; }, instant ? 0 : 450);
     if (!instant && drawerFocus && drawerFocus.focus) drawerFocus.focus({ preventScroll: true });
   };
@@ -293,9 +315,14 @@
   var popular = [];
 
   function openSearch(prefill) {
-    lastFocus = document.activeElement;
+    var wasOpen = search.classList.contains('is-open');
+    if (!wasOpen) lastFocus = document.activeElement;
     if (DSB.closeDrawer) DSB.closeDrawer(true);
+    // quem abriu a busca pelo menu volta para o botão do menu
+    if (lastFocus && !document.contains(lastFocus)) lastFocus = null;
+    if (lastFocus && lastFocus.closest && lastFocus.closest('.drawer')) lastFocus = $('.menu-toggle');
     document.body.classList.add('search-open');
+    if (!wasOpen) { DSB.lockScroll(true); DSB.trapFocus(search); }
     search.hidden = false;
     requestAnimationFrame(function () { search.classList.add('is-open'); });
     if (typeof prefill === 'string') input.value = prefill;
@@ -303,12 +330,16 @@
     if (input.value.trim()) runSearch(input.value); else renderIdle();
   }
   function closeSearch() {
+    if (!search.classList.contains('is-open')) return;
     input.blur();
     search.classList.remove('is-open');
     document.body.classList.remove('search-open');
+    DSB.lockScroll(false);
+    DSB.releaseFocus(search);
+    clearTimeout(debounceId);
     setTimeout(function () { if (!search.classList.contains('is-open')) search.hidden = true; }, 260);
     if (controller) controller.abort();
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
   DSB.openSearch = openSearch;
 

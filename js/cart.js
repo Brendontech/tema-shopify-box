@@ -2,8 +2,10 @@
    CART.JS — Da Sports Box
    Carrinho em painel lateral. Os itens ficam no
    localStorage do navegador.
-   TODO: na Shopify, trocar por /cart.js,
-         /cart/add.js e /cart/change.js
+   Checkout: na Shopify, o botão "Finalizar compra"
+   envia os itens para o carrinho da loja
+   (/cart/add.js) e redireciona para /checkout,
+   que o Cartpanda assume.
    ============================================ */
 
 (function () {
@@ -159,18 +161,45 @@
     }, reduceMotion ? 0 : 320);
   }
 
+  // ---------- Finalizar compra (Shopify + Cartpanda) ----------
+  // Cada item precisa do ID da variante na Shopify (BOX.variants no gerador).
+  // Os tamanhos vão como "properties" da linha do pedido.
+  function syncShopifyCart() {
+    var root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+    var payload = {
+      items: items.map(function (it) {
+        return { id: it.variantId, quantity: it.qty, properties: { Kit: it.kit, Tamanhos: it.sizes } };
+      })
+    };
+    return fetch(root + 'cart/clear.js', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+      .then(function () {
+        return fetch(root + 'cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return root + 'checkout'; });
+  }
+
   drawer.querySelector('#cartCheckout').addEventListener('click', function () {
     var b = this;
+    var ready = window.Shopify && items.length && items.every(function (it) { return it.variantId; });
+    if (!ready) {
+      if (DSB.toast) DSB.toast('Checkout disponível quando a loja estiver ligada à Shopify', { type: 'error' });
+      return;
+    }
     b.classList.add('is-loading');
-    // TODO: na Shopify, redirecionar para /checkout depois de sincronizar o carrinho
-    setTimeout(function () {
-      b.classList.remove('is-loading');
-      if (DSB.toast) DSB.toast('Checkout da Shopify ainda não conectado neste tema', { type: 'error' });
-    }, 700);
+    syncShopifyCart()
+      .then(function (url) { window.location.href = url; })   // o Cartpanda intercepta o /checkout
+      .catch(function () {
+        b.classList.remove('is-loading');
+        if (DSB.toast) DSB.toast('Não foi possível ir para o checkout. Tente de novo.', { type: 'error' });
+      });
   });
 
   // ---------- API pública ----------
-  // item: { name, url, image, emoji, kit, sizes, unit, old, qty }
+  // item: { name, url, image, emoji, kit, sizes, unit, old, qty, variantId }
   DSB.cart = {
     add: function (item, fromEl) {
       item.qty = item.qty || 1;

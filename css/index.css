@@ -62,53 +62,79 @@ body { background: var(--ink); color: #fff; }
 
 /* ---------- CAIXA MISTERIOSA ABRINDO ----------
    Etapas (classes em .reveal): shake → open → done; closing ao embaralhar.
-   Medidas em cqw (largura da .reveal). A abertura da caixa fica a
-   --mouth do chão; luz, faíscas e clarão saem dali. */
+   Estilo "item lendário": raios dourados, núcleo de luz branca e halo nas camisas.
+   Medidas em cqw (largura da .reveal); --mouth = altura da boca da caixa. */
 .reveal {
-  --gold: 255, 214, 120;
+  --gold: 255, 196, 64;
+  --gold-l: 255, 226, 140;
   --mouth: 18cqw;
   position: relative; width: 100%; max-width: 640px; aspect-ratio: 640 / 400;
   margin-top: clamp(1.5rem, 3vw, 2.5rem); container-type: inline-size;
   transition: transform .6s var(--ease);
 }
 
-/* Luz: brilho suave + feixe saindo da abertura */
+/* Toda a luz fica dentro desta área: não invade os números abaixo */
+.rv-light {
+  position: absolute; left: -30%; right: -30%; top: -12%; bottom: 0; overflow: hidden; pointer-events: none;
+  mask-image: linear-gradient(to top, transparent 0, #000 14%); -webkit-mask-image: linear-gradient(to top, transparent 0, #000 14%);
+}
+.rv-light > * { --cx: 50%; }
+
+.rv-rays {
+  position: absolute; left: 50%; bottom: var(--mouth); width: 110cqw; aspect-ratio: 1; margin-left: -55cqw; margin-bottom: -55cqw;
+  opacity: 0; transform: scale(.3); transition: opacity .9s ease, transform 1.2s var(--ease);
+  mask-image: radial-gradient(circle, #000 6%, rgba(0,0,0,.6) 22%, transparent 48%);
+  -webkit-mask-image: radial-gradient(circle, #000 6%, rgba(0,0,0,.6) 22%, transparent 48%);
+}
+.rv-rays i { position: absolute; inset: 0; border-radius: 50%; }
+.rv-rays i:first-child {
+  background: repeating-conic-gradient(from 0deg, rgba(var(--gold), .55) 0 3deg, transparent 3deg 12deg);
+  animation: spin 26s linear infinite;
+}
+.rv-rays i:last-child {
+  background: repeating-conic-gradient(from 6deg, rgba(255, 255, 255, .35) 0 1.2deg, transparent 1.2deg 18deg);
+  animation: spin 38s linear infinite reverse;
+}
+.reveal.open .rv-rays { opacity: 1; transform: none; }
+
 .rv-glow {
-  position: absolute; left: 50%; bottom: calc(var(--mouth) - 22cqw); width: 44cqw; aspect-ratio: 1; margin-left: -22cqw;
-  border-radius: 50%; pointer-events: none;
-  background: radial-gradient(circle, rgba(var(--gold), .38) 0%, rgba(var(--gold), .12) 38%, transparent 66%);
-  filter: blur(8px); opacity: 0; transform: scale(.5);
+  position: absolute; left: 50%; bottom: calc(var(--mouth) - 26cqw); width: 52cqw; aspect-ratio: 1; margin-left: -26cqw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--gold-l), .8) 0%, rgba(var(--gold), .45) 22%, rgba(var(--gold), .18) 42%, transparent 64%);
+  filter: blur(6px); opacity: 0; transform: scale(.4);
   transition: opacity .8s ease, transform 1s var(--ease);
 }
-.reveal.shake .rv-glow { opacity: .4; transform: scale(.6); }
+.reveal.shake .rv-glow { opacity: .45; transform: scale(.5); transition-duration: 1s; }
 .reveal.open .rv-glow { opacity: 1; transform: none; }
-.reveal.done .rv-glow { animation: glowPulse 3.5s ease-in-out infinite; }
-@keyframes glowPulse { 50% { opacity: .7; } }
+.reveal.done .rv-glow { animation: glowPulse 2.8s ease-in-out infinite; }
+@keyframes glowPulse { 50% { opacity: .78; transform: scale(1.06); } }
 
-.rv-beam {
-  position: absolute; left: 50%; bottom: var(--mouth); width: 22cqw; height: 30cqw; margin-left: -11cqw; pointer-events: none;
-  background: linear-gradient(to top, rgba(255, 244, 214, .55), rgba(var(--gold), .14) 55%, transparent);
-  clip-path: polygon(24% 100%, 76% 100%, 100% 0, 0 0);
-  filter: blur(4px); opacity: 0; transform: scaleY(0); transform-origin: bottom;
-  transition: opacity .5s ease, transform .8s var(--ease);
+/* Partículas subindo */
+.rv-motes { position: absolute; left: 50%; bottom: var(--mouth); width: 0; height: 0; opacity: 0; transition: opacity .6s; }
+.reveal.open .rv-motes { opacity: 1; }
+.rv-mote {
+  position: absolute; bottom: 0; width: var(--s); height: var(--s); border-radius: 50%;
+  background: #fff; box-shadow: 0 0 6px 2px rgba(var(--gold), .9);
+  opacity: 0; animation: rise var(--t) linear infinite; animation-delay: var(--dl);
 }
-.reveal.open .rv-beam { opacity: 1; transform: none; }
-.reveal.done .rv-beam { opacity: .6; transition-duration: 1.4s; }
+@keyframes rise {
+  0%   { transform: translate(var(--x0), 0) scale(.6); opacity: 0; }
+  15%  { opacity: 1; }
+  100% { transform: translate(var(--x1), -34cqw) scale(1); opacity: 0; }
+}
 
-/* Caixa */
+/* ---------- Caixa: base + tampa ---------- */
 .rv-box {
   position: absolute; left: 50%; bottom: 1cqw; width: 30cqw; height: 26cqw; margin-left: -15cqw;
   background: none; border: none; padding: 0; cursor: pointer; z-index: 3;
   -webkit-tap-highlight-color: transparent;
 }
 .rv-box:focus-visible { outline: 2px solid #fff; outline-offset: 8px; border-radius: 3cqw; }
-
 .rv-base {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 66%; border-radius: .8cqw .8cqw 2.4cqw 2.4cqw; overflow: hidden;
-  background: linear-gradient(170deg, #ffffff 0%, #e2e2e2 50%, #b3b3b3 100%);
-  box-shadow: 0 3cqw 5cqw -1.5cqw rgba(0,0,0,.8), inset 0 -1.6cqw 3cqw rgba(0,0,0,.12);
+  position: absolute; left: 0; right: 0; bottom: 0; height: 66%; border-radius: .6cqw .6cqw 2cqw 2cqw; overflow: hidden;
+  background: linear-gradient(175deg, #ffffff 0%, #e4e4e4 45%, #b8b8b8 100%);
+  box-shadow: 0 3cqw 5cqw -1.5cqw rgba(0,0,0,.85), inset 0 -1.6cqw 3cqw rgba(0,0,0,.12), inset 0 .4cqw 0 rgba(255,255,255,.9);
 }
-.rv-base::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 14%; margin-left: -7%; background: #0c0c0c; }
+.rv-base::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 13%; margin-left: -6.5%; background: linear-gradient(90deg, #000, #222 50%, #000); }
 .rv-q {
   position: absolute; inset: 0; display: grid; place-items: center;
   font-family: var(--font-display); font-weight: 900; font-size: 9cqw; color: #0c0c0c; line-height: 1;
@@ -121,51 +147,41 @@ body { background: var(--ink); color: #fff; }
   font-size: max(7px, 1.25cqw); font-weight: 900; letter-spacing: .2em; color: #fff;
   background: #0c0c0c; padding: .5cqw 1.1cqw; border-radius: .6cqw;
 }
-
-/* Abertura: interior escuro com a luz no fundo (visível quando abre) */
+/* Boca da caixa: escura com a luz vindo do fundo */
 .rv-inside {
-  position: absolute; left: 2%; right: 2%; bottom: 62%; height: 15%;
-  clip-path: polygon(7% 0, 93% 0, 100% 100%, 0 100%);
+  position: absolute; left: 1.5%; right: 1.5%; bottom: 63%; height: 9%;
+  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
   background:
-    radial-gradient(ellipse 60% 90% at 50% 100%, rgba(255, 246, 220, .95), rgba(var(--gold), .45) 45%, transparent 75%),
-    linear-gradient(#050505, #1b1b1b);
-  opacity: 0; transition: opacity .25s;
+    radial-gradient(ellipse 60% 130% at 50% 100%, rgba(var(--gold-l), .95) 0%, rgba(var(--gold), .7) 40%, transparent 80%),
+    linear-gradient(#070707, #1a1a1a);
+  opacity: 0; transition: opacity .2s;
 }
 .reveal.open .rv-inside { opacity: 1; }
 
-/* Abas que abrem em "V" */
-.rv-flap {
-  position: absolute; bottom: 64%; width: 50%; height: 34%;
-  background: linear-gradient(to top, #d4d4d4, #fafafa);
-  border-radius: .6cqw .6cqw .3cqw .3cqw; box-shadow: 0 1cqw 2cqw rgba(0,0,0,.35);
-  opacity: 0; transform: scaleY(.1);
-  transition: transform .55s var(--ease-back), opacity .2s;
+/* Tampa: face de cima + borda da frente + laço */
+.rv-lid { position: absolute; left: -5%; right: -5%; bottom: 60%; height: 17%; z-index: 2; }
+.rv-lid-front {
+  position: absolute; inset: 0; border-radius: .8cqw .8cqw 1cqw 1cqw;
+  background: linear-gradient(180deg, #ffffff 0%, #e2e2e2 55%, #c6c6c6 100%);
+  box-shadow: 0 1.2cqw 2cqw rgba(0,0,0,.4), inset 0 .3cqw 0 #fff;
 }
-.rv-flap-l { left: 0;  transform-origin: 0 100%; }
-.rv-flap-r { right: 0; transform-origin: 100% 100%; }
-.reveal.open .rv-flap { opacity: 1; transition-delay: .12s; }
-.reveal.open .rv-flap-l { transform: rotate(-34deg); }
-.reveal.open .rv-flap-r { transform: rotate(34deg); }
-
-/* Tampa com laço */
-.rv-lid {
-  position: absolute; left: -6%; right: -6%; bottom: 58%; height: 22%; border-radius: 1.2cqw; z-index: 2;
-  background: linear-gradient(170deg, #ffffff 0%, #e8e8e8 60%, #c2c2c2 100%);
-  box-shadow: 0 1cqw 2cqw rgba(0,0,0,.35);
-}
-.rv-lid::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 12%; margin-left: -6%; background: #0c0c0c; }
-.rv-bow { position: absolute; left: 50%; bottom: 88%; width: 0; height: 0; }
+.rv-lid-front::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 11.5%; margin-left: -5.75%; background: linear-gradient(90deg, #000, #222 50%, #000); }
+.rv-bow { position: absolute; left: 50%; top: .2cqw; width: 0; height: 0; }
 .rv-bow i {
-  position: absolute; bottom: 0; width: 6cqw; height: 4cqw; border: 1cqw solid #0c0c0c;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: absolute; bottom: 0; width: 6.2cqw; height: 4.2cqw;
+  border: 1cqw solid #0c0c0c; border-radius: 55% 45% 50% 50% / 65% 65% 35% 35%;
+  box-shadow: inset 0 .4cqw 0 rgba(255,255,255,.15);
 }
-.rv-bow i:first-child { right: -.3cqw; transform: rotate(-22deg); transform-origin: right bottom; }
-.rv-bow i:last-child  { left: -.3cqw;  transform: rotate(22deg);  transform-origin: left bottom; }
-.rv-bow::after { content: ''; position: absolute; left: -1.2cqw; bottom: -1cqw; width: 2.4cqw; height: 2.4cqw; border-radius: 50%; background: #0c0c0c; }
+.rv-bow i:nth-child(1) { right: -.2cqw; transform: rotate(-18deg); transform-origin: right bottom; }
+.rv-bow i:nth-child(2) { left: -.2cqw;  transform: rotate(18deg);  transform-origin: left bottom; }
+.rv-bow b { position: absolute; top: 0; width: 1.3cqw; height: 4cqw; background: #0c0c0c; border-radius: 0 0 .3cqw .3cqw; }
+.rv-bow b:nth-of-type(1) { right: 0; transform: rotate(28deg); transform-origin: top right; }
+.rv-bow b:nth-of-type(2) { left: 0;  transform: rotate(-28deg); transform-origin: top left; }
+.rv-bow::after { content: ''; position: absolute; left: -1.3cqw; bottom: -1.2cqw; width: 2.6cqw; height: 2.4cqw; border-radius: 40%; background: #0c0c0c; }
 
 .rv-leak {
-  position: absolute; left: 3%; right: 3%; bottom: 64%; height: .45cqw; border-radius: 1cqw; z-index: 1;
-  background: rgb(var(--gold)); box-shadow: 0 0 1.6cqw .6cqw rgba(var(--gold), .7); opacity: 0;
+  position: absolute; left: 2%; right: 2%; bottom: 64.5%; height: .5cqw; border-radius: 1cqw; z-index: 1;
+  background: rgb(var(--gold-l)); box-shadow: 0 0 1.4cqw .6cqw rgba(var(--gold), .9), 0 0 4cqw 1cqw rgba(var(--gold), .45); opacity: 0;
 }
 .reveal.shake .rv-leak { animation: leak .95s ease-in forwards; }
 @keyframes leak { to { opacity: 1; } }
@@ -179,25 +195,24 @@ body { background: var(--ink); color: #fff; }
   70% { transform: rotate(-5deg) translateY(-3%) scale(1.02); } 80% { transform: rotate(5deg) translateY(-2%) scale(1.03); }
   90% { transform: rotate(-3deg) translateY(-4%) scale(1.04); }
 }
-
-/* Posição da tampa aberta: logo acima da caixa, entre as camisas */
-.reveal.open .rv-lid { animation: lidPop .75s var(--ease-back) forwards; }
-.reveal.done .rv-lid { animation: lidFloat 4s ease-in-out infinite; transform: translate(-3cqw, -10cqw) rotate(-12deg); }
+/* A tampa só sobe e fica flutuando acima da caixa */
+.reveal.open .rv-lid { animation: lidPop .7s var(--ease-back) forwards; }
+.reveal.done .rv-lid { animation: lidFloat 3.6s ease-in-out infinite; transform: translateY(-11cqw) rotate(-5deg); }
 .reveal.closing .rv-lid { animation: lidBack .45s ease-in forwards; }
-@keyframes lidPop   { 0% { transform: none; } 45% { transform: translate(-2cqw, -13cqw) rotate(-20deg); } 100% { transform: translate(-3cqw, -10cqw) rotate(-12deg); } }
-@keyframes lidFloat { 0%, 100% { transform: translate(-3cqw, -10cqw) rotate(-12deg); } 50% { transform: translate(-3cqw, -11.2cqw) rotate(-9deg); } }
-@keyframes lidBack  { from { transform: translate(-3cqw, -10cqw) rotate(-12deg); } to { transform: none; } }
+@keyframes lidPop   { 0% { transform: none; } 50% { transform: translateY(-14cqw) rotate(-9deg); } 100% { transform: translateY(-11cqw) rotate(-5deg); } }
+@keyframes lidFloat { 0%, 100% { transform: translateY(-11cqw) rotate(-5deg); } 50% { transform: translateY(-12.3cqw) rotate(-3deg); } }
+@keyframes lidBack  { from { transform: translateY(-11cqw) rotate(-5deg); } to { transform: none; } }
 
 /* Clarão */
 .rv-flash {
-  position: absolute; left: 50%; bottom: calc(var(--mouth) - 18cqw); width: 36cqw; aspect-ratio: 1; margin-left: -18cqw; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,.95) 0%, rgba(255, 240, 200, .5) 30%, transparent 62%);
+  position: absolute; left: 50%; bottom: calc(var(--mouth) - 22cqw); width: 44cqw; aspect-ratio: 1; margin-left: -22cqw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--gold-l), .95) 0%, rgba(var(--gold), .5) 28%, transparent 62%);
   opacity: 0; pointer-events: none; z-index: 4;
 }
-.reveal.open .rv-flash { animation: flash .6s ease-out; }
-@keyframes flash { 0% { opacity: 0; transform: scale(.3); } 25% { opacity: 1; } 100% { opacity: 0; transform: scale(1.3); } }
+.reveal.open .rv-flash { animation: flash .65s ease-out; }
+@keyframes flash { 0% { opacity: 0; transform: scale(.3); } 25% { opacity: 1; } 100% { opacity: 0; transform: scale(1.4); } }
 
-/* Camisas: saem de dentro da caixa e voltam ao embaralhar */
+/* ---------- Camisas com halo lendário ---------- */
 .rv-shirts { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .rv-shirt {
   position: absolute; left: 50%; top: 0; width: 19cqw; margin-left: -9.5cqw;
@@ -209,28 +224,44 @@ body { background: var(--ink); color: #fff; }
   transition: transform .95s var(--ease-back), opacity .2s;
   transition-delay: calc(.15s + var(--delay)), calc(.15s + var(--delay));
 }
-.rv-shirt img {
-  width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 1.8cqw;
-  border: .4cqw solid #fff; box-shadow: 0 2.5cqw 4cqw -1cqw rgba(0,0,0,.75);
+.rv-card { position: relative; border-radius: 1.8cqw; }
+.rv-card::before {                                 /* halo */
+  content: ''; position: absolute; inset: -12%; border-radius: 30%; z-index: -1;
+  background: radial-gradient(closest-side, rgba(var(--gold-l), .7), rgba(var(--gold), .25) 60%, transparent);
+  filter: blur(8px); opacity: 0; transition: opacity .8s .4s;
 }
-.reveal.done .rv-shirt img { animation: float 5s ease-in-out infinite; }
-.reveal.done .rv-shirt:nth-child(2) img { animation-delay: -1.2s; }
-.reveal.done .rv-shirt:nth-child(3) img { animation-delay: -2.4s; }
-.reveal.done .rv-shirt:nth-child(4) img { animation-delay: -3.6s; }
+.rv-card::after {                                  /* reflexo passando */
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.65) 50%, transparent 62%) no-repeat;
+  background-size: 260% 100%; background-position: 150% 0;
+}
+.rv-card img {
+  display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: inherit;
+  border: .4cqw solid #fff; box-shadow: 0 2.5cqw 4cqw -1cqw rgba(0,0,0,.75);
+  transition: border-color .6s, box-shadow .6s;
+}
+.reveal.open .rv-card::before { opacity: 1; }
+.reveal.open .rv-card img { border-color: rgb(var(--gold-l)); box-shadow: 0 0 0 .25cqw rgba(var(--gold), .9), 0 0 3cqw rgba(var(--gold), .55), 0 2.5cqw 4cqw -1cqw rgba(0,0,0,.75); }
+.reveal.done .rv-card { animation: float 5s ease-in-out infinite; }
+.reveal.done .rv-card::after { animation: sheen 3.6s ease-in-out infinite; }
+.reveal.done .rv-shirt:nth-child(2) .rv-card, .reveal.done .rv-shirt:nth-child(2) .rv-card::after { animation-delay: -1.2s; }
+.reveal.done .rv-shirt:nth-child(3) .rv-card, .reveal.done .rv-shirt:nth-child(3) .rv-card::after { animation-delay: -2.4s; }
+.reveal.done .rv-shirt:nth-child(4) .rv-card, .reveal.done .rv-shirt:nth-child(4) .rv-card::after { animation-delay: -.6s; }
+@keyframes sheen { 0%, 55% { background-position: 150% 0; } 100% { background-position: -50% 0; } }
 
-/* Faíscas */
+/* Faíscas da explosão */
 .rv-sparks { position: absolute; left: 50%; bottom: var(--mouth); width: 0; height: 0; z-index: 3; pointer-events: none; }
 .rv-spark {
   position: absolute; left: 0; top: 0; width: var(--s, 5px); height: var(--s, 5px); border-radius: 50%;
-  background: #fff; box-shadow: 0 0 6px 1px rgba(var(--gold), .8);
+  background: #fff; box-shadow: 0 0 8px 2px rgba(var(--gold), .9);
   animation: spark var(--t, 1s) cubic-bezier(.15, .7, .3, 1) forwards;
 }
 @keyframes spark { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(.2); opacity: 0; } }
 .rv-star {
-  position: absolute; color: rgba(255, 236, 190, .9); font-size: var(--s, 12px); text-shadow: 0 0 8px rgba(var(--gold), .7);
-  animation: twinkle 2.6s ease-in-out infinite; animation-delay: var(--dl, 0s);
+  position: absolute; color: rgb(var(--gold-l)); font-size: var(--s, 12px); text-shadow: 0 0 10px rgba(var(--gold), .9);
+  animation: twinkle 2.4s ease-in-out infinite; animation-delay: var(--dl, 0s);
 }
-@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: .9; transform: scale(1) rotate(45deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
 
 .rv-hint {
   position: absolute; left: 50%; bottom: -1.7rem; transform: translateX(-50%);
@@ -243,12 +274,11 @@ body { background: var(--ink); color: #fff; }
 @container (max-width: 560px) {
   .reveal { --mouth: 25cqw; }
   .rv-shirt.far { display: none; }
-  .rv-shirt { width: 34cqw; margin-left: -17cqw; }
-  .rv-shirt:nth-child(2) { --x: -27cqw !important; --y: 3cqw !important; }
-  .rv-shirt:nth-child(3) { --x: 27cqw !important; --y: 3cqw !important; }
-  .reveal.open .rv-shirt, .rv-shirt { --start: 44cqw; }
-  .rv-shirt { transform: translate(0, 44cqw) scale(.1); }
+  .rv-shirt { width: 34cqw; margin-left: -17cqw; transform: translate(0, 44cqw) scale(.1); }
+  .rv-shirt:nth-child(2) { --x: -27cqw !important; --y: 1cqw !important; }
+  .rv-shirt:nth-child(3) { --x: 27cqw !important; --y: 1cqw !important; }
   .rv-box { width: 42cqw; height: 36cqw; margin-left: -21cqw; }
+  .reveal.done .rv-lid { transform: translateY(-12cqw) rotate(-5deg); }
 }
 
 .hero-stats {

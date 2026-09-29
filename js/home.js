@@ -278,6 +278,21 @@
       }
     }
 
+    // Partículas de luz subindo da caixa (criadas uma vez, animação infinita no CSS)
+    var motes = document.getElementById('rvMotes');
+    if (motes && !motes.children.length) {
+      for (var m = 0; m < 16; m++) {
+        var mo = document.createElement('span');
+        mo.className = 'rv-mote';
+        mo.style.setProperty('--s', (2 + Math.random() * 3).toFixed(1) + 'px');
+        mo.style.setProperty('--x0', ((Math.random() - .5) * 8).toFixed(1) + 'cqw');
+        mo.style.setProperty('--x1', ((Math.random() - .5) * 26).toFixed(1) + 'cqw');
+        mo.style.setProperty('--t', (2.2 + Math.random() * 2).toFixed(2) + 's');
+        mo.style.setProperty('--dl', (Math.random() * 3).toFixed(2) + 's');
+        motes.appendChild(mo);
+      }
+    }
+
     function open() {
       reveal.classList.add('shake');
       later(function () {

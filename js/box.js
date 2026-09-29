@@ -391,9 +391,7 @@
 
   // ---- COMPRA ----
   var btnCart = $('btnCart');
-  var btnPix  = $('btnPix');
   var cartHtml = btnCart.innerHTML;
-  var pixHtml  = btnPix.innerHTML;
 
   function cartItem() {
     var sizes = [];
@@ -409,14 +407,14 @@
       sizes: sizes.join(' · '),
       unit: price.t,
       old: price.o,
-      qty: state.qty
+      qty: state.qty,
+      variantId: BOX.variants ? BOX.variants[state.kit] : null
     };
   }
 
   btnCart.addEventListener('click', function () {
     if (!validate()) return;
     btnCart.classList.add('is-loading');
-    // TODO: POST /cart/add.js com a variante e os tamanhos em "properties"
     setTimeout(function () {
       btnCart.classList.remove('is-loading');
       btnCart.classList.add('ok');
@@ -427,17 +425,6 @@
         btnCart.innerHTML = cartHtml;
       }, 2200);
     }, 450);
-  });
-
-  btnPix.addEventListener('click', function () {
-    if (!validate()) return;
-    btnPix.classList.add('is-loading');
-    // TODO: redirecionar para checkout Shopify com linha de pedido correta
-    setTimeout(function () {
-      btnPix.classList.remove('is-loading');
-      btnPix.innerHTML = 'Redirecionando para o checkout…';
-      setTimeout(function () { btnPix.innerHTML = pixHtml; }, 2000);
-    }, 600);
   });
 
   // ---- BARRA FIXA (mobile) ----
@@ -452,8 +439,7 @@
     }).observe(buyEl);
   }
   $('stickyBtn').addEventListener('click', function () {
-    if (state.kit < 0 || firstMissing()) { validate(); return; }
-    btnPix.click();
+    btnCart.click();
   });
 
   // ---- GUIA DE TAMANHOS (modal) ----

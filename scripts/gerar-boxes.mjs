@@ -306,8 +306,7 @@ ${top}
         </div>
 
         <div class="buy" id="buy">
-          <button type="button" class="btn btn-main btn-block" id="btnPix">Comprar agora via Pix · 5% off</button>
-          <button type="button" class="btn btn-outline btn-block" id="btnCart">Adicionar ao carrinho <span class="arr">→</span></button>
+          <button type="button" class="btn btn-main btn-block" id="btnCart">Adicionar ao carrinho <span class="arr">→</span></button>
         </div>
 
         <div class="feats">
@@ -355,7 +354,7 @@ ${top}
       <div class="sticky-name">${box.name}</div>
       <div class="sticky-total" id="stickyTotal">${brl(t1)}</div>
     </div>
-    <button type="button" class="btn btn-main" id="stickyBtn">Comprar <span class="arr">→</span></button>
+    <button type="button" class="btn btn-main" id="stickyBtn">Adicionar <span class="arr">→</span></button>
   </div>
 </div>
 
@@ -407,6 +406,7 @@ ${foot}
     mode: box.mode || null,
     sizes: box.sizes || null,
     model: box.model || 'masculino',
+    variants: box.variants || null,   // IDs das variantes na Shopify, na ordem dos kits
     photos: galleryPhotos(box).length ? galleryPhotos(box) : null,
     prices: box.prices.map(([t, o]) => ({ t, o }))
   }, null, 2).replace(/\n/g, '\n  ')};

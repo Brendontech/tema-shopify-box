@@ -454,18 +454,4 @@
     });
   }
 
-  // ---------- FAQ COM ABRIR/FECHAR ANIMADO ----------
-  document.querySelectorAll('.faq-item').forEach(function (d) {
-    if (d.open) d.classList.add('is-open');
-    d.querySelector('summary').addEventListener('click', function (e) {
-      e.preventDefault();
-      if (d.classList.contains('is-open')) {
-        d.classList.remove('is-open');
-        setTimeout(function () { if (!d.classList.contains('is-open')) d.open = false; }, 450);
-      } else {
-        d.open = true;
-        requestAnimationFrame(function () { d.classList.add('is-open'); });
-      }
-    });
-  });
 })();

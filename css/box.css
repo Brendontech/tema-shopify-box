@@ -210,6 +210,49 @@ body { background: var(--paper); color: #111; }
 .p-how-grid b { font-size: 15px; }
 .p-how-grid p { font-size: 13px; color: var(--muted); margin-top: 3px; }
 
+/* ---------- AVALIAÇÕES ---------- */
+.p-rev { padding-block: clamp(3.5rem, 7vw, 6rem) 0; }
+.p-rev-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 14px; }
+.p-rev-score {
+  background: #111; color: #fff; border-radius: 22px; padding: 1.75rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.p-rev-score .sts { color: #fff; }
+.p-rev-score p { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.5; margin-top: 8px; }
+.p-rev-big { font-family: var(--font-display); font-stretch: 112%; font-size: 64px; font-weight: 900; letter-spacing: -.05em; line-height: 1; margin-bottom: 6px; }
+.p-rev-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.p-rev-card {
+  margin: 0; background: #fff; border-radius: 22px; padding: 1.5rem; display: flex; flex-direction: column;
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.p-rev-card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -28px rgba(0,0,0,.3); }
+.p-rev-card blockquote { font-size: 15px; color: #444; line-height: 1.6; margin: 10px 0 1.25rem; }
+.p-rev-card figcaption { margin-top: auto; display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; color: #888; }
+.p-rev-av { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #111; color: #fff; font-size: 13px; }
+
+/* ---------- DÚVIDAS ---------- */
+.p-faq { padding-block: clamp(3.5rem, 7vw, 6rem) 0; }
+.p-faq-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+.p-faq .s-sub .kl-link { font-size: inherit; }
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { background: #fff; border: 1px solid var(--line); border-radius: 16px; transition: border-color .3s, box-shadow .3s; }
+.faq-item[open] { border-color: #111; box-shadow: 0 14px 30px -20px rgba(0,0,0,.25); }
+.faq-item summary {
+  list-style: none; cursor: pointer; padding: 18px 20px; font-size: 15px; font-weight: 700; color: #111;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  display: grid; place-items: center; font-size: 17px; font-weight: 500; background: #f0f0ec;
+  transition: transform .4s var(--ease), background .3s, color .3s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); background: #111; color: #fff; }
+.faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease); }
+.faq-a > p { min-height: 0; overflow: hidden; padding: 0 20px; font-size: 14px; color: #666; line-height: 1.7; }
+.faq-item.is-open .faq-a { grid-template-rows: 1fr; }
+.faq-item.is-open .faq-a > p { padding-bottom: 18px; }
+
 /* ---------- OUTRAS BOXES ---------- */
 .xs { padding-block: clamp(3.5rem, 7vw, 6rem); }
 .xs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -299,6 +342,18 @@ body { background: var(--paper); color: #111; }
   .xs-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 900px) {
+  .p-rev-grid, .p-faq-inner { grid-template-columns: 1fr; }
+  .p-rev-score { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 4px 14px; padding: 1.25rem 1.5rem; }
+  .p-rev-score p { flex-basis: 100%; margin-top: 0; }
+  .p-rev-big { font-size: 48px; margin: 0; }
+  /* Avaliações em carrossel */
+  .p-rev-cards {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(84%, 340px); gap: 10px;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
+  }
+  .p-rev-cards::-webkit-scrollbar { display: none; }
+  .p-rev-card { scroll-snap-align: start; }
   .pg { grid-template-columns: 1fr; }
   .gallery { position: static; }
   .mi { aspect-ratio: 4 / 3.4; max-height: none; min-height: 0; }

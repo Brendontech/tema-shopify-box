@@ -499,9 +499,14 @@ body { background: var(--ink); color: #fff; }
 .how { background: #fff; color: #111; }
 .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; position: relative; }
 .hw-step {
-  padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 22px; background: var(--paper);
+  position: relative; padding: clamp(1.5rem, 3vw, 2.5rem); border-radius: 22px; background: var(--paper);
   transition: transform .5s var(--ease), background .3s, box-shadow .5s var(--ease);
-  overflow: hidden;
+}
+/* Seta entre as etapas */
+.hw-step:not(:last-child)::before {
+  content: '→'; position: absolute; z-index: 2; top: 50%; right: -21px; margin-top: -13px;
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  background: #111; color: #fff; font-size: 13px; font-weight: 700; box-shadow: 0 0 0 5px #fff;
 }
 .hw-step.spotlight::after { background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--accent-rgb),.1), transparent 45%); }
 .hw-step:hover { transform: translateY(-6px); background: #fff; box-shadow: 0 30px 70px -25px rgba(0,0,0,.2); }
@@ -523,13 +528,20 @@ body { background: var(--ink); color: #fff; }
   animation: gradShift 10s ease infinite;
 }
 @keyframes gradShift { 50% { background-position: 100% 50%; } }
-.cta-emojis span { position: absolute; font-size: clamp(34px, 5vw, 64px); opacity: .18; filter: grayscale(1); animation: float 6s ease-in-out infinite; }
-.cta-emojis span:nth-child(1) { left: 6%; top: 18%; }
-.cta-emojis span:nth-child(2) { right: 8%; top: 12%; animation-delay: -1.5s; }
-.cta-emojis span:nth-child(3) { left: 12%; bottom: 12%; animation-delay: -3s; }
-.cta-emojis span:nth-child(4) { right: 14%; bottom: 16%; animation-delay: -4.5s; }
-.cta-emojis { position: absolute; inset: 0; pointer-events: none; }
-.cta-title { position: relative; font-size: clamp(30px, 5vw, 60px); font-weight: 900; letter-spacing: -.04em; color: #fff; margin-bottom: .75rem; line-height: 1.02; }
+/* Camisas do acervo nos cantos do banner (inclinadas, entrando pela borda) */
+.cta-shirts { position: absolute; inset: 0; pointer-events: none; }
+.cta-shirts img {
+  position: absolute; width: clamp(110px, 12vw, 160px); height: auto; aspect-ratio: 1; object-fit: cover;
+  border-radius: 18px; border: 3px solid #fff; box-shadow: 0 24px 50px -12px rgba(0,0,0,.8);
+  opacity: .9; animation: ctaFloat 7s ease-in-out infinite;
+}
+.cta-shirts img:nth-child(1) { --r: -14deg; left: -2%;  top: 10%; }
+.cta-shirts img:nth-child(2) { --r: 9deg;   left: 9%;   bottom: -14%; animation-delay: -2s; }
+.cta-shirts img:nth-child(3) { --r: 12deg;  right: -2%; top: 8%;  animation-delay: -4s; }
+.cta-shirts img:nth-child(4) { --r: -8deg;  right: 9%;  bottom: -16%; animation-delay: -5.5s; }
+@keyframes ctaFloat { 0%, 100% { transform: rotate(var(--r)) translateY(0); } 50% { transform: rotate(var(--r)) translateY(-10px); } }
+.cta-banner .btn, .cta-sub { position: relative; z-index: 1; }
+.cta-title { position: relative; z-index: 1; max-width: 760px; margin-inline: auto; font-size: clamp(30px, 5vw, 60px); font-weight: 900; letter-spacing: -.04em; color: #fff; margin-bottom: .75rem; line-height: 1.02; }
 .cta-sub   { position: relative; font-size: 17px; color: rgba(255,255,255,.75); margin-bottom: 2rem; }
 
 /* ---------- AVALIAÇÕES ---------- */
@@ -587,6 +599,7 @@ body { background: var(--ink); color: #fff; }
 @media (max-width: 900px) {
   .quiz-inner, .faq-inner { grid-template-columns: 1fr; }
   .how-steps { grid-template-columns: 1fr; }
+  .hw-step:not(:last-child)::before { content: '↓'; top: auto; bottom: -21px; right: 50%; margin: 0 -13px 0 0; }
   .quiz-summary { display: none; }
 }
 @media (max-width: 600px) {
@@ -607,12 +620,12 @@ body { background: var(--ink); color: #fff; }
   .shirt-tabs::-webkit-scrollbar { display: none; }
   .shirt-tab { padding: 9px 12px; flex: 1 0 auto; }
   .rev-cards { grid-auto-columns: 84%; padding-bottom: 4px; }
-  .cta-emojis span { font-size: 30px; opacity: .12; }
-  .cta-emojis span:nth-child(1) { left: 5%; top: 5%; }
-  .cta-emojis span:nth-child(2) { right: 5%; top: 5%; }
-  .cta-emojis span:nth-child(3) { left: 7%; bottom: 5%; }
-  .cta-emojis span:nth-child(4) { right: 7%; bottom: 5%; }
-  .cta-banner { border-radius: 24px; }
+            .cta-banner { border-radius: 24px; padding-block: 7.5rem 3rem; }
+  .cta-shirts img { width: 92px; border-radius: 14px; opacity: 1; }
+  .cta-shirts img:nth-child(1) { left: 50%; top: 22px; margin-left: -132px; }
+  .cta-shirts img:nth-child(2) { display: none; }
+  .cta-shirts img:nth-child(3) { right: 50%; top: 22px; margin-right: -132px; }
+  .cta-shirts img:nth-child(4) { left: 50%; right: auto; top: 12px; bottom: auto; margin-left: -46px; z-index: 1; --r: 0deg; }
   .fit-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .fit-name { font-size: 16px; }
   .rev-grid { grid-template-columns: 1fr; }

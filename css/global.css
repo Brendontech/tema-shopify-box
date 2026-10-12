@@ -416,7 +416,7 @@ a { color: inherit; }
 }
 
 /* Emojis decorativos em escala de cinza — identidade 100% preto e branco */
-.box-icon, .quiz-summary b, .search-title, .q-emoji, .q-result-emoji, .search-thumb:not(:has(img)), .mi-big, .tb:not(.tb-photo), .xs-emoji, .ki, .trust b, .cta-emojis span, .search-empty b { filter: grayscale(1); }
+.box-icon, .quiz-summary b, .search-title, .q-emoji, .q-result-emoji, .search-thumb:not(:has(img)), .mi-big, .tb:not(.tb-photo), .xs-emoji, .ki, .trust b, .search-empty b { filter: grayscale(1); }
 
 /* Fonte display (Archivo expandida) nos títulos e números */
 .hero-h1, .cta-title, .box-name, .box-price, .ih1, .q-question, .q-result-name, .stat-n, .rev-big,
@@ -594,7 +594,7 @@ a { color: inherit; }
    não ficam levantados/deslocados depois de tocados */
 @media (hover: none) {
   html .box-card:hover, html .fit-card:hover, html .rev-card:hover, html .hw-step:hover,
-  html .xs-card:hover, html .kc:hover, html .q-opt:hover, html .tb:hover, html .sz-tab:hover,
+  html .xs-card:hover, html .p-rev-card:hover, html .kc:hover, html .q-opt:hover, html .tb:hover, html .sz-tab:hover,
   html .szb:not(.on):hover, html .btn:hover, html .nav-cta:hover, html .foot-links a:hover { transform: none; }
   html .box-card:hover .box-cover img, html .fit-card:hover .fit-img img,
   html .shirt-card:hover .shirt-img img, html .xs-card:hover .xs-photo img { transform: none; }

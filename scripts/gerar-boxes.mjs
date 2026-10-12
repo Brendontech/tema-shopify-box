@@ -224,6 +224,68 @@ function crossSell(box) {
   }).join('');
 }
 
+// ---------- Avaliações e dúvidas (mesmos textos da home) ----------
+const REVIEWS = [
+  ['L', 'Lucas M.', 'Chegou a camisa do Zidane na França 98. Melhor presente pra mim mesmo.'],
+  ['A', 'Ana R.', 'De presente pro meu namorado. Ele não parava de gritar na revelação!'],
+  ['P', 'Pedro S.', 'Comprei 3 caixas e nenhuma repetiu. Qualidade muito acima do esperado.']
+];
+function reviewsHtml(box) {
+  // Box nova ainda sem avaliações próprias: mostra a nota geral da loja
+  const own = box.reviews > 0;
+  const score = own ? box.rating.replace('.', ',') : '4,9';
+  const meta = own ? `${box.reviews} avaliações da ${box.name}` : 'Média de +700 avaliações da Da Sports Box';
+  return `
+  <!-- Avaliações -->
+  <section class="p-rev">
+    <div class="container">
+      <div class="s-head">
+        <div>
+          <p class="s-label" data-reveal>Quem abriu, aprovou</p>
+          <h2 class="s-title" data-split>O que dizem da box</h2>
+        </div>
+      </div>
+      <div class="p-rev-grid">
+        <div class="p-rev-score" data-reveal>
+          <div class="p-rev-big">${score}</div>
+          <div class="sts">★★★★★</div>
+          <p>${meta} · compras verificadas</p>
+        </div>
+        <div class="p-rev-cards" data-stagger="up">${REVIEWS.map(([i, n, t]) => `
+          <figure class="p-rev-card"><div class="sts">★★★★★</div><blockquote>“${t}”</blockquote><figcaption><span class="p-rev-av">${i}</span>${n} · Compra verificada</figcaption></figure>`).join('')}
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+function faqHtml(box) {
+  const casal = box.mode === 'casal';
+  const items = [
+    ['Como funciona a caixa misteriosa?', `Você escolhe o kit e o tamanho de cada camisa${casal ? ' (dele e dela)' : ''}. Nossa curadoria separa as camisas do acervo da ${box.name} e você só descobre qual veio na hora de abrir.`],
+    ['E se o tamanho não servir?', 'A troca de tamanho é garantida e você tem 30 dias de garantia de troca. Na dúvida, use o guia de tamanhos acima — ele calcula pela sua altura e peso.'],
+    ['Pode vir camisa repetida?', 'Não. A gente controla o histórico de cada cliente para não repetir camisa entre as suas compras.'],
+    ['Quais as formas de pagamento?', 'Pix com 5% de desconto ou cartão em até 2x sem juros.'],
+    ['Qual o frete e o prazo?', 'O estoque é no Brasil e a entrega é rastreada para todo o país. O frete é grátis acima de R$ 299.']
+  ];
+  return `
+  <!-- Dúvidas -->
+  <section class="p-faq">
+    <div class="container p-faq-inner">
+      <div>
+        <p class="s-label" data-reveal>Dúvidas</p>
+        <h2 class="s-title" data-split>Antes de abrir</h2>
+        <p class="s-sub" data-reveal style="--d:2">Ainda com dúvida sobre tamanho? <button type="button" class="kl-link" data-open-sizes>Abrir o guia de tamanhos</button></p>
+      </div>
+      <div class="faq-list" data-stagger="up">${items.map(([q, r], i) => `
+        <details class="faq-item"${i === 0 ? ' open' : ''}>
+          <summary>${q}</summary>
+          <div class="faq-a"><p>${r}</p></div>
+        </details>`).join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
 function page(box, top, foot) {
   const kits = box.kits || KITS;
   const [t1, o1] = box.prices[0];
@@ -331,6 +393,9 @@ ${top}
       </div>
     </div>
   </section>
+
+${reviewsHtml(box)}
+${faqHtml(box)}
 
   <!-- Outras boxes -->
   <section class="xs">

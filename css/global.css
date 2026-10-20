@@ -602,7 +602,7 @@ a { color: inherit; }
   html .box-card:hover, html .fit-card:hover, html .rev-card:hover, html .hw-step:hover,
   html .xs-card:hover, html .p-rev-card:hover, html .kc:hover, html .q-opt:hover, html .tb:hover, html .sz-tab:hover,
   html .szb:not(.on):hover, html .btn:hover, html .nav-cta:hover, html .foot-links a:hover { transform: none; }
-  html .box-card:hover .box-cover img, html .fit-card:hover .fit-img img,
+  html .box-card:not(.no-art):hover .box-cover img, html .fit-card:hover .fit-img img,
   html .shirt-card:hover .shirt-img img, html .xs-card:hover .xs-photo img { transform: none; }
   .spotlight::after { display: none; }
 }

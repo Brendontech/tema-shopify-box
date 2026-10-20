@@ -73,7 +73,7 @@ const BOXES = [
     tags: ['brasil', 'cbf', 'amarelinha', 'azul', 'selecao brasileira', 'canarinho', 'tetra', 'penta']
   },
   {
-    slug: 'box-classica', cover: true, name: 'Box Clássica', short: 'CLÁSSICA', emoji: '👕',
+    slug: 'box-classica', name: 'Box Clássica', short: 'CLÁSSICA', emoji: '👕',
     tag: '★ BOX CLÁSSICA ★', off: 'ATÉ 40% OFF', sub: 'ESTOQUE LENDÁRIO',
     isub: 'Retrô, atual, clubes e seleções — o equilíbrio perfeito.',
     rating: '4.9', reviews: 163,

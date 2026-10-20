@@ -107,7 +107,7 @@
         + '<div class="cart-empty-box">?</div>'
         + '<b>Seu carrinho está vazio</b>'
         + '<p>O manto está esperando por você.</p>'
-        + '<a class="btn btn-white" href="index.html#boxes">Ver as boxes <span class="arr">→</span></a>'
+        + '<a class="btn btn-white" href="' + DSB.link('index.html#boxes') + '">Ver as boxes <span class="arr">→</span></a>'
         + '</div>';
       drawer.querySelector('#cartFoot').hidden = true;
     } else {

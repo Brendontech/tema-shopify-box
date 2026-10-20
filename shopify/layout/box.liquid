@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}{% unless page_title contains 'Box' %} — Da Sports Box{% endunless %}</title>
+  {%- if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+  <meta name="theme-color" content="#0c0c0c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  {{ 'box-global.css' | asset_url | stylesheet_tag }}
+  {%- if template.suffix == 'box' %}
+  {{ 'box-index.css' | asset_url | stylesheet_tag }}
+  {%- else %}
+  {{ 'box-product.css' | asset_url | stylesheet_tag }}
+  {%- endif %}
+  <script>
+    // Caminhos da Box dentro da loja (lidos pelo box-site.js)
+    window.DSB_CONFIG = {
+      home: "/pages/box",
+      pages: "/pages/",
+      assets: {{ 'box-site.js' | asset_url | split: 'box-site.js' | first | json }}
+    };
+  </script>
+  <script src="{{ 'box-site.js' | asset_url }}" defer></script>
+  <script src="{{ 'box-cart.js' | asset_url }}" defer></script>
+  <script src="{{ 'box-lightbox.js' | asset_url }}" defer></script>
+  {%- if template.suffix == 'box' %}
+  <script src="{{ 'box-home.js' | asset_url }}" defer></script>
+  {%- else %}
+  <script src="{{ 'box-product.js' | asset_url }}" defer></script>
+  {%- endif %}
+  {{ content_for_header }}
+</head>
+<body class="{% if template.suffix == 'box' %}page-home{% else %}page-product{% endif %}">
+
+<div class="ticker" aria-hidden="true"><div class="ticker-inner" id="tick"></div></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/pages/box" class="logo" aria-label="Da Sports Box — início"><img src="{{ 'box-logo-branca.png' | asset_url }}" alt="Da Sports" width="157" height="22"><span class="logo-box">BOX</span></a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="/pages/box#boxes">Boxes</a>
+      <a href="/pages/box#camisas">Camisas</a>
+      <a href="/pages/box#quiz">Monte a sua</a>
+      <a href="/pages/box#como-funciona">Como funciona</a>
+      <a href="/pages/box#avaliacoes">Avaliações</a>
+      <a href="/pages/box#faq">Dúvidas</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn search-trigger" type="button" data-search-open aria-label="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="label">Buscar…</span><kbd>Ctrl K</kbd>
+      </button>
+      <button class="icon-btn cart-btn" type="button" data-drawer-open="cartDrawer" aria-label="Abrir carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span class="cart-count" data-n="0">0</span>
+      </button>
+      <a class="nav-cta" href="/pages/box#quiz">Montar minha box</a>
+      <button class="icon-btn menu-toggle" type="button" data-drawer-open="menuDrawer" aria-label="Abrir menu"><span></span></button>
+    </div>
+  </div>
+  <div class="scroll-progress"></div>
+</header>
+
+<!-- MENU (painel lateral) -->
+<div class="drawer drawer-left" id="menuDrawer" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="drawer-backdrop" data-drawer-close></div>
+  <aside class="drawer-panel menu-panel">
+    <div class="drawer-head">
+      <a href="/pages/box" class="logo"><img src="{{ 'box-logo-branca.png' | asset_url }}" alt="Da Sports" width="157" height="22"><span class="logo-box">BOX</span></a>
+      <button class="drawer-x" type="button" data-drawer-close aria-label="Fechar menu">✕</button>
+    </div>
+    <button class="menu-search" type="button" data-search-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      Buscar box, clube, seleção…
+    </button>
+    <nav class="menu-links" aria-label="Menu">
+      <a href="/pages/box#boxes"><span class="n">01</span>Boxes<i>→</i></a>
+      <a href="/pages/box#camisas"><span class="n">02</span>Camisas<i>→</i></a>
+      <a href="/pages/box#quiz"><span class="n">03</span>Monte a sua<i>→</i></a>
+      <a href="/pages/box#como-funciona"><span class="n">04</span>Como funciona<i>→</i></a>
+      <a href="/pages/box#avaliacoes"><span class="n">05</span>Avaliações<i>→</i></a>
+      <a href="/pages/box#faq"><span class="n">06</span>Dúvidas<i>→</i></a>
+    </nav>
+    <div class="menu-label">Boxes</div>
+    <div class="menu-boxes">
+      <a href="/pages/box-retro"><img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Retrô</span></a>
+      <a href="/pages/box-atual"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Atual</span></a>
+      <a href="/pages/box-selecoes"><img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Seleções</span></a>
+      <a href="/pages/box-brasil"><span class="menu-mystery mystery"><span data-icon="shirt"></span><b>?</b></span><span>Brasil</span></a>
+      <a href="/pages/box-classica"><img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Clássica</span></a>
+      <a href="/pages/box-masculino"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Masculino</span></a>
+      <a href="/pages/box-feminino"><img src="{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Feminino</span></a>
+      <a href="/pages/box-infantil"><img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Infantil</span></a>
+      <a href="/pages/box-casal"><img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Casal</span></a>
+    </div>
+    <div class="menu-foot">
+      <a class="btn btn-white btn-block" href="/pages/box#quiz">Montar minha box <span class="arr">→</span></a>
+      <p>Frete grátis acima de R$ 299 · Troca em 30 dias · 2x sem juros</p>
+    </div>
+  </aside>
+</div>
+
+<!-- BUSCA AJAX -->
+<div class="search" id="search" role="dialog" aria-modal="true" aria-label="Buscar" hidden>
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="searchInput" placeholder="Buscar box, clube, seleção…" autocomplete="off" spellcheck="false" aria-label="Termo de busca">
+      <span class="search-spinner"></span>
+      <button class="search-close" type="button" data-search-close aria-label="Fechar busca"><span class="k-desk">ESC</span><span class="k-touch">Cancelar</span></button>
+    </div>
+    <div class="search-body" aria-live="polite"></div>
+    <div class="search-foot"><span><kbd>↑</kbd><kbd>↓</kbd>navegar</span><span><kbd>Enter</kbd>abrir</span><span><kbd>Esc</kbd>fechar</span></div>
+  </div>
+</div>
+
+{{ content_for_layout }}
+
+<!-- RODAPÉ -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><img src="{{ 'box-logo-branca.png' | asset_url }}" alt="Da Sports" width="186" height="26" loading="lazy"><span class="logo-box">BOX</span></div>
+        <p class="foot-tagline">Extensão oficial da Da Sports · Caixas misteriosas de camisas de futebol com curadoria especializada e estoque no Brasil.</p>
+      </div>
+      <div>
+        <div class="foot-title">Boxes</div>
+        <div class="foot-links">
+          <a href="/pages/box-retro">Box Retrô</a>
+          <a href="/pages/box-atual">Box Atual</a>
+          <a href="/pages/box-selecoes">Box Seleções</a>
+          <a href="/pages/box-brasil">Box Brasil</a>
+          <a href="/pages/box-classica">Box Clássica</a>
+          <a href="/pages/box-masculino">Box Masculino</a>
+          <a href="/pages/box-feminino">Box Feminino</a>
+          <a href="/pages/box-infantil">Box Infantil</a>
+          <a href="/pages/box-casal">Box Casal</a>
+        </div>
+      </div>
+      <div>
+        <div class="foot-title">Ajuda</div>
+        <div class="foot-links">
+          <a href="/pages/box#como-funciona">Como funciona</a>
+          <a href="/pages/box#faq">Trocas e devoluções</a>
+          <a href="/pages/box#faq">Frete e entrega</a>
+          <a href="#">Privacidade</a>
+          <a href="#">Contato</a>
+        </div>
+      </div>
+      <div>
+        <div class="foot-title">Pagamento</div>
+        <div class="foot-pay"><span>Pix -5%</span><span>Visa</span><span>Mastercard</span><span>Elo</span><span>2x sem juros</span></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year>2026</span> Da Sports Box · Todos os direitos reservados</span>
+      <button class="to-top" type="button" data-to-top>Voltar ao topo ↑</button>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

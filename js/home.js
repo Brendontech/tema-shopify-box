@@ -180,7 +180,7 @@
       + '<p class="q-result-desc">' + box.desc + '</p>'
       + '<p class="q-result-price">a partir de <b>' + box.price + '</b></p>'
       + '<div class="q-result-actions">'
-      + '<a class="btn btn-main" href="' + box.url + (wantsCalc ? '#tamanhos' : '') + '">'
+      + '<a class="btn btn-main" href="' + DSB.link(box.url) + (wantsCalc ? '#tamanhos' : '') + '">'
       + (wantsCalc ? 'Ver box e calcular tamanho' : 'Ver minha box') + ' <span class="arr">→</span></a>'
       + '</div>'
       + '<p style="margin-top:1rem"><button type="button" class="q-restart">Refazer o quiz</button></p>'
@@ -439,7 +439,7 @@
       DSB.lightbox.open(visible.map(function (c) {
         var img = c.querySelector('img');
         return {
-          src: img.getAttribute('src').replace(/-p\.webp$/, '.webp'),
+          src: img.getAttribute('src').replace(/-p\.webp(?=\?|$)/, '.webp'),
           caption: c.querySelector('.shirt-name').textContent + ' · ' + c.querySelector('.shirt-det').textContent
         };
       }), visible.indexOf(card));

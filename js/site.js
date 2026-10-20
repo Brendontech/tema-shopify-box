@@ -27,6 +27,24 @@
   DSB.fmt = fmt;
   DSB.escapeHtml = escapeHtml;
 
+  // ---------- LINKS E ARQUIVOS (Vercel x Shopify) ----------
+  // Na Shopify o layout define window.DSB_CONFIG: as páginas viram /pages/box-*
+  // e os arquivos ficam todos na pasta assets do tema (sem subpastas).
+  var CFG = window.DSB_CONFIG || null;
+  DSB.link = function (url) {
+    if (!CFG || !url) return url;
+    return String(url)
+      .replace(/^(?:\.\/)?index\.html/, CFG.home)
+      .replace(/^(?:\.\/)?(box-[a-z]+)\.html/, CFG.pages + '$1');
+  };
+  DSB.asset = function (p) {
+    if (!CFG || !p || /^(https?:)?\/\//.test(p)) return p;
+    var m = String(p).match(/^img\/camisas\/([a-z]+)\/(.+)$/);
+    if (m) return CFG.assets + 'camisa-' + m[1] + '-' + m[2];
+    if (p === 'data/busca.json') return CFG.assets + 'box-busca.json';
+    return p;
+  };
+
   // ---------- ÍCONES (SVG de traço, herdam a cor do texto) ----------
   // Uso no HTML: <span class="ico" data-icon="truck"></span>  ·  no JS: DSB.icon('truck')
   var ICONS = {
@@ -361,7 +379,7 @@
 
   var input    = $('#searchInput', search);
   var body     = $('.search-body', search);
-  var SEARCH_URL = 'data/busca.json';
+  var SEARCH_URL = DSB.asset('data/busca.json');
   var indexPromise = null;
   var controller = null;
   var debounceId = null;
@@ -432,6 +450,8 @@
         .then(function (data) {
           popular = data.populares || [];
           return (data.itens || []).map(function (it) {
+            it.url = DSB.link(it.url);
+            if (it.imagem) it.imagem = DSB.asset(it.imagem);
             it._t = normalize(it.titulo);
             it._d = normalize(it.descricao);
             it._g = (it.tags || []).map(normalize);
@@ -502,7 +522,9 @@
     search.classList.add('is-loading');
     if (!results.length) renderSkeleton();
 
-    var req = window.Shopify ? shopifySearch(q, signal) : localSearch(q);
+    // A busca da Box usa o próprio índice (só boxes e ajuda); a busca geral
+    // da loja (Predictive Search) fica disponível com DSB_CONFIG.shopifySearch
+    var req = window.Shopify && CFG && CFG.shopifySearch ? shopifySearch(q, signal) : localSearch(q);
     req.then(function (list) {
       if (signal && signal.aborted) return;
       search.classList.remove('is-loading');
@@ -638,6 +660,6 @@
 
   // Pré-carrega o índice quando o usuário demonstra intenção
   $$('[data-search-open]').forEach(function (b) {
-    b.addEventListener('pointerenter', function () { if (!window.Shopify) loadIndex().catch(function () {}); }, { once: true });
+    b.addEventListener('pointerenter', function () { loadIndex().catch(function () {}); }, { once: true });
   });
 })();

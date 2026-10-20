@@ -525,3 +525,126 @@ for (const box of BOXES) {
 
 fs.writeFileSync(path.join(ROOT, 'data', 'busca.json'), JSON.stringify(searchIndex(), null, 2) + '\n');
 console.log('ok data/busca.json');
+
+// =====================================================================
+// SHOPIFY — arquivos para ADICIONAR ao tema atual da loja (pasta shopify/)
+// Nada do tema existente é substituído: tudo usa nomes "box"/"camisa-".
+//   layout/box.liquid            → cabeçalho, busca, menu e rodapé da Box
+//   templates/page.box.liquid    → home da Box (página com handle "box")
+//   templates/page.box-*.liquid  → uma página para cada box
+//   assets/                      → CSS, JS, fotos e índice da busca
+// Preços e IDs das variantes vêm do produto da Shopify com o mesmo handle
+// da página (ex.: página box-retro ↔ produto box-retro).
+// =====================================================================
+const SHOP = path.join(ROOT, 'shopify');
+const PAGES = '/pages/';
+const HOME = '/pages/box';
+
+const assetTag = name => `{{ '${name}' | asset_url }}`;
+function liquidify(html) {
+  return html
+    .replace(/img\/camisas\/([a-z]+)\/([^"'\s)]+)/g, (_, cat, f) => assetTag(`camisa-${cat}-${f}`))
+    .replace(/img\/dasports-logo-branca\.png/g, assetTag('box-logo-branca.png'))
+    .replace(/href="index\.html/g, `href="${HOME}`)
+    .replace(/href="(box-[a-z]+)\.html/g, `href="${PAGES}$1`);
+}
+
+function shopifyLayout(top, foot) {
+  return `<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}{% unless page_title contains 'Box' %} — Da Sports Box{% endunless %}</title>
+  {%- if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+  <meta name="theme-color" content="#0c0c0c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  {{ 'box-global.css' | asset_url | stylesheet_tag }}
+  {%- if template.suffix == 'box' %}
+  {{ 'box-index.css' | asset_url | stylesheet_tag }}
+  {%- else %}
+  {{ 'box-product.css' | asset_url | stylesheet_tag }}
+  {%- endif %}
+  <script>
+    // Caminhos da Box dentro da loja (lidos pelo box-site.js)
+    window.DSB_CONFIG = {
+      home: ${JSON.stringify(HOME)},
+      pages: ${JSON.stringify(PAGES)},
+      assets: {{ 'box-site.js' | asset_url | split: 'box-site.js' | first | json }}
+    };
+  </script>
+  <script src="{{ 'box-site.js' | asset_url }}" defer></script>
+  <script src="{{ 'box-cart.js' | asset_url }}" defer></script>
+  <script src="{{ 'box-lightbox.js' | asset_url }}" defer></script>
+  {%- if template.suffix == 'box' %}
+  <script src="{{ 'box-home.js' | asset_url }}" defer></script>
+  {%- else %}
+  <script src="{{ 'box-product.js' | asset_url }}" defer></script>
+  {%- endif %}
+  {{ content_for_header }}
+</head>
+<body class="{% if template.suffix == 'box' %}page-home{% else %}page-product{% endif %}">
+
+${liquidify(top)}
+
+{{ content_for_layout }}
+
+${liquidify(foot)}
+
+</body>
+</html>
+`;
+}
+
+function shopifyBoxTemplate(box, html) {
+  const main = html.slice(html.indexOf('<main class="product">'), html.indexOf('<!-- RODAPÉ -->')).trimEnd();
+  const data = html.match(/<script>\s*\/\/ Dados da box[\s\S]*?<\/script>/)[0];
+  return `{% layout 'box' %}
+{%- comment -%}
+  ${box.name}. Preços e variantes vêm do produto com handle "${box.slug}".
+  As variantes do produto precisam estar na ordem dos kits:
+  ${(box.kits || KITS).map(k => k.label || k.n + (k.n > 1 ? ' camisas' : ' camisa')).join(', ')}.
+{%- endcomment -%}
+{%- assign p = all_products['${box.slug}'] -%}
+
+${liquidify(main)}
+
+${liquidify(data)}
+{%- if p.id %}
+<script>
+  window.BOX.variants = [{% for v in p.variants %}{{ v.id }}{% unless forloop.last %},{% endunless %}{% endfor %}];
+  window.BOX.shopPrices = [{% for v in p.variants %}{ "t": {{ v.price | divided_by: 100.0 }}, "o": {{ v.compare_at_price | default: v.price | divided_by: 100.0 }} }{% unless forloop.last %},{% endunless %}{% endfor %}];
+</script>
+{%- endif %}
+`;
+}
+
+function copyAsset(from, name) {
+  fs.copyFileSync(path.join(ROOT, from), path.join(SHOP, 'assets', name));
+}
+
+// Limpa só o que é gerado (o LEIA-ME.md da pasta fica)
+for (const d of ['layout', 'templates', 'assets']) {
+  fs.rmSync(path.join(SHOP, d), { recursive: true, force: true });
+  fs.mkdirSync(path.join(SHOP, d), { recursive: true });
+}
+
+fs.writeFileSync(path.join(SHOP, 'layout', 'box.liquid'), shopifyLayout(top, foot));
+const homeMain = index.slice(index.indexOf('<main>'), index.indexOf('</main>') + '</main>'.length);
+fs.writeFileSync(path.join(SHOP, 'templates', 'page.box.liquid'), `{% layout 'box' %}\n\n${liquidify(homeMain)}\n`);
+for (const box of BOXES) {
+  fs.writeFileSync(path.join(SHOP, 'templates', `page.${box.slug}.liquid`), shopifyBoxTemplate(box, page(box, top, foot)));
+}
+
+for (const [from, name] of [
+  ['css/global.css', 'box-global.css'], ['css/index.css', 'box-index.css'], ['css/box.css', 'box-product.css'],
+  ['js/site.js', 'box-site.js'], ['js/cart.js', 'box-cart.js'], ['js/lightbox.js', 'box-lightbox.js'],
+  ['js/home.js', 'box-home.js'], ['js/box.js', 'box-product.js'],
+  ['img/dasports-logo-branca.png', 'box-logo-branca.png'], ['data/busca.json', 'box-busca.json']
+]) copyAsset(from, name);
+for (const cat of fs.readdirSync(path.join(ROOT, 'img/camisas'))) {
+  for (const f of fs.readdirSync(path.join(ROOT, 'img/camisas', cat))) copyAsset(`img/camisas/${cat}/${f}`, `camisa-${cat}-${f}`);
+}
+console.log('ok shopify/ (', fs.readdirSync(path.join(SHOP, 'templates')).length, 'templates,', fs.readdirSync(path.join(SHOP, 'assets')).length, 'assets )');

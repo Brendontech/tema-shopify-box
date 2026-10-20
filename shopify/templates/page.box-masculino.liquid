@@ -1,0 +1,432 @@
+{% layout 'box' %}
+{%- comment -%}
+  Box Masculino. Preços e variantes vêm do produto com handle "box-masculino".
+  As variantes do produto precisam estar na ordem dos kits:
+  1 camisa, 3 camisas, 5 camisas, 7 camisas.
+{%- endcomment -%}
+{%- assign p = all_products['box-masculino'] -%}
+
+<main class="product">
+  <div class="container">
+
+    <nav class="bc" aria-label="Você está em">
+      <a href="/pages/box">Início</a><span>›</span><a href="/pages/box#boxes">Boxes</a><span>›</span><b>Box Masculino</b>
+    </nav>
+
+    <div class="pg">
+
+      <!-- Galeria -->
+      <div class="gallery">
+        <div class="mi has-photo" id="mi">
+          <img class="mi-photo" id="miPhoto" src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' | asset_url }}" alt="Chelsea 23/24" width="1000" height="1000">
+          <div class="mi-fan" id="miFan" hidden></div>
+          <div class="mi-tag">★ BOX MASCULINO ★</div>
+          <div class="mi-off">MODELAGEM MASCULINA</div>
+          <div class="mi-lbl" id="miLbl">Chelsea 23/24</div>
+          <div class="mi-sub" id="miSub">EXEMPLO DO ACERVO · A SUA É SURPRESA</div>
+        </div>
+        <div class="tbs" style="--n:5">
+          <button type="button" class="tb tb-photo on" data-src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' | asset_url }}" data-label="Chelsea 23/24" data-cover="0" aria-label="Chelsea 23/24"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo.webp' | asset_url }}" data-label="Atlético de Madrid 25/26" data-cover="0" aria-label="Atlético de Madrid 25/26"><img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr.webp' | asset_url }}" data-label="Grêmio 24/25" data-cover="0" aria-label="Grêmio 24/25"><img src="{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home.webp' | asset_url }}" data-label="São Paulo 25/26" data-cover="0" aria-label="São Paulo 25/26"><img src="{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta.webp' | asset_url }}" data-label="Orlando Magic" data-cover="0" aria-label="Orlando Magic"><img src="{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
+        </div>
+        <div class="trust">
+          <div><span class="trust-ico" data-icon="truck"></span>Frete grátis acima de R$ 299</div>
+          <div><span class="trust-ico" data-icon="swap"></span>Troca garantida em 30 dias</div>
+          <div><span class="trust-ico" data-icon="lock"></span>Compra 100% segura</div>
+        </div>
+      </div>
+
+      <!-- Informações e compra -->
+      <div class="info">
+        <p class="itag">Da Sports · Caixa Misteriosa</p>
+        <h1 class="ih1">Box Masculino</h1>
+        <p class="isub">Camisas masculinas de clubes e seleções do mundo todo, escolhidas a dedo pela curadoria.</p>
+        <div class="rat">
+          <span class="rn-new">NOVIDADE</span>
+          <span class="rc">Acabou de chegar na Da Sports Box</span>
+        </div>
+
+        <div class="kl">
+          <span>Escolha seu kit</span>
+          <button type="button" class="kl-link" data-open-sizes><span class="kl-ico" data-icon="ruler"></span>Qual meu tamanho?</button>
+        </div>
+
+        <div class="kits" id="kits" role="radiogroup" aria-label="Kits">
+      <div class="kc" data-kit="0" data-qty="1" role="radio" aria-checked="false" tabindex="0">
+        
+        <div class="kc-head">
+          <span class="kc-radio"></span>
+          <div class="kc-main">
+            <div class="kc-name">1 CAMISA</div>
+            <div class="kc-icons"><span class="ki" data-icon="shirt"></span></div>
+          </div>
+          <div class="kc-right">
+            <div class="kc-old">R$ 197,95</div>
+            <div class="kc-price">R$ 119,00</div>
+          </div>
+        </div>
+        <div class="kc-sizes"><div class="kc-sizes-inner">
+          
+          <div class="sz-btns-label">Selecione o tamanho</div>
+          <div class="sz-btns"></div>
+        </div></div>
+      </div>
+      <div class="kc" data-kit="1" data-qty="3" role="radio" aria-checked="false" tabindex="0">
+        
+        <div class="kc-head">
+          <span class="kc-radio"></span>
+          <div class="kc-main">
+            <div class="kc-name">3 CAMISAS <span class="kc-promo">você paga 2</span></div>
+            <div class="kc-icons"><span class="ki" data-icon="shirt"></span><span class="ki" data-icon="shirt"></span><span class="ki dim" data-icon="shirt"></span></div>
+          </div>
+          <div class="kc-right">
+            <div class="kc-old">R$ 593,85</div>
+            <div class="kc-price bl">R$ 348,00</div>
+            <div class="kc-eco"><span class="eco-b">ECONOMIZE R$ 245</span><span class="eco-p">R$ 116/camisa</span></div>
+          </div>
+        </div>
+        <div class="kc-sizes"><div class="kc-sizes-inner">
+          <div class="sz-tabs"></div>
+          <div class="sz-btns-label">Tamanho</div>
+          <div class="sz-btns"></div>
+        </div></div>
+      </div>
+      <div class="kc hot" data-kit="2" data-qty="5" role="radio" aria-checked="false" tabindex="0">
+        <span class="kc-badge">MAIS VENDIDO</span>
+        <div class="kc-head">
+          <span class="kc-radio"></span>
+          <div class="kc-main">
+            <div class="kc-name">5 CAMISAS <span class="kc-promo">você paga 3</span></div>
+            <div class="kc-icons"><span class="ki" data-icon="shirt"></span><span class="ki" data-icon="shirt"></span><span class="ki" data-icon="shirt"></span><span class="ki dim" data-icon="shirt"></span><span class="ki dim" data-icon="shirt"></span></div>
+          </div>
+          <div class="kc-right">
+            <div class="kc-old">R$ 989,75</div>
+            <div class="kc-price bl">R$ 447,00</div>
+            <div class="kc-eco"><span class="eco-b">ECONOMIZE R$ 542</span><span class="eco-p">R$ 89/camisa</span></div>
+          </div>
+        </div>
+        <div class="kc-sizes"><div class="kc-sizes-inner">
+          <div class="sz-tabs"></div>
+          <div class="sz-btns-label">Tamanho</div>
+          <div class="sz-btns"></div>
+        </div></div>
+      </div>
+      <div class="kc" data-kit="3" data-qty="7" role="radio" aria-checked="false" tabindex="0">
+        
+        <div class="kc-head">
+          <span class="kc-radio"></span>
+          <div class="kc-main">
+            <div class="kc-name">7 CAMISAS <span class="kc-promo">você paga 4</span></div>
+            <div class="kc-icons"><span class="ki" data-icon="shirt"></span><span class="ki" data-icon="shirt"></span><span class="ki" data-icon="shirt"></span><span class="ki" data-icon="shirt"></span><span class="ki dim" data-icon="shirt"></span><span class="ki dim" data-icon="shirt"></span><span class="ki dim" data-icon="shirt"></span></div>
+          </div>
+          <div class="kc-right">
+            <div class="kc-old">R$ 1.385,65</div>
+            <div class="kc-price bl">R$ 476,00</div>
+            <div class="kc-eco"><span class="eco-b">ECONOMIZE R$ 909</span><span class="eco-p">R$ 68/camisa</span></div>
+          </div>
+        </div>
+        <div class="kc-sizes"><div class="kc-sizes-inner">
+          <div class="sz-tabs"></div>
+          <div class="sz-btns-label">Tamanho</div>
+          <div class="sz-btns"></div>
+        </div></div>
+      </div>
+        </div>
+
+        <div class="qrow">
+          <span class="qlbl">Quantidade de kits</span>
+          <div class="qctl">
+            <button type="button" class="qbt" data-q="-1" aria-label="Diminuir">−</button>
+            <div class="qnm" id="qN">1</div>
+            <button type="button" class="qbt" data-q="1" aria-label="Aumentar">+</button>
+          </div>
+        </div>
+
+        <div class="tot">
+          <div class="tot-row"><span class="tot-lbl">Valor original</span><span class="tot-old" id="tOld">R$ 197,95</span></div>
+          <div class="tot-row"><span class="tot-lbl strong">Total com desconto</span><span class="tot-main" id="tMain">R$ 119,00</span></div>
+          <div class="pix-row"><span class="pix-lbl">No Pix (5% off)</span><span class="pix-val" id="tPix">R$ 113,05</span></div>
+          <div class="ship">
+            <div class="ship-txt" id="shipTxt">Faltam <b>R$ 180,00</b> para frete grátis</div>
+            <div class="ship-bar"><i id="shipBar" style="width:39.8%"></i></div>
+          </div>
+        </div>
+
+        <div class="buy" id="buy">
+          <button type="button" class="btn btn-main btn-block" id="btnCart">Adicionar ao carrinho <span class="arr">→</span></button>
+        </div>
+
+        <div class="feats">
+          <div class="ft"><span class="fc">✓</span>Modelagem masculina</div>
+          <div class="ft"><span class="fc">✓</span>Lacrada e embalada na origem</div>
+          <div class="ft"><span class="fc">✓</span>Garantia de troca em 30 dias</div>
+          <div class="ft"><span class="fc">✓</span>Clubes nacionais e internacionais</div>
+          <div class="ft"><span class="fc">✓</span>Sem camisa repetida por cliente</div>
+          <div class="ft"><span class="fc">✓</span>Entrega rastreada para todo Brasil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Como funciona (resumo) -->
+  <section class="p-how">
+    <div class="container">
+      <div class="p-how-grid" data-stagger="up">
+        <div><span class="p-how-n">1</span><div><b>Escolha o kit e os tamanhos</b><p>Leva menos de 2 minutos.</p></div></div>
+        <div><span class="p-how-n">2</span><div><b>A curadoria escala suas camisas</b><p>Sem repetir camisa por cliente.</p></div></div>
+        <div><span class="p-how-n">3</span><div><b>Abre, filma e posta</b><p>Marque @dasportsbox e ganhe 20% off.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Avaliações -->
+  <section class="p-rev">
+    <div class="container">
+      <div class="s-head">
+        <div>
+          <p class="s-label" data-reveal>Quem abriu, aprovou</p>
+          <h2 class="s-title" data-split>O que dizem da box</h2>
+        </div>
+      </div>
+      <div class="p-rev-grid">
+        <div class="p-rev-score" data-reveal>
+          <div class="p-rev-big">4,9</div>
+          <div class="sts">★★★★★</div>
+          <p>Média de +700 avaliações da Da Sports Box · compras verificadas</p>
+        </div>
+        <div class="p-rev-cards" data-stagger="up">
+          <figure class="p-rev-card"><div class="sts">★★★★★</div><blockquote>“Chegou a camisa do Zidane na França 98. Melhor presente pra mim mesmo.”</blockquote><figcaption><span class="p-rev-av">L</span>Lucas M. · Compra verificada</figcaption></figure>
+          <figure class="p-rev-card"><div class="sts">★★★★★</div><blockquote>“De presente pro meu namorado. Ele não parava de gritar na revelação!”</blockquote><figcaption><span class="p-rev-av">A</span>Ana R. · Compra verificada</figcaption></figure>
+          <figure class="p-rev-card"><div class="sts">★★★★★</div><blockquote>“Comprei 3 caixas e nenhuma repetiu. Qualidade muito acima do esperado.”</blockquote><figcaption><span class="p-rev-av">P</span>Pedro S. · Compra verificada</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dúvidas -->
+  <section class="p-faq">
+    <div class="container p-faq-inner">
+      <div>
+        <p class="s-label" data-reveal>Dúvidas</p>
+        <h2 class="s-title" data-split>Antes de abrir</h2>
+        <p class="s-sub" data-reveal style="--d:2">Ainda com dúvida sobre tamanho? <button type="button" class="kl-link" data-open-sizes>Abrir o guia de tamanhos</button></p>
+      </div>
+      <div class="faq-list" data-stagger="up">
+        <details class="faq-item" open>
+          <summary>Como funciona a caixa misteriosa?</summary>
+          <div class="faq-a"><p>Você escolhe o kit e o tamanho de cada camisa. Nossa curadoria separa as camisas do acervo da Box Masculino e você só descobre qual veio na hora de abrir.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>E se o tamanho não servir?</summary>
+          <div class="faq-a"><p>A troca de tamanho é garantida e você tem 30 dias de garantia de troca. Na dúvida, use o guia de tamanhos acima — ele calcula pela sua altura e peso.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Pode vir camisa repetida?</summary>
+          <div class="faq-a"><p>Não. A gente controla o histórico de cada cliente para não repetir camisa entre as suas compras.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Quais as formas de pagamento?</summary>
+          <div class="faq-a"><p>Pix com 5% de desconto ou cartão em até 2x sem juros.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Qual o frete e o prazo?</summary>
+          <div class="faq-a"><p>O estoque é no Brasil e a entrega é rastreada para todo o país. O frete é grátis acima de R$ 299.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outras boxes -->
+  <section class="xs">
+    <div class="container">
+      <div class="s-head">
+        <div>
+          <p class="s-label" data-reveal>Mais mistério</p>
+          <h2 class="s-title" data-split>Conheça as outras boxes</h2>
+        </div>
+      </div>
+      <div class="xs-grid" data-stagger="up">
+      <a href="/pages/box-retro" class="xs-card spotlight">
+        <span class="xs-photo"><img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Retrô</div>
+          <div class="xs-desc">Camisas históricas de 1970 a 2020. Os clássicos que marcaram época.</div>
+        </div>
+        <div class="xs-price"><s>R$ 289,97</s>R$ 174,00</div>
+      </a>
+      <a href="/pages/box-atual" class="xs-card spotlight">
+        <span class="xs-photo"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Atual</div>
+          <div class="xs-desc">Temporada recente dos clubões e modelos fora do padrão.</div>
+        </div>
+        <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
+      </a>
+      <a href="/pages/box-selecoes" class="xs-card spotlight">
+        <span class="xs-photo"><img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Seleções</div>
+          <div class="xs-desc">Do Japão à Jamaica — seleções que ninguém tem.</div>
+        </div>
+        <div class="xs-price"><s>R$ 249,97</s>R$ 149,00</div>
+      </a>
+      <a href="/pages/box-brasil" class="xs-card spotlight">
+        <span class="xs-photo xs-mystery"><span class="mystery"><span data-icon="shirt"></span><b>?</b></span></span>
+        <div>
+          <div class="xs-name">Box Brasil</div>
+          <div class="xs-desc">A amarelinha ou a azul. Das clássicas do tetra e do penta às mais recentes.</div>
+        </div>
+        <div class="xs-price"><s>R$ 249,97</s>R$ 149,00</div>
+      </a>
+      <a href="/pages/box-classica" class="xs-card spotlight">
+        <span class="xs-photo"><img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Clássica</div>
+          <div class="xs-desc">Retrô, atual, clubes e seleções — o equilíbrio perfeito.</div>
+        </div>
+        <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
+      </a>
+      <a href="/pages/box-feminino" class="xs-card spotlight">
+        <span class="xs-photo"><img src="{{ 'camisa-feminina-01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Feminino</div>
+          <div class="xs-desc">Camisas com modelagem feminina, de clubes e seleções.</div>
+        </div>
+        <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
+      </a>
+      <a href="/pages/box-infantil" class="xs-card spotlight">
+        <span class="xs-photo"><img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Infantil</div>
+          <div class="xs-desc">Kits e conjuntos infantis pra criar o próximo craque.</div>
+        </div>
+        <div class="xs-price"><s>R$ 169,90</s>R$ 99,00</div>
+      </a>
+      <a href="/pages/box-casal" class="xs-card spotlight">
+        <span class="xs-photo"><img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <div>
+          <div class="xs-name">Box Casal</div>
+          <div class="xs-desc">Uma camisa masculina + uma feminina. Mistério em dobro.</div>
+        </div>
+        <div class="xs-price"><s>R$ 379,90</s>R$ 219,00</div>
+      </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Barra de compra fixa (mobile) -->
+<div class="sticky-buy" id="stickyBuy" aria-hidden="true">
+  <div class="container sticky-inner">
+    <div>
+      <div class="sticky-name">Box Masculino</div>
+      <div class="sticky-total" id="stickyTotal">R$ 119,00</div>
+    </div>
+    <button type="button" class="btn btn-main" id="stickyBtn">Adicionar <span class="arr">→</span></button>
+  </div>
+</div>
+
+<!-- Modal: guia de tamanhos -->
+<div class="overlay" id="sizeModal" role="dialog" aria-modal="true" aria-labelledby="sizeTitle" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="sizeTitle">Guia de tamanhos</div>
+        <div class="modal-sub">As medidas são da camiseta, não do corpo.</div>
+      </div>
+      <button type="button" class="mclose" data-close-sizes aria-label="Fechar">✕</button>
+    </div>
+    <div class="modal-body">
+      <form class="calc-card" id="calcForm">
+        <div class="calc-title">Descubra seu tamanho</div>
+        <div class="calc-sub">Informe altura e peso — calculamos o tamanho ideal pela tabela do modelo selecionado.</div>
+        <div class="calc-fields">
+          <div class="cf"><label for="cH">Altura (cm)</label><input type="number" id="cH" inputmode="numeric" min="90" max="230" placeholder="Ex: 178"></div>
+          <div class="cf"><label for="cW">Peso (kg)</label><input type="number" id="cW" inputmode="numeric" min="12" max="250" placeholder="Ex: 82"></div>
+        </div>
+        <button type="submit" class="btn btn-dark btn-block">Encontrar meu tamanho</button>
+        <div class="calc-result" id="calcR" aria-live="polite"></div>
+      </form>
+      <button type="button" class="toggle-table" id="toggleTable" aria-expanded="false">
+        <span>Ver tabela completa</span><span class="tt-arr">▾</span>
+      </button>
+      <div class="table-section" id="tableSection"><div>
+        <div class="model-tabs">
+          <button type="button" class="mt" data-model="masculino">Masculino</button>
+          <button type="button" class="mt" data-model="feminino">Feminino</button>
+          <button type="button" class="mt" data-model="infantil">Infantil</button>
+          <button type="button" class="mt" data-model="jogador">Jogador</button>
+          <button type="button" class="mt" data-model="torcedor">Torcedor</button>
+        </div>
+        <div id="tableWrap"></div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Dados da box (em produção virão da Shopify)
+  window.BOX = {
+    "name": "Box Masculino",
+    "emoji": "👕",
+    "mode": null,
+    "sizes": null,
+    "model": "masculino",
+    "variants": null,
+    "photos": [
+      {
+        "src": "{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' | asset_url }}",
+        "thumb": "{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}",
+        "nome": "Chelsea 23/24"
+      },
+      {
+        "src": "{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo.webp' | asset_url }}",
+        "thumb": "{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}",
+        "nome": "Atlético de Madrid 25/26"
+      },
+      {
+        "src": "{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr.webp' | asset_url }}",
+        "thumb": "{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' | asset_url }}",
+        "nome": "Grêmio 24/25"
+      },
+      {
+        "src": "{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home.webp' | asset_url }}",
+        "thumb": "{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' | asset_url }}",
+        "nome": "São Paulo 25/26"
+      },
+      {
+        "src": "{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta.webp' | asset_url }}",
+        "thumb": "{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta-p.webp' | asset_url }}",
+        "nome": "Orlando Magic"
+      }
+    ],
+    "prices": [
+      {
+        "t": 119,
+        "o": 197.95
+      },
+      {
+        "t": 348,
+        "o": 593.85
+      },
+      {
+        "t": 447,
+        "o": 989.75
+      },
+      {
+        "t": 476,
+        "o": 1385.65
+      }
+    ]
+  };
+</script>
+{%- if p.id %}
+<script>
+  window.BOX.variants = [{% for v in p.variants %}{{ v.id }}{% unless forloop.last %},{% endunless %}{% endfor %}];
+  window.BOX.shopPrices = [{% for v in p.variants %}{ "t": {{ v.price | divided_by: 100.0 }}, "o": {{ v.compare_at_price | default: v.price | divided_by: 100.0 }} }{% unless forloop.last %},{% endunless %}{% endfor %}];
+</script>
+{%- endif %}

@@ -28,6 +28,9 @@
     { t: 447, o: 989.75 },
     { t: 476, o: 1385.65 }
   ];
+  // Na Shopify o template envia os preços das variantes do produto
+  // (mesma ordem dos kits): o que aparece é o que vai para o checkout
+  if (BOX.shopPrices && BOX.shopPrices.length) PRICES = BOX.shopPrices;
   var FREE_SHIPPING = 299;
   var PIX_OFF = 0.05;
 
@@ -86,6 +89,19 @@
 
   var kitsEl = $('kits');
   var kitEls = Array.prototype.slice.call(kitsEl.querySelectorAll('.kc'));
+
+  // Atualiza os preços impressos nos kits com os preços da Shopify
+  if (BOX.shopPrices) kitEls.forEach(function (k, i) {
+    var p = PRICES[i];
+    if (!p) return;
+    var n = +k.getAttribute('data-qty');
+    var whole = function (v) { return 'R$ ' + Math.floor(v).toLocaleString('pt-BR'); };
+    var set = function (sel, txt) { var el = k.querySelector(sel); if (el) el.textContent = txt; };
+    set('.kc-price', fmt(p.t));
+    set('.kc-old', p.o > p.t ? fmt(p.o) : '');
+    set('.eco-b', p.o > p.t ? 'ECONOMIZE ' + whole(p.o - p.t) : '');
+    set('.eco-p', whole(Math.round(p.t / n)) + '/camisa');
+  });
 
   // ---- SELEÇÃO DE KIT ----
   function selectKit(idx, silent) {

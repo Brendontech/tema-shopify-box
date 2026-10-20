@@ -72,7 +72,7 @@
   function itemHtml(it, i) {
     var media = it.image
       ? '<img src="' + esc(it.image) + '" alt="" width="420" height="420">'
-      : '<span>' + esc(it.emoji || '📦') + '</span>';
+      : DSB.icon('box');
     return '<li class="ci" data-id="' + esc(it.id) + '" style="--i:' + i + '">'
       + '<a class="ci-img" href="' + esc(it.url) + '">' + media + '</a>'
       + '<div class="ci-main">'

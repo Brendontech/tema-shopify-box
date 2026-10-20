@@ -13,49 +13,49 @@
     {
       label: 'Vibe', q: 'Qual é a sua vibe?',
       opts: [
-        { i: 'trophy', n: 'Retrô lendária',    d: 'Zidane, Ronaldo, Nedved', box: 'retro' },
-        { i: 'zap', n: 'Atual dos clubões', d: 'Temporada recente',        box: 'atual' },
-        { i: 'globe', n: 'Seleções do mundo', d: 'Japão, Alemanha, Jamaica', box: 'selecoes' },
-        { i: 'flag', n: 'Seleção Brasileira', d: 'Amarelinha e azul',       box: 'brasil' }
+        { e: '🏆', n: 'Retrô lendária',    d: 'Zidane, Ronaldo, Nedved', box: 'retro' },
+        { e: '⚡', n: 'Atual dos clubões', d: 'Temporada recente',        box: 'atual' },
+        { e: '🌍', n: 'Seleções do mundo', d: 'Japão, Alemanha, Jamaica', box: 'selecoes' },
+        { e: '🇧🇷', n: 'Seleção Brasileira', d: 'Amarelinha e azul',       box: 'brasil' }
       ]
     },
     {
       label: 'Pra quem', q: 'Pra quem é a box?',
       opts: [
-        { i: 'user', n: 'Pra mim',        d: 'Modelagem masculina' },
-        { i: 'userW', n: 'Pra ela',        d: 'Modelagem feminina', box: 'feminino' },
-        { i: 'kid', n: 'Pra criança',      d: 'Tamanhos infantis',   box: 'infantil' },
-        { i: 'users', n: 'Pro casal',        d: 'Uma dele + uma dela', box: 'casal' }
+        { e: '🙋‍♂️', n: 'Pra mim',        d: 'Modelagem masculina' },
+        { e: '🙋‍♀️', n: 'Pra ela',        d: 'Modelagem feminina', box: 'feminino' },
+        { e: '🧒', n: 'Pra criança',      d: 'Tamanhos infantis',   box: 'infantil' },
+        { e: '💑', n: 'Pro casal',        d: 'Uma dele + uma dela', box: 'casal' }
       ]
     },
     {
       label: 'Estilo', q: 'Clássico ou diferente?',
       opts: [
-        { i: 'shirt', n: 'Mais clássico',  d: 'Cores e modelos tradicionais' },
-        { i: 'flame', n: 'Mais diferente', d: 'Edições fora do padrão' },
-        { i: 'scale', n: 'Tanto faz',      d: 'O mistério decide' },
-        { i: 'sparkles', n: 'Me surpreende',  d: 'Confiança total' }
+        { e: '🎽', n: 'Mais clássico',  d: 'Cores e modelos tradicionais' },
+        { e: '🔥', n: 'Mais diferente', d: 'Edições fora do padrão' },
+        { e: '⚖️', n: 'Tanto faz',      d: 'O mistério decide' },
+        { e: '🌟', n: 'Me surpreende',  d: 'Confiança total' }
       ]
     },
     {
       label: 'Tamanho', q: 'Qual é o seu tamanho?',
       opts: [
-        { t: 'P·M', n: 'P / M',            d: 'Até 70kg' },
-        { t: 'G·GG', n: 'G / GG',           d: '70–90kg' },
-        { t: '2GG+', n: '2GG+',             d: 'Acima de 90kg' },
-        { i: 'calc', n: 'Usar calculadora', d: 'Calcular pelo peso/altura', calc: true }
+        { e: '📏', n: 'P / M',            d: 'Até 70kg' },
+        { e: '👕', n: 'G / GG',           d: '70–90kg' },
+        { e: '💪', n: '2GG+',             d: 'Acima de 90kg' },
+        { e: '🔢', n: 'Usar calculadora', d: 'Calcular pelo peso/altura', calc: true }
       ]
     }
   ];
 
   var BOXES = {
-    retro:    { name: 'Box Retrô',    i: 'trophy', url: 'box-retro.html',    price: 'R$ 174', desc: 'Camisas históricas de 1970 a 2020. Os mantos que escreveram a história.' },
-    atual:    { name: 'Box Atual',    i: 'zap', url: 'box-atual.html',    price: 'R$ 119', desc: 'Temporada recente dos clubões e modelos fora do padrão.' },
-    selecoes: { name: 'Box Seleções', i: 'globe', url: 'box-selecoes.html', price: 'R$ 149', desc: 'Do Japão à Jamaica — seleções que ninguém tem.' },
-    brasil:   { name: 'Box Brasil',   i: 'flag', url: 'box-brasil.html',   price: 'R$ 149', desc: 'A amarelinha ou a azul — das clássicas às mais recentes.' },
-    feminino: { name: 'Box Feminino', i: 'userW', url: 'box-feminino.html', price: 'R$ 119', desc: 'Camisas com modelagem feminina, de clubes e seleções.' },
-    infantil: { name: 'Box Infantil', i: 'kid', url: 'box-infantil.html', price: 'R$ 99',  desc: 'Kits e conjuntos infantis pra criar o próximo craque.' },
-    casal:    { name: 'Box Casal',    i: 'users', url: 'box-casal.html',    price: 'R$ 219', desc: 'Uma camisa masculina + uma feminina. Mistério em dobro.' }
+    retro:    { name: 'Box Retrô',    e: '🏆', url: 'box-retro.html',    price: 'R$ 174', desc: 'Camisas históricas de 1970 a 2020. Os mantos que escreveram a história.' },
+    atual:    { name: 'Box Atual',    e: '⚡', url: 'box-atual.html',    price: 'R$ 119', desc: 'Temporada recente dos clubões e modelos fora do padrão.' },
+    selecoes: { name: 'Box Seleções', e: '🌍', url: 'box-selecoes.html', price: 'R$ 149', desc: 'Do Japão à Jamaica — seleções que ninguém tem.' },
+    brasil:   { name: 'Box Brasil',   e: '🇧🇷', url: 'box-brasil.html',   price: 'R$ 149', desc: 'A amarelinha ou a azul — das clássicas às mais recentes.' },
+    feminino: { name: 'Box Feminino', e: '👚', url: 'box-feminino.html', price: 'R$ 119', desc: 'Camisas com modelagem feminina, de clubes e seleções.' },
+    infantil: { name: 'Box Infantil', e: '🧒', url: 'box-infantil.html', price: 'R$ 99',  desc: 'Kits e conjuntos infantis pra criar o próximo craque.' },
+    casal:    { name: 'Box Casal',    e: '💑', url: 'box-casal.html',    price: 'R$ 219', desc: 'Uma camisa masculina + uma feminina. Mistério em dobro.' }
   };
 
   var stage   = document.getElementById('qStage');
@@ -82,7 +82,7 @@
       var a = answers[i] != null ? q.opts[answers[i]] : null;
       var cls = a ? 'filled' : (i === current ? 'current' : '');
       return '<li class="' + cls + '"><span class="n">' + (a ? '✓' : i + 1) + '</span>' + q.label
-        + '<b>' + (a ? a.n : '') + '</b></li>';
+        + '<b>' + (a ? a.e + ' ' + a.n : '') + '</b></li>';
     }).join('');
   }
 
@@ -106,7 +106,7 @@
       var sel = answers[current] === i;
       return '<button type="button" class="q-opt' + (sel ? ' sel' : '') + '" role="radio" aria-checked="' + sel + '" data-i="' + i + '" style="--i:' + i + '">'
         + '<span class="q-sel-check">✓</span>'
-        + '<span class="q-emoji">' + (o.t ? '<span class="q-txt">' + o.t + '</span>' : DSB.icon(o.i)) + '</span>'
+        + '<span class="q-emoji">' + o.e + '</span>'
         + '<div class="q-oname">' + o.n + '</div>'
         + '<div class="q-odesc">' + o.d + '</div>'
         + '</button>';
@@ -174,7 +174,7 @@
     current = QUESTIONS.length;
     renderSummary();
     stage.innerHTML = '<div class="q-result">'
-      + '<span class="q-result-emoji">' + DSB.icon(box.i) + '</span>'
+      + '<span class="q-result-emoji">' + box.e + '</span>'
       + '<div class="q-result-kicker">Sua box ideal</div>'
       + '<div class="q-result-name" tabindex="-1">' + box.name + '</div>'
       + '<p class="q-result-desc">' + box.desc + '</p>'
@@ -453,5 +453,165 @@
       if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openShirt(card); }
     });
   }
+
+
+  // ---------- BOXES: CARROSSEL 3D EM LOOP ----------
+  var bx = document.getElementById('bxCarousel');
+  if (bx) (function () {
+    var stage = bx.querySelector('.bx-stage');
+    var cards = Array.prototype.slice.call(bx.querySelectorAll('.bx-card'));
+    var dotsEl = bx.querySelector('.bx-dots');
+    var n = cards.length;
+    var active = 0;
+    var AUTO = 4500;
+    var timer = null, inView = false, hovering = false, dragging = false;
+    bx.style.setProperty('--bx-t', AUTO + 'ms');
+
+    // Pontos de navegação
+    dotsEl.innerHTML = cards.map(function (c, i) {
+      return '<button type="button" class="bx-dot" role="tab" aria-label="' + c.querySelector('.bx-name').textContent + '"></button>';
+    }).join('');
+    var dots = Array.prototype.slice.call(dotsEl.children);
+
+    // Distância circular do card até o ativo (-n/2 .. n/2), com fração no arraste
+    function offset(i, pos) {
+      var o = i - pos;
+      while (o > n / 2) o -= n;
+      while (o < -n / 2) o += n;
+      return o;
+    }
+
+    function layout(pos) {
+      var mobile = window.innerWidth <= 600;
+      var cw = cards[0].offsetWidth;
+      var step = cw * (mobile ? .82 : .74);
+      cards.forEach(function (c, i) {
+        var o = offset(i, pos), a = Math.abs(o);
+        var x = o * step * (a > 1 ? .92 : 1);
+        var ry = Math.max(-45, Math.min(45, o * -26));
+        var sc = 1 - Math.min(a, 2.2) * .13;
+        c.style.transform = 'translateX(' + x.toFixed(1) + 'px) translateZ(' + (-a * 110).toFixed(0) + 'px) rotateY(' + ry.toFixed(1) + 'deg) scale(' + sc.toFixed(3) + ')';
+        c.style.zIndex = String(100 - Math.round(a * 10));
+        var far = mobile ? 1.6 : 2.4;
+        c.style.opacity = a > far ? '0' : a > far - .6 ? String(((far - a) / .6).toFixed(2)) : '1';
+        c.style.filter = a > .5 ? 'brightness(' + Math.max(.38, 1 - a * .32).toFixed(2) + ') saturate(.8)' : '';
+        c.style.pointerEvents = a > (mobile ? 1.6 : 2.4) ? 'none' : '';
+        var isActive = Math.round(pos - Math.floor(pos / n) * n) % n === i;
+        c.classList.toggle('is-active', isActive);
+        c.setAttribute('aria-hidden', a > .5 ? 'true' : 'false');
+        c.tabIndex = isActive ? 0 : -1;
+      });
+    }
+
+    function go(i, user) {
+      active = ((i % n) + n) % n;
+      layout(active);
+      dots.forEach(function (d, k) {
+        d.classList.toggle('on', k === active);
+        d.setAttribute('aria-selected', k === active);
+        // reinicia a barra de tempo do ponto ativo
+        if (k === active) { d.classList.remove('on'); void d.offsetWidth; d.classList.add('on'); }
+      });
+      if (user) restart();
+    }
+
+    // Giro automático: só com a seção na tela, sem mouse em cima e sem arraste
+    function playing() { return inView && !hovering && !dragging && !reduceMotion && !document.hidden; }
+    function restart() {
+      clearTimeout(timer);
+      bx.classList.toggle('is-paused', !playing());
+      if (playing()) timer = setTimeout(function () { go(active + 1); restart(); }, AUTO);
+    }
+
+    bx.querySelectorAll('[data-bx]').forEach(function (b) {
+      b.addEventListener('click', function () { go(active + +b.getAttribute('data-bx'), true); });
+    });
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k, true); }); });
+    bx.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1, true); cards[active].focus({ preventScroll: true }); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); go(active - 1, true); cards[active].focus({ preventScroll: true }); }
+    });
+    if (window.matchMedia('(hover: hover)').matches) {
+      bx.addEventListener('mouseenter', function () { hovering = true; restart(); });
+      bx.addEventListener('mouseleave', function () { hovering = false; restart(); });
+    }
+    document.addEventListener('visibilitychange', restart);
+
+    // Arrastar (dedo ou mouse) com acompanhamento contínuo
+    var startX = 0, startY = 0, dx = 0, moved = false, axis = null, pid = null;
+    stage.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      startX = e.clientX; startY = e.clientY; dx = 0; moved = false; axis = null; pid = e.pointerId;
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (pid !== e.pointerId) return;
+      var mx = e.clientX - startX, my = e.clientY - startY;
+      if (!axis && (Math.abs(mx) > 8 || Math.abs(my) > 8)) {
+        axis = Math.abs(mx) > Math.abs(my) ? 'x' : 'y';
+        if (axis === 'x') { dragging = true; stage.classList.add('is-drag'); stage.setPointerCapture(e.pointerId); restart(); }
+      }
+      if (axis !== 'x') return;
+      moved = true; dx = mx;
+      layout(active - dx / (cards[0].offsetWidth * .8));
+    });
+    function end(e) {
+      if (pid !== e.pointerId) return;
+      pid = null;
+      if (axis === 'x') {
+        dragging = false; stage.classList.remove('is-drag');
+        var shift = Math.round(dx / (cards[0].offsetWidth * .8));
+        if (!shift && Math.abs(dx) > 40) shift = dx < 0 ? 1 : -1;
+        go(active - shift, true);
+      }
+      axis = null;
+    }
+    stage.addEventListener('pointerup', end);
+    stage.addEventListener('pointercancel', end);
+
+    // Clique: box lateral vem para o centro; só a box do centro abre a página
+    cards.forEach(function (c, i) {
+      c.addEventListener('click', function (e) {
+        if (moved) { e.preventDefault(); moved = false; return; }
+        if (i !== active) { e.preventDefault(); go(i, true); }
+      });
+      c.addEventListener('dragstart', function (e) { e.preventDefault(); });
+      c.querySelector('.bx-inner').style.setProperty('--k', i);
+      c.querySelector('.bx-inner').style.setProperty('--in-r', ((i - 2) * 8) + 'deg');
+    });
+
+    // Camisas de cada box se embaralhando em loop (frente, lados, saindo)
+    var decks = cards.map(function (c) { return Array.prototype.slice.call(c.querySelectorAll('.bx-deck img')); });
+    var tick = 0;
+    function shuffle() {
+      decks.forEach(function (imgs, k) {
+        if (imgs.length < 2) return;
+        var m = imgs.length, f = (tick + k) % m;
+        imgs.forEach(function (im, j) {
+          im.className = j === f ? 'is-front' : j === (f + 1) % m ? 'is-r' : j === (f + m - 1) % m ? 'is-out' : j === (f + 2) % m ? 'is-l' : '';
+        });
+      });
+    }
+    shuffle();
+    var shuffleId = null;
+    function runShuffle(on) {
+      clearInterval(shuffleId);
+      if (on && !reduceMotion) shuffleId = setInterval(function () { tick++; shuffle(); }, 2200);
+    }
+
+    // Entrada animada quando a seção aparece; giro e embaralhar só com ela na tela
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        if (inView) bx.classList.add('is-in');
+        runShuffle(inView);
+        restart();
+      }, { threshold: .25 }).observe(bx);
+    } else { bx.classList.add('is-in'); inView = true; }
+
+    var rz;
+    window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { layout(active); }, 120); });
+    go(0);
+    restart();
+  })();
 
 })();

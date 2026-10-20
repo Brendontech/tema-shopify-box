@@ -268,6 +268,13 @@ a { color: inherit; }
 .ico-svg { width: 1em; height: 1em; display: block; }
 .ship-ico { width: 15px; height: 15px; display: inline-block; vertical-align: -3px; margin-right: 6px; }
 
+/* Camisa misteriosa (box sem foto): camisa em traço com "?" no peito */
+.mystery { position: relative; display: inline-grid; place-items: center; width: 1em; height: 1em; color: #fff; line-height: 1; }
+.mystery svg { width: 100%; height: 100%; stroke-width: 1.1; }
+.mystery b { position: absolute; top: 34%; font-family: var(--font-display); font-stretch: 112%; font-weight: 900; font-size: .34em; }
+.menu-mystery { width: 104px; height: 104px; font-size: 64px; border-radius: 14px; border: 1px solid rgba(255,255,255,.1); background: radial-gradient(circle at 50% 35%, #2e2e2e, #121212 70%); }
+.menu-mystery svg { width: 64px; height: 64px; }
+
 /* ---------- BOTÕES ---------- */
 .btn {
   position: relative; overflow: hidden; isolation: isolate;
@@ -422,7 +429,7 @@ a { color: inherit; }
 }
 
 /* Emojis decorativos em escala de cinza — identidade 100% preto e branco */
-.box-icon, .search-title, .mi-big, .tb:not(.tb-photo), .xs-emoji { filter: grayscale(1); }
+.box-icon, .quiz-summary b, .search-title, .q-emoji, .q-result-emoji, .mi-big, .tb:not(.tb-photo), .xs-emoji { filter: grayscale(1); }
 
 /* Fonte display (Archivo expandida) nos títulos e números */
 .hero-h1, .cta-title, .box-name, .box-price, .ih1, .q-question, .q-result-name, .stat-n, .rev-big,
@@ -599,10 +606,10 @@ a { color: inherit; }
 /* Telas de toque: o :hover "gruda" depois do toque, então os cards
    não ficam levantados/deslocados depois de tocados */
 @media (hover: none) {
-  html .box-card:hover, html .fit-card:hover, html .rev-card:hover, html .hw-step:hover,
+  html .fit-card:hover, html .rev-card:hover, html .hw-step:hover,
   html .xs-card:hover, html .p-rev-card:hover, html .kc:hover, html .q-opt:hover, html .tb:hover, html .sz-tab:hover,
   html .szb:not(.on):hover, html .btn:hover, html .nav-cta:hover, html .foot-links a:hover { transform: none; }
-  html .box-card:not(.no-art):hover .box-cover img, html .fit-card:hover .fit-img img,
+  html .fit-card:hover .fit-img img,
   html .shirt-card:hover .shirt-img img, html .xs-card:hover .xs-photo img { transform: none; }
   .spotlight::after { display: none; }
 }

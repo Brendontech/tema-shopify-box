@@ -29,7 +29,7 @@ const KITS_CASAL = [
 // Preços das boxes por perfil (masculino, feminino, infantil, casal) são provisórios.
 const BOXES = [
   {
-    slug: 'box-retro', cover: true, name: 'Box Retrô', short: 'RETRÔ', emoji: '🏆',
+    slug: 'box-retro', name: 'Box Retrô', short: 'RETRÔ', emoji: '🏆',
     tag: '★ BOX RETRÔ ★', off: 'DOS ANOS 70 AO 2020', sub: 'HISTÓRIA BORDADA',
     isub: 'Zidane, Ronaldo, Nedved, Bebeto — os mantos que escreveram a história.',
     rating: '4.9', reviews: 214,
@@ -40,7 +40,7 @@ const BOXES = [
     tags: ['retro', 'classica', 'historica', 'vintage', 'anos 90', 'copa', 'zidane', 'ronaldo', 'nedved', 'bebeto', 'flamengo', 'juventus', 'manchester united', 'inter de milao', 'inglaterra']
   },
   {
-    slug: 'box-atual', cover: true, name: 'Box Atual', short: 'ATUAL', emoji: '⚡',
+    slug: 'box-atual', name: 'Box Atual', short: 'ATUAL', emoji: '⚡',
     tag: '★ BOX ATUAL ★', off: 'ÚLTIMA TEMPORADA', sub: 'TEMPORADA RECENTE',
     isub: 'Premier League, La Liga, Série A — o que os craques estão vestindo agora.',
     rating: '4.8', reviews: 189,
@@ -51,7 +51,7 @@ const BOXES = [
     tags: ['atual', 'temporada', 'lancamento', 'clubes', 'europa', 'premier league', 'la liga', 'serie a', 'chelsea', 'atletico de madrid', 'gremio', 'sao paulo']
   },
   {
-    slug: 'box-selecoes', cover: true, name: 'Box Seleções', short: 'SELEÇÕES', emoji: '🌍',
+    slug: 'box-selecoes', name: 'Box Seleções', short: 'SELEÇÕES', emoji: '🌍',
     tag: '★ BOX SELEÇÕES ★', off: '32 PAÍSES', sub: 'DO MUNDO INTEIRO',
     isub: 'Do Japão à Jamaica, da Croácia ao Senegal — seleções raras que ninguém tem.',
     rating: '4.9', reviews: 97,
@@ -62,7 +62,7 @@ const BOXES = [
     tags: ['selecoes', 'selecao', 'mundo', 'copa do mundo', 'japao', 'jamaica', 'alemanha', 'senegal', 'colombia', 'inglaterra', 'croacia']
   },
   {
-    slug: 'box-brasil', cover: true, name: 'Box Brasil', short: 'BRASIL', emoji: '🇧🇷',
+    slug: 'box-brasil', name: 'Box Brasil', short: 'BRASIL', emoji: '🇧🇷',
     tag: '★ BOX BRASIL ★', off: 'CBF OFICIAL', sub: 'AMARELINHA E AZUL',
     photos: [],
     isub: 'Amarelinha e azul da CBF — das clássicas do tetra e do penta aos modelos mais recentes.',
@@ -119,7 +119,7 @@ const BOXES = [
     tags: ['infantil', 'crianca', 'kids', 'menino', 'menina', 'filho', 'filha', 'kit infantil', 'conjunto', 'dortmund', 'aston villa', 'colombia']
   },
   {
-    slug: 'box-casal', cover: true, name: 'Box Casal', short: 'CASAL', emoji: '💑',
+    slug: 'box-casal', name: 'Box Casal', short: 'CASAL', emoji: '💑',
     tag: '★ BOX CASAL ★', off: 'ELE + ELA', sub: 'MISTÉRIO EM DOBRO',
     isub: 'Uma camisa masculina e uma feminina no mesmo box — pra vestir o manto junto.',
     rating: '5.0', reviews: 0,
@@ -136,10 +136,9 @@ const BOXES = [
 // Fotos da galeria: a arte da box (quando existe) vem primeiro
 function galleryPhotos(box) {
   const list = (box.photos || []).map(id => ({ src: foto(byId[id]), thumb: foto(byId[id], true), nome: byId[id].nome }));
-  if (box.cover) list.unshift({ src: `img/boxes/${box.slug}.webp`, thumb: `img/boxes/${box.slug}-p.webp`, nome: box.name, cover: true });
   return list;
 }
-const cardImage = box => box.cover ? `img/boxes/${box.slug}-p.webp` : (box.photos && box.photos.length ? foto(byId[box.photos[0]], true) : null);
+const cardImage = box => (box.photos && box.photos.length ? foto(byId[box.photos[0]], true) : null);
 
 const brl = (v, dec = 2) => 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
@@ -197,12 +196,9 @@ ${ph.map((c, i) => `          <button type="button" class="tb tb-photo${i === 0 
         <div class="mi" id="mi">
           <div class="mi-tag">${box.tag}</div>
           <div class="mi-off">${box.off}</div>
-          <div class="mi-big" id="miBig">${box.emoji}</div>
+          <div class="mi-big" id="miBig"><span class="mystery"><span data-icon="shirt"></span><b>?</b></span></div>
           <div class="mi-lbl" id="miLbl">${box.short}</div>
           <div class="mi-sub" id="miSub">${box.sub}</div>
-        </div>
-        <div class="tbs">
-${box.thumbs.map(([e, l], i) => `          <button type="button" class="tb${i === 0 ? ' on' : ''}" data-icon="${e}" data-label="${l}" aria-label="${l}">${e}</button>`).join('\n')}
         </div>`;
 }
 
@@ -211,7 +207,7 @@ function crossSell(box) {
     const img = cardImage(b);
     const media = img
       ? `<span class="xs-photo"><img src="${img}" alt="" loading="lazy" width="420" height="420"></span>`
-      : `<span class="xs-emoji">${b.emoji}</span>`;
+      : `<span class="xs-photo xs-mystery"><span class="mystery"><span data-icon="shirt"></span><b>?</b></span></span>`;
     return `
       <a href="${b.slug}.html" class="xs-card spotlight">
         ${media}

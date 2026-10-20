@@ -268,6 +268,13 @@ a { color: inherit; }
 .ico-svg { width: 1em; height: 1em; display: block; }
 .ship-ico { width: 15px; height: 15px; display: inline-block; vertical-align: -3px; margin-right: 6px; }
 
+/* Camisa misteriosa (box sem foto): camisa em traço com "?" no peito */
+.mystery { position: relative; display: inline-grid; place-items: center; width: 1em; height: 1em; color: #fff; line-height: 1; }
+.mystery svg { width: 100%; height: 100%; stroke-width: 1.1; }
+.mystery b { position: absolute; top: 34%; font-family: var(--font-display); font-stretch: 112%; font-weight: 900; font-size: .34em; }
+.menu-mystery { width: 104px; height: 104px; font-size: 64px; border-radius: 14px; border: 1px solid rgba(255,255,255,.1); background: radial-gradient(circle at 50% 35%, #2e2e2e, #121212 70%); }
+.menu-mystery svg { width: 64px; height: 64px; }
+
 /* ---------- BOTÕES ---------- */
 .btn {
   position: relative; overflow: hidden; isolation: isolate;

@@ -255,8 +255,9 @@
 
     miBig.classList.toggle('many', n > 1);
     var h = '';
-    for (var j = 0; j < Math.min(n, 7); j++) h += '<span class="pop" style="--i:' + j + '">👕</span>';
-    miBig.innerHTML = h;
+    var shirt = '<span class="mystery">' + (DSB.icon ? DSB.icon('shirt') : '') + '<b>?</b></span>';
+    for (var j = 0; j < Math.min(n, 7); j++) h += '<span class="pop" style="--i:' + j + '">' + shirt + '</span>';
+    miBig.innerHTML = n > 1 ? h : shirt;
   }
 
   document.querySelectorAll('.tb').forEach(function (tb) {

@@ -422,8 +422,7 @@ body { background: var(--ink); color: #fff; }
 }
 .box-card:hover .box-off { transform: rotate(-3deg) scale(1.08); }
 .box-card.feat .box-off { top: 18px; right: 18px; font-size: 14px; padding: 7px 11px; }
-/* Cards pequenos: o selo fica embaixo, longe do letreiro da arte */
-.box-card:not(.feat) .box-off { top: auto; bottom: 64px; right: 16px; }
+
 /* Box sem arte própria: camisas do acervo em leque + nome escrito */
 .box-card.no-art { background: radial-gradient(circle at 50% 30%, #2a2a2a, #0f0f0f 70%); }
 .box-fan { display: grid; place-items: center; padding-bottom: 26%; }
@@ -439,6 +438,13 @@ body { background: var(--ink); color: #fff; }
 .box-card.no-art:hover .box-fan img:nth-child(2) { transform: translateX(50%) rotate(16deg); }
 .box-card.no-art:hover .box-fan img:nth-child(3) { transform: translateY(-10%) scale(1.04); }
 .box-card.no-art:hover .box-cover img { transform: none; }
+/* Box em destaque: leque maior, nome grande */
+.box-card.feat .box-fan { padding-bottom: 30%; }
+.box-card.feat .box-fan img { width: 40%; border-width: 4px; border-radius: 20px; }
+.box-card.feat.no-art .box-name { font-size: clamp(28px, 3vw, 40px); margin-bottom: 8px; }
+/* Box sem fotos (Brasil): camisa misteriosa */
+.box-mystery { font-size: clamp(96px, 10vw, 140px); }
+.box-mystery .mystery { filter: drop-shadow(0 20px 30px rgba(0,0,0,.6)); animation: float 5s ease-in-out infinite; }
 .box-card.no-art .box-name {
   position: static; width: auto; height: auto; overflow: visible; clip: auto;
   font-size: 20px; font-weight: 900; letter-spacing: -.02em; margin-bottom: 6px;
@@ -715,7 +721,10 @@ body { background: var(--ink); color: #fff; }
   .box-info { padding: 12px; }
   .box-card:not(.feat) .box-btn { height: 30px; min-width: 30px; padding: 0 9px; }
   .box-off { font-size: 11px; padding: 4px 7px; }
-  .box-card:not(.feat) .box-off { bottom: 52px; right: 12px; }
+  .box-off { top: 10px; right: 10px; }
+  .box-card.no-art:not(.feat) .box-name { font-size: 15px; margin-bottom: 4px; }
+  .box-card.no-art:not(.feat) .box-fan { padding-bottom: 34%; }
+  .box-mystery { font-size: 76px; }
   .box-finder { width: 100%; align-items: stretch; }
   .box-chips { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
   .box-chips::-webkit-scrollbar { display: none; }

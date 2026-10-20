@@ -361,7 +361,7 @@
     txt.classList.toggle('ok', missing <= 0);
     txt.innerHTML = missing > 0
       ? 'Faltam <b>' + fmt(missing) + '</b> para frete grátis'
-      : '🎉 Você ganhou frete grátis!';
+      : (DSB.icon ? DSB.icon('party', 'ship-ico') : '') + 'Você ganhou frete grátis!';
   }
 
   // ---- VALIDAÇÃO ----

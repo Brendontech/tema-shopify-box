@@ -69,7 +69,8 @@ body { background: var(--paper); color: #111; }
 
 .trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
 .trust div { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 14px; padding: 12px 14px; font-size: 12px; font-weight: 600; color: #555; line-height: 1.35; }
-.trust b { font-size: 18px; }
+.trust-ico { width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; display: grid; place-items: center; background: #f2f2ee; color: #111; }
+.trust-ico svg { width: 18px; height: 18px; }
 
 /* ---------- INFO ---------- */
 .info > * { animation: fadeUp .7s var(--ease) backwards; }
@@ -91,6 +92,8 @@ body { background: var(--paper); color: #111; }
 .kl { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
 .kl-link { background: none; border: none; color: var(--accent); font-size: 12px; font-weight: 600; cursor: pointer; text-transform: none; letter-spacing: 0; padding: 4px 0; background-image: linear-gradient(currentColor, currentColor); background-size: 0 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .3s var(--ease); }
 .kl-link:hover { background-size: 100% 1px; }
+.kl-ico { width: 15px; height: 15px; display: inline-block; vertical-align: -3px; margin-right: 5px; }
+.kl-ico svg { width: 100%; height: 100%; }
 
 /* ---------- KITS ---------- */
 .kits { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.25rem; }
@@ -113,7 +116,9 @@ body { background: var(--paper); color: #111; }
 .kc-name  { font-size: 15px; font-weight: 800; }
 .kc-promo { display: block; font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 1px; }
 .kc-icons { display: flex; gap: 3px; margin-top: 6px; }
-.ki { font-size: 15px; display: inline-block; transition: transform .3s var(--ease-back); }
+.ki { width: 17px; height: 17px; display: inline-block; color: #111; transition: transform .3s var(--ease-back); }
+.ki svg { width: 100%; height: 100%; stroke-width: 2; }
+.ki-f { color: #777; }
 .ki.dim { opacity: .25; }
 .kc.sel .ki { animation: kiHop .5s var(--ease-back) both; }
 .kc.sel .ki:nth-child(2) { animation-delay: .04s; } .kc.sel .ki:nth-child(3) { animation-delay: .08s; }
@@ -396,7 +401,7 @@ body { background: var(--paper); color: #111; }
 .mi-photo.swap { animation: swapIn .55s var(--ease) both; }
 .mi.has-photo:hover .mi-photo { transform: scale(1.04); }
 .mi.has-photo .mi-lbl, .mi.has-photo .mi-sub { z-index: 3; }
-.mi.has-photo .mi-lbl { font-size: clamp(22px, 2.6vw, 34px); bottom: 38px; padding-inline: 1rem; }
+.mi.has-photo .mi-lbl { font-size: clamp(22px, 2.6vw, 34px); bottom: 38px; padding-inline: 3.5rem; }
 .mi.has-photo .mi-sub { color: rgba(255,255,255,.7); }
 .mi.has-photo .mi-tag, .mi.has-photo .mi-off { z-index: 3; }
 .mi.has-photo .mi-off { background: rgba(0,0,0,.45); backdrop-filter: blur(6px); }

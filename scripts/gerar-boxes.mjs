@@ -148,7 +148,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replac
 function kitHtml(box, k, i) {
   const [t, o] = box.prices[i];
   const casal = box.mode === 'casal';
-  const shirts = Array.from({ length: k.n }, (_, j) => `<span class="ki${k.pay && j >= k.pay ? ' dim' : ''}">${casal ? (j % 2 ? '👚' : '👕') : '👕'}</span>`).join('');
+  const shirts = Array.from({ length: k.n }, (_, j) => `<span class="ki${k.pay && j >= k.pay ? ' dim' : ''}${casal && j % 2 ? ' ki-f' : ''}" data-icon="shirt"></span>`).join('');
   const eco = k.n > 1
     ? `\n            <div class="kc-eco"><span class="eco-b">ECONOMIZE ${brl(Math.floor(o - t), 0)}</span><span class="eco-p">${brl(Math.round(t / k.n), 0)}/camisa</span></div>`
     : '';
@@ -325,9 +325,9 @@ ${top}
       <!-- Galeria -->
       <div class="gallery">${galleryHtml(box)}
         <div class="trust">
-          <div><b>🚚</b>Frete grátis acima de R$ 299</div>
-          <div><b>🔄</b>Troca garantida em 30 dias</div>
-          <div><b>🔒</b>Compra 100% segura</div>
+          <div><span class="trust-ico" data-icon="truck"></span>Frete grátis acima de R$ 299</div>
+          <div><span class="trust-ico" data-icon="swap"></span>Troca garantida em 30 dias</div>
+          <div><span class="trust-ico" data-icon="lock"></span>Compra 100% segura</div>
         </div>
       </div>
 
@@ -342,7 +342,7 @@ ${top}
 
         <div class="kl">
           <span>Escolha seu kit</span>
-          <button type="button" class="kl-link" data-open-sizes>📏 Qual meu tamanho?</button>
+          <button type="button" class="kl-link" data-open-sizes><span class="kl-ico" data-icon="ruler"></span>Qual meu tamanho?</button>
         </div>
 
         <div class="kits" id="kits" role="radiogroup" aria-label="Kits">${kits.map((k, i) => kitHtml(box, k, i)).join('')}
@@ -362,7 +362,7 @@ ${top}
           <div class="tot-row"><span class="tot-lbl strong">Total com desconto</span><span class="tot-main" id="tMain">${brl(t1)}</span></div>
           <div class="pix-row"><span class="pix-lbl">No Pix (5% off)</span><span class="pix-val" id="tPix">${brl(t1 * .95)}</span></div>
           <div class="ship">
-            <div class="ship-txt" id="shipTxt">${t1 >= 299 ? '🎉 Você ganhou frete grátis!' : `Faltam <b>${brl(299 - t1)}</b> para frete grátis`}</div>
+            <div class="ship-txt" id="shipTxt">${t1 >= 299 ? 'Você ganhou frete grátis!' : `Faltam <b>${brl(299 - t1)}</b> para frete grátis`}</div>
             <div class="ship-bar"><i id="shipBar" style="width:${Math.min(100, t1 / 299 * 100).toFixed(1)}%"></i></div>
           </div>
         </div>
@@ -495,18 +495,18 @@ function shirtsGrid() {
 
 // ---------- Busca ----------
 const AJUDA = [
-  { tipo: 'Ajuda', titulo: 'Guia de tamanhos', url: 'box-classica.html#tamanhos', descricao: 'Calcule seu tamanho pela altura e peso ou veja a tabela completa.', emoji: '📏', tags: ['tamanho', 'medidas', 'tabela', 'calculadora', 'p', 'm', 'g', 'gg', 'infantil', 'feminino'] },
-  { tipo: 'Ajuda', titulo: 'Monte sua box (quiz)', url: 'index.html#quiz', descricao: '4 perguntas rápidas e a gente indica a box ideal pra você.', emoji: '🎯', tags: ['quiz', 'montar', 'indicacao', 'qual box', 'ajuda a escolher'] },
-  { tipo: 'Ajuda', titulo: 'Camisas que podem vir', url: 'index.html#camisas', descricao: 'Exemplos reais do acervo: retrô, masculina, feminina e infantil.', emoji: '👕', tags: ['camisas', 'acervo', 'exemplos', 'fotos', 'modelos'] },
-  { tipo: 'Ajuda', titulo: 'Como funciona', url: 'index.html#como-funciona', descricao: 'Escolha a vibe, a gente escala a camisa e você revela.', emoji: '📦', tags: ['como funciona', 'caixa misteriosa', 'passo a passo', 'curadoria'] },
-  { tipo: 'Ajuda', titulo: 'Trocas e garantia', url: 'index.html#faq', descricao: 'Garantia de troca em 30 dias e troca de tamanho garantida.', emoji: '🔄', tags: ['troca', 'devolucao', 'garantia', '30 dias', 'tamanho errado'] },
-  { tipo: 'Ajuda', titulo: 'Frete e entrega', url: 'index.html#faq', descricao: 'Frete grátis acima de R$299 e entrega rastreada para todo o Brasil.', emoji: '🚚', tags: ['frete', 'entrega', 'prazo', 'rastreio', 'frete gratis', 'correios'] },
-  { tipo: 'Ajuda', titulo: 'Pagamento', url: 'index.html#faq', descricao: 'Pix com 5% off ou cartão em até 2x sem juros.', emoji: '💳', tags: ['pagamento', 'pix', 'cartao', 'parcelar', 'sem juros', 'desconto'] }
+  { tipo: 'Ajuda', titulo: 'Guia de tamanhos', url: 'box-classica.html#tamanhos', descricao: 'Calcule seu tamanho pela altura e peso ou veja a tabela completa.', icone: 'ruler', tags: ['tamanho', 'medidas', 'tabela', 'calculadora', 'p', 'm', 'g', 'gg', 'infantil', 'feminino'] },
+  { tipo: 'Ajuda', titulo: 'Monte sua box (quiz)', url: 'index.html#quiz', descricao: '4 perguntas rápidas e a gente indica a box ideal pra você.', icone: 'target', tags: ['quiz', 'montar', 'indicacao', 'qual box', 'ajuda a escolher'] },
+  { tipo: 'Ajuda', titulo: 'Camisas que podem vir', url: 'index.html#camisas', descricao: 'Exemplos reais do acervo: retrô, masculina, feminina e infantil.', icone: 'shirt', tags: ['camisas', 'acervo', 'exemplos', 'fotos', 'modelos'] },
+  { tipo: 'Ajuda', titulo: 'Como funciona', url: 'index.html#como-funciona', descricao: 'Escolha a vibe, a gente escala a camisa e você revela.', icone: 'box', tags: ['como funciona', 'caixa misteriosa', 'passo a passo', 'curadoria'] },
+  { tipo: 'Ajuda', titulo: 'Trocas e garantia', url: 'index.html#faq', descricao: 'Garantia de troca em 30 dias e troca de tamanho garantida.', icone: 'swap', tags: ['troca', 'devolucao', 'garantia', '30 dias', 'tamanho errado'] },
+  { tipo: 'Ajuda', titulo: 'Frete e entrega', url: 'index.html#faq', descricao: 'Frete grátis acima de R$299 e entrega rastreada para todo o Brasil.', icone: 'truck', tags: ['frete', 'entrega', 'prazo', 'rastreio', 'frete gratis', 'correios'] },
+  { tipo: 'Ajuda', titulo: 'Pagamento', url: 'index.html#faq', descricao: 'Pix com 5% off ou cartão em até 2x sem juros.', icone: 'card', tags: ['pagamento', 'pix', 'cartao', 'parcelar', 'sem juros', 'desconto'] }
 ];
 
 function searchIndex() {
   const itens = BOXES.map(b => ({
-    tipo: 'Box', titulo: b.name, url: `${b.slug}.html`, descricao: b.desc, emoji: b.emoji,
+    tipo: 'Box', titulo: b.name, url: `${b.slug}.html`, descricao: b.desc, icone: 'box',
     imagem: cardImage(b) || undefined,
     preco: b.prices[0][0], precoAntigo: b.prices[0][1], tags: b.tags
   }));

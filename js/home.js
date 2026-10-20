@@ -13,49 +13,49 @@
     {
       label: 'Vibe', q: 'Qual é a sua vibe?',
       opts: [
-        { e: '🏆', n: 'Retrô lendária',    d: 'Zidane, Ronaldo, Nedved', box: 'retro' },
-        { e: '⚡', n: 'Atual dos clubões', d: 'Temporada recente',        box: 'atual' },
-        { e: '🌍', n: 'Seleções do mundo', d: 'Japão, Alemanha, Jamaica', box: 'selecoes' },
-        { e: '🇧🇷', n: 'Seleção Brasileira', d: 'Amarelinha e azul',       box: 'brasil' }
+        { i: 'trophy', n: 'Retrô lendária',    d: 'Zidane, Ronaldo, Nedved', box: 'retro' },
+        { i: 'zap', n: 'Atual dos clubões', d: 'Temporada recente',        box: 'atual' },
+        { i: 'globe', n: 'Seleções do mundo', d: 'Japão, Alemanha, Jamaica', box: 'selecoes' },
+        { i: 'flag', n: 'Seleção Brasileira', d: 'Amarelinha e azul',       box: 'brasil' }
       ]
     },
     {
       label: 'Pra quem', q: 'Pra quem é a box?',
       opts: [
-        { e: '🙋‍♂️', n: 'Pra mim',        d: 'Modelagem masculina' },
-        { e: '🙋‍♀️', n: 'Pra ela',        d: 'Modelagem feminina', box: 'feminino' },
-        { e: '🧒', n: 'Pra criança',      d: 'Tamanhos infantis',   box: 'infantil' },
-        { e: '💑', n: 'Pro casal',        d: 'Uma dele + uma dela', box: 'casal' }
+        { i: 'user', n: 'Pra mim',        d: 'Modelagem masculina' },
+        { i: 'userW', n: 'Pra ela',        d: 'Modelagem feminina', box: 'feminino' },
+        { i: 'kid', n: 'Pra criança',      d: 'Tamanhos infantis',   box: 'infantil' },
+        { i: 'users', n: 'Pro casal',        d: 'Uma dele + uma dela', box: 'casal' }
       ]
     },
     {
       label: 'Estilo', q: 'Clássico ou diferente?',
       opts: [
-        { e: '🎽', n: 'Mais clássico',  d: 'Cores e modelos tradicionais' },
-        { e: '🔥', n: 'Mais diferente', d: 'Edições fora do padrão' },
-        { e: '⚖️', n: 'Tanto faz',      d: 'O mistério decide' },
-        { e: '🌟', n: 'Me surpreende',  d: 'Confiança total' }
+        { i: 'shirt', n: 'Mais clássico',  d: 'Cores e modelos tradicionais' },
+        { i: 'flame', n: 'Mais diferente', d: 'Edições fora do padrão' },
+        { i: 'scale', n: 'Tanto faz',      d: 'O mistério decide' },
+        { i: 'sparkles', n: 'Me surpreende',  d: 'Confiança total' }
       ]
     },
     {
       label: 'Tamanho', q: 'Qual é o seu tamanho?',
       opts: [
-        { e: '📏', n: 'P / M',            d: 'Até 70kg' },
-        { e: '👕', n: 'G / GG',           d: '70–90kg' },
-        { e: '💪', n: '2GG+',             d: 'Acima de 90kg' },
-        { e: '🔢', n: 'Usar calculadora', d: 'Calcular pelo peso/altura', calc: true }
+        { t: 'P·M', n: 'P / M',            d: 'Até 70kg' },
+        { t: 'G·GG', n: 'G / GG',           d: '70–90kg' },
+        { t: '2GG+', n: '2GG+',             d: 'Acima de 90kg' },
+        { i: 'calc', n: 'Usar calculadora', d: 'Calcular pelo peso/altura', calc: true }
       ]
     }
   ];
 
   var BOXES = {
-    retro:    { name: 'Box Retrô',    e: '🏆', url: 'box-retro.html',    price: 'R$ 174', desc: 'Camisas históricas de 1970 a 2020. Os mantos que escreveram a história.' },
-    atual:    { name: 'Box Atual',    e: '⚡', url: 'box-atual.html',    price: 'R$ 119', desc: 'Temporada recente dos clubões e modelos fora do padrão.' },
-    selecoes: { name: 'Box Seleções', e: '🌍', url: 'box-selecoes.html', price: 'R$ 149', desc: 'Do Japão à Jamaica — seleções que ninguém tem.' },
-    brasil:   { name: 'Box Brasil',   e: '🇧🇷', url: 'box-brasil.html',   price: 'R$ 149', desc: 'A amarelinha ou a azul — das clássicas às mais recentes.' },
-    feminino: { name: 'Box Feminino', e: '👚', url: 'box-feminino.html', price: 'R$ 119', desc: 'Camisas com modelagem feminina, de clubes e seleções.' },
-    infantil: { name: 'Box Infantil', e: '🧒', url: 'box-infantil.html', price: 'R$ 99',  desc: 'Kits e conjuntos infantis pra criar o próximo craque.' },
-    casal:    { name: 'Box Casal',    e: '💑', url: 'box-casal.html',    price: 'R$ 219', desc: 'Uma camisa masculina + uma feminina. Mistério em dobro.' }
+    retro:    { name: 'Box Retrô',    i: 'trophy', url: 'box-retro.html',    price: 'R$ 174', desc: 'Camisas históricas de 1970 a 2020. Os mantos que escreveram a história.' },
+    atual:    { name: 'Box Atual',    i: 'zap', url: 'box-atual.html',    price: 'R$ 119', desc: 'Temporada recente dos clubões e modelos fora do padrão.' },
+    selecoes: { name: 'Box Seleções', i: 'globe', url: 'box-selecoes.html', price: 'R$ 149', desc: 'Do Japão à Jamaica — seleções que ninguém tem.' },
+    brasil:   { name: 'Box Brasil',   i: 'flag', url: 'box-brasil.html',   price: 'R$ 149', desc: 'A amarelinha ou a azul — das clássicas às mais recentes.' },
+    feminino: { name: 'Box Feminino', i: 'userW', url: 'box-feminino.html', price: 'R$ 119', desc: 'Camisas com modelagem feminina, de clubes e seleções.' },
+    infantil: { name: 'Box Infantil', i: 'kid', url: 'box-infantil.html', price: 'R$ 99',  desc: 'Kits e conjuntos infantis pra criar o próximo craque.' },
+    casal:    { name: 'Box Casal',    i: 'users', url: 'box-casal.html',    price: 'R$ 219', desc: 'Uma camisa masculina + uma feminina. Mistério em dobro.' }
   };
 
   var stage   = document.getElementById('qStage');
@@ -82,7 +82,7 @@
       var a = answers[i] != null ? q.opts[answers[i]] : null;
       var cls = a ? 'filled' : (i === current ? 'current' : '');
       return '<li class="' + cls + '"><span class="n">' + (a ? '✓' : i + 1) + '</span>' + q.label
-        + '<b>' + (a ? a.e + ' ' + a.n : '') + '</b></li>';
+        + '<b>' + (a ? a.n : '') + '</b></li>';
     }).join('');
   }
 
@@ -106,7 +106,7 @@
       var sel = answers[current] === i;
       return '<button type="button" class="q-opt' + (sel ? ' sel' : '') + '" role="radio" aria-checked="' + sel + '" data-i="' + i + '" style="--i:' + i + '">'
         + '<span class="q-sel-check">✓</span>'
-        + '<span class="q-emoji">' + o.e + '</span>'
+        + '<span class="q-emoji">' + (o.t ? '<span class="q-txt">' + o.t + '</span>' : DSB.icon(o.i)) + '</span>'
         + '<div class="q-oname">' + o.n + '</div>'
         + '<div class="q-odesc">' + o.d + '</div>'
         + '</button>';
@@ -174,7 +174,7 @@
     current = QUESTIONS.length;
     renderSummary();
     stage.innerHTML = '<div class="q-result">'
-      + '<span class="q-result-emoji">' + box.e + '</span>'
+      + '<span class="q-result-emoji">' + DSB.icon(box.i) + '</span>'
       + '<div class="q-result-kicker">Sua box ideal</div>'
       + '<div class="q-result-name" tabindex="-1">' + box.name + '</div>'
       + '<p class="q-result-desc">' + box.desc + '</p>'

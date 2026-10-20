@@ -97,7 +97,7 @@
     var shipTxt = drawer.querySelector('#cartShipTxt');
     shipTxt.innerHTML = !n ? 'Frete grátis nas compras acima de <b>' + fmt(FREE_SHIPPING) + '</b>'
       : missing > 0 ? 'Faltam <b>' + fmt(missing) + '</b> para o frete grátis'
-      : '🎉 Você ganhou <b>frete grátis!</b>';
+      : DSB.icon('party', 'ship-ico') + 'Você ganhou <b>frete grátis!</b>';
     var bar = drawer.querySelector('#cartShipBar');
     bar.style.width = Math.min(100, sub / FREE_SHIPPING * 100).toFixed(1) + '%';
     bar.classList.toggle('full', n > 0 && missing <= 0);

@@ -239,6 +239,7 @@ a { color: inherit; }
   background: linear-gradient(135deg, #2a2a2a, #141414);
 }
 .search-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.search-thumb svg { width: 22px; height: 22px; color: rgba(255,255,255,.8); }
 .search-meta { flex: 1; min-width: 0; }
 .search-title { font-size: 14px; font-weight: 700; }
 .search-title mark { background: none; color: var(--accent-mid); }
@@ -247,7 +248,7 @@ a { color: inherit; }
 .search-price s { display: block; font-size: 11px; font-weight: 500; color: rgba(255,255,255,.3); }
 .search-type { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.35); }
 .search-empty { text-align: center; padding: 2.5rem 1rem; color: rgba(255,255,255,.5); font-size: 14px; }
-.search-empty b { display: block; font-size: 32px; margin-bottom: 8px; }
+.search-empty-ico { display: block; width: 34px; height: 34px; margin: 0 auto 12px; color: rgba(255,255,255,.35); }
 .search-skel { display: flex; gap: 14px; padding: 10px; align-items: center; }
 .search-skel i, .search-skel b {
   display: block; border-radius: 10px;
@@ -261,6 +262,11 @@ a { color: inherit; }
   font-size: 11px; color: rgba(255,255,255,.35);
 }
 .search-foot kbd { font: 600 10px/1 inherit; border: 1px solid rgba(255,255,255,.15); border-radius: 4px; padding: 3px 5px; margin-right: 4px; }
+
+/* ---------- ÍCONES SVG ---------- */
+.ico { display: inline-grid; place-items: center; line-height: 0; }
+.ico-svg { width: 1em; height: 1em; display: block; }
+.ship-ico { width: 15px; height: 15px; display: inline-block; vertical-align: -3px; margin-right: 6px; }
 
 /* ---------- BOTÕES ---------- */
 .btn {
@@ -416,7 +422,7 @@ a { color: inherit; }
 }
 
 /* Emojis decorativos em escala de cinza — identidade 100% preto e branco */
-.box-icon, .quiz-summary b, .search-title, .q-emoji, .q-result-emoji, .search-thumb:not(:has(img)), .mi-big, .tb:not(.tb-photo), .xs-emoji, .ki, .trust b, .search-empty b { filter: grayscale(1); }
+.box-icon, .search-title, .mi-big, .tb:not(.tb-photo), .xs-emoji { filter: grayscale(1); }
 
 /* Fonte display (Archivo expandida) nos títulos e números */
 .hero-h1, .cta-title, .box-name, .box-price, .ih1, .q-question, .q-result-name, .stat-n, .rev-big,

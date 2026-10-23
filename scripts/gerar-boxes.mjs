@@ -7,7 +7,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { CAMISAS, byId, foto } from './catalogo.mjs';
+import { CAMISAS, CATEGORIAS, byId, foto } from './catalogo.mjs';
+
+// ---------- Imagens da loja (Shopify) ----------
+// No modo Shopify, cada foto vira uma chamada ao snippet box-imagem, que pega
+// a imagem principal do produto i da coleção configurada (com a foto do
+// acervo como reserva). Chaves = boxes (retro, atual, …) e categorias.
+let SHOPIFY_MODE = false;
+const CAT_KEY = { retro: 'retro', masculina: 'masculino', feminina: 'feminino', infantil: 'infantil' };
+const slotDe = c => ({ key: CAT_KEY[c.cat], i: parseInt(c.arquivo, 10) - 1 });
+const assetDe = (c, p) => `camisa-${c.cat}-${c.arquivo}${p ? '-p' : ''}.webp`;
+function liquidImg(o) {
+  const args = Object.entries(o).map(([k, v]) => `${k}: ${typeof v === 'string' ? `'${v.replace(/'/g, '’')}'` : v}`).join(', ');
+  return `{% render 'box-imagem', ${args} %}`;
+}
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const INDEX = path.join(ROOT, 'index.html');
@@ -135,8 +148,16 @@ const BOXES = [
 
 // Fotos da galeria: a arte da box (quando existe) vem primeiro
 function galleryPhotos(box) {
-  const list = (box.photos || []).map(id => ({ src: foto(byId[id]), thumb: foto(byId[id], true), nome: byId[id].nome }));
-  return list;
+  const key = box.slug.replace('box-', '');
+  return (box.photos || []).map((id, i) => {
+    const c = byId[id];
+    if (!SHOPIFY_MODE) return { src: foto(c), thumb: foto(c, true), nome: c.nome };
+    return {
+      src: liquidImg({ c: key, i, r: assetDe(c) }),
+      thumb: liquidImg({ c: key, i, p: true, r: assetDe(c, true) }),
+      nome: liquidImg({ c: key, i, campo: 'titulo', rt: c.nome })
+    };
+  });
 }
 const cardImage = box => (box.photos && box.photos.length ? foto(byId[box.photos[0]], true) : null);
 
@@ -483,10 +504,15 @@ ${foot}
 
 // ---------- Index: grade de camisas ----------
 function shirtsGrid() {
-  return CAMISAS.map(c => `      <figure class="shirt-card" data-cat="${c.cat}">
-        <div class="shirt-img"><img src="${foto(c, true)}" alt="${esc(c.nome)} — ${esc(c.det)}" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">${esc(c.nome)}</span><span class="shirt-det">${esc(c.det)}</span></figcaption>
-      </figure>`).join('\n');
+  return CAMISAS.map(c => {
+    const { key, i } = slotDe(c);
+    const nome = SHOPIFY_MODE ? liquidImg({ c: key, i, campo: 'titulo', rt: c.nome }) : esc(c.nome);
+    const det = SHOPIFY_MODE ? esc(CATEGORIAS[c.cat]) : esc(c.det);
+    return `      <figure class="shirt-card" data-cat="${c.cat}">
+        <div class="shirt-img"><img src="${foto(c, true)}" data-full="${foto(c)}" alt="${nome} — ${det}" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">${nome}</span><span class="shirt-det">${det}</span></figcaption>
+      </figure>`;
+  }).join('\n');
 }
 
 // ---------- Busca ----------
@@ -541,9 +567,31 @@ const PAGES = '/pages/';
 const HOME = '/pages/box';
 
 const assetTag = name => `{{ '${name}' | asset_url }}`;
+const CAM_RE = /img\/camisas\/([a-z]+)\/((\d+)-[^"'\s)]+?)(-p)?\.webp/g;
+const MYSTERY_RE = /<span class="mystery"><span data-icon="shirt"><\/span><b>\?<\/b><\/span>/;
+
 function liquidify(html) {
+  // 1) Dentro de um link para uma box (carrossel, menu, "Pra quem é", outras boxes):
+  //    as fotos vêm da coleção DAQUELA box, na ordem (produto 0, 1, 2…)
+  html = html.replace(/<a href="box-([a-z]+)\.html[^"]*"[^>]*>[\s\S]*?<\/a>/g, (block, key) => {
+    let i = 0;
+    block = block.replace(CAM_RE, (_, cat, file, n, p) =>
+      liquidImg({ c: key, i: i++, ...(p ? { p: true } : {}), r: `camisa-${cat}-${file}${p || ''}.webp` }));
+    // Box sem fotos no acervo (Brasil): usa a coleção se existir, senão a camisa misteriosa
+    if (block.includes('bx-deck-mystery')) {
+      return block.replace(/<span class="bx-deck bx-deck-mystery">([\s\S]*?)<\/span><\/span>/, m =>
+        `{%- capture deck -%}${liquidImg({ c: key, modo: 'deck', n: 5 })}{%- endcapture -%}` +
+        `{%- if deck != blank -%}<span class="bx-deck">{{ deck }}</span>{%- else -%}${m}{%- endif -%}`);
+    }
+    block = block.replace(/<span class="menu-mystery mystery">[\s\S]*?<\/b><\/span>|<span class="mystery"><span data-icon="shirt"><\/span><b>\?<\/b><\/span>/, m =>
+      `{%- capture foto -%}${liquidImg({ c: key, modo: 'img', p: true })}{%- endcapture -%}` +
+      `{%- if foto != blank -%}{{ foto }}{%- else -%}${m}{%- endif -%}`);
+    return block;
+  });
+  // 2) Demais fotos (topo, "Camisas que podem vir", banner): coleção da categoria
   return html
-    .replace(/img\/camisas\/([a-z]+)\/([^"'\s)]+)/g, (_, cat, f) => assetTag(`camisa-${cat}-${f}`))
+    .replace(CAM_RE, (_, cat, file, n, p) =>
+      liquidImg({ c: CAT_KEY[cat], i: parseInt(n, 10) - 1, ...(p ? { p: true } : {}), r: `camisa-${cat}-${file}${p || ''}.webp` }))
     .replace(/img\/dasports-logo-branca\.png/g, assetTag('box-logo-branca.png'))
     .replace(/href="index\.html/g, `href="${HOME}`)
     .replace(/href="(box-[a-z]+)\.html/g, `href="${PAGES}$1`);
@@ -621,22 +669,90 @@ ${liquidify(data)}
 `;
 }
 
+// Snippet que busca as fotos nas coleções da loja. É o ÚNICO lugar para
+// dizer qual coleção alimenta cada parte da Box.
+const SNIPPET_IMAGEM = `{%- comment -%}
+  ============================================================
+  FOTOS DA BOX VINDAS DAS COLEÇÕES DA LOJA
+  ------------------------------------------------------------
+  Troque os identificadores (handles) abaixo pelos das suas
+  coleções. O handle aparece na URL da coleção:
+  sualoja.com.br/collections/ESTE-AQUI
+  Se a coleção não existir ou não tiver produtos com foto,
+  a Box usa as fotos de reserva (assets camisa-*.webp).
+  ============================================================
+{%- endcomment -%}
+{%- case c -%}
+  {%- when 'retro' -%}{%- assign handle = 'retro' -%}
+  {%- when 'atual' -%}{%- assign handle = 'atual' -%}
+  {%- when 'selecoes' -%}{%- assign handle = 'selecoes' -%}
+  {%- when 'brasil' -%}{%- assign handle = 'brasil' -%}
+  {%- when 'classica' -%}{%- assign handle = 'classica' -%}
+  {%- when 'masculino' -%}{%- assign handle = 'masculino' -%}
+  {%- when 'feminino' -%}{%- assign handle = 'feminino' -%}
+  {%- when 'infantil' -%}{%- assign handle = 'infantil' -%}
+  {%- when 'casal' -%}{%- assign handle = 'casal' -%}
+{%- endcase -%}
+{%- comment -%}
+  Parâmetros: c = parte da Box (acima) · i = posição do produto (0 = primeiro)
+  p = true para miniatura · r = foto de reserva · rt = nome de reserva
+  campo: 'titulo' devolve o nome do produto · modo: 'img' (uma <img>) ou 'deck' (n fotos)
+{%- endcomment -%}
+{%- assign colecao = collections[handle] -%}
+{%- if p -%}{%- assign largura = 480 -%}{%- else -%}{%- assign largura = 1200 -%}{%- endif -%}
+
+{%- if modo == 'deck' -%}
+  {%- assign qtd = 0 -%}
+  {%- for produto in colecao.products limit: 24 -%}
+    {%- if produto.featured_image and qtd < n -%}
+      <img src="{{ produto.featured_image | image_url: width: 480 }}" alt="" loading="lazy" width="420" height="420">
+      {%- assign qtd = qtd | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- assign posicao = i | default: 0 -%}
+  {%- assign achou = false -%}
+  {%- assign k = 0 -%}
+  {%- for produto in colecao.products limit: 24 -%}
+    {%- if produto.featured_image -%}
+      {%- if k == posicao -%}{%- assign achou = produto -%}{%- break -%}{%- endif -%}
+      {%- assign k = k | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if modo == 'img' -%}
+    {%- if achou -%}<img src="{{ achou.featured_image | image_url: width: largura }}" alt="" loading="lazy" width="420" height="420">{%- endif -%}
+  {%- elsif campo == 'titulo' -%}
+    {%- if achou -%}{{ achou.title | replace: '"', '”' | escape }}{%- else -%}{{ rt }}{%- endif -%}
+  {%- elsif achou -%}
+    {{- achou.featured_image | image_url: width: largura -}}
+  {%- elsif r != blank -%}
+    {{- r | asset_url -}}
+  {%- endif -%}
+{%- endif -%}
+`;
+
 function copyAsset(from, name) {
   fs.copyFileSync(path.join(ROOT, from), path.join(SHOP, 'assets', name));
 }
 
 // Limpa só o que é gerado (o LEIA-ME.md da pasta fica)
-for (const d of ['layout', 'templates', 'assets']) {
+for (const d of ['layout', 'templates', 'assets', 'snippets']) {
   fs.rmSync(path.join(SHOP, d), { recursive: true, force: true });
   fs.mkdirSync(path.join(SHOP, d), { recursive: true });
 }
 
 fs.writeFileSync(path.join(SHOP, 'layout', 'box.liquid'), shopifyLayout(top, foot));
-const homeMain = index.slice(index.indexOf('<main>'), index.indexOf('</main>') + '</main>'.length);
+SHOPIFY_MODE = true;
+let homeMain = index.slice(index.indexOf('<main>'), index.indexOf('</main>') + '</main>'.length);
+homeMain = homeMain.slice(0, homeMain.indexOf(START) + START.length) + '\n' + shirtsGrid() + '\n' + homeMain.slice(homeMain.indexOf(END));
 fs.writeFileSync(path.join(SHOP, 'templates', 'page.box.liquid'), `{% layout 'box' %}\n\n${liquidify(homeMain)}\n`);
 for (const box of BOXES) {
   fs.writeFileSync(path.join(SHOP, 'templates', `page.${box.slug}.liquid`), shopifyBoxTemplate(box, page(box, top, foot)));
 }
+SHOPIFY_MODE = false;
+fs.mkdirSync(path.join(SHOP, 'snippets'), { recursive: true });
+fs.writeFileSync(path.join(SHOP, 'snippets', 'box-imagem.liquid'), SNIPPET_IMAGEM);
 
 for (const [from, name] of [
   ['css/global.css', 'box-global.css'], ['css/index.css', 'box-index.css'], ['css/box.css', 'box-product.css'],

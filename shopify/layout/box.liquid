@@ -87,15 +87,15 @@
     </nav>
     <div class="menu-label">Boxes</div>
     <div class="menu-boxes">
-      <a href="/pages/box-retro"><img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Retrô</span></a>
-      <a href="/pages/box-atual"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Atual</span></a>
-      <a href="/pages/box-selecoes"><img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Seleções</span></a>
-      <a href="/pages/box-brasil"><span class="menu-mystery mystery"><span data-icon="shirt"></span><b>?</b></span><span>Brasil</span></a>
-      <a href="/pages/box-classica"><img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Clássica</span></a>
-      <a href="/pages/box-masculino"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Masculino</span></a>
-      <a href="/pages/box-feminino"><img src="{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Feminino</span></a>
-      <a href="/pages/box-infantil"><img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Infantil</span></a>
-      <a href="/pages/box-casal"><img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><span>Casal</span></a>
+      <a href="/pages/box-retro"><img src="{% render 'box-imagem', c: 'retro', i: 0, p: true, r: 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' %}" alt="" loading="lazy" width="420" height="420"><span>Retrô</span></a>
+      <a href="/pages/box-atual"><img src="{% render 'box-imagem', c: 'atual', i: 0, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420"><span>Atual</span></a>
+      <a href="/pages/box-selecoes"><img src="{% render 'box-imagem', c: 'selecoes', i: 0, p: true, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420"><span>Seleções</span></a>
+      <a href="/pages/box-brasil">{%- capture foto -%}{% render 'box-imagem', c: 'brasil', modo: 'img', p: true %}{%- endcapture -%}{%- if foto != blank -%}{{ foto }}{%- else -%}<span class="menu-mystery mystery"><span data-icon="shirt"></span><b>?</b></span>{%- endif -%}<span>Brasil</span></a>
+      <a href="/pages/box-classica"><img src="{% render 'box-imagem', c: 'classica', i: 0, p: true, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' %}" alt="" loading="lazy" width="420" height="420"><span>Clássica</span></a>
+      <a href="/pages/box-masculino"><img src="{% render 'box-imagem', c: 'masculino', i: 0, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420"><span>Masculino</span></a>
+      <a href="/pages/box-feminino"><img src="{% render 'box-imagem', c: 'feminino', i: 0, p: true, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420"><span>Feminino</span></a>
+      <a href="/pages/box-infantil"><img src="{% render 'box-imagem', c: 'infantil', i: 0, p: true, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' %}" alt="" loading="lazy" width="420" height="420"><span>Infantil</span></a>
+      <a href="/pages/box-casal"><img src="{% render 'box-imagem', c: 'casal', i: 0, p: true, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' %}" alt="" loading="lazy" width="420" height="420"><span>Casal</span></a>
     </div>
     <div class="menu-foot">
       <a class="btn btn-white btn-block" href="/pages/box#quiz">Montar minha box <span class="arr">→</span></a>

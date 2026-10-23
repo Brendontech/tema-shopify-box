@@ -18,18 +18,18 @@
       <!-- Galeria -->
       <div class="gallery">
         <div class="mi has-photo" id="mi">
-          <img class="mi-photo" id="miPhoto" src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i.webp' | asset_url }}" alt="Alemanha 26/27" width="1000" height="1000">
+          <img class="mi-photo" id="miPhoto" src="{% render 'box-imagem', c: 'selecoes', i: 0, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i.webp' %}" alt="{% render 'box-imagem', c: 'selecoes', i: 0, campo: 'titulo', rt: 'Alemanha 26/27' %}" width="1000" height="1000">
           <div class="mi-fan" id="miFan" hidden></div>
           <div class="mi-tag">★ BOX SELEÇÕES ★</div>
           <div class="mi-off">32 PAÍSES</div>
-          <div class="mi-lbl" id="miLbl">Alemanha 26/27</div>
+          <div class="mi-lbl" id="miLbl">{% render 'box-imagem', c: 'selecoes', i: 0, campo: 'titulo', rt: 'Alemanha 26/27' %}</div>
           <div class="mi-sub" id="miSub">EXEMPLO DO ACERVO · A SUA É SURPRESA</div>
         </div>
         <div class="tbs" style="--n:4">
-          <button type="button" class="tb tb-photo on" data-src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i.webp' | asset_url }}" data-label="Alemanha 26/27" data-cover="0" aria-label="Alemanha 26/27"><img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
-          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i.webp' | asset_url }}" data-label="Senegal 26/27" data-cover="0" aria-label="Senegal 26/27"><img src="{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
-          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike.webp' | asset_url }}" data-label="Inglaterra 2013" data-cover="0" aria-label="Inglaterra 2013"><img src="{{ 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
-          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627.webp' | asset_url }}" data-label="Colômbia 26/27" data-cover="0" aria-label="Colômbia 26/27"><img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo on" data-src="{% render 'box-imagem', c: 'selecoes', i: 0, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i.webp' %}" data-label="{% render 'box-imagem', c: 'selecoes', i: 0, campo: 'titulo', rt: 'Alemanha 26/27' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'selecoes', i: 0, campo: 'titulo', rt: 'Alemanha 26/27' %}"><img src="{% render 'box-imagem', c: 'selecoes', i: 0, p: true, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{% render 'box-imagem', c: 'selecoes', i: 1, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i.webp' %}" data-label="{% render 'box-imagem', c: 'selecoes', i: 1, campo: 'titulo', rt: 'Senegal 26/27' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'selecoes', i: 1, campo: 'titulo', rt: 'Senegal 26/27' %}"><img src="{% render 'box-imagem', c: 'selecoes', i: 1, p: true, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{% render 'box-imagem', c: 'selecoes', i: 2, r: 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike.webp' %}" data-label="{% render 'box-imagem', c: 'selecoes', i: 2, campo: 'titulo', rt: 'Inglaterra 2013' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'selecoes', i: 2, campo: 'titulo', rt: 'Inglaterra 2013' %}"><img src="{% render 'box-imagem', c: 'selecoes', i: 2, p: true, r: 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{% render 'box-imagem', c: 'selecoes', i: 3, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627.webp' %}" data-label="{% render 'box-imagem', c: 'selecoes', i: 3, campo: 'titulo', rt: 'Colômbia 26/27' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'selecoes', i: 3, campo: 'titulo', rt: 'Colômbia 26/27' %}"><img src="{% render 'box-imagem', c: 'selecoes', i: 3, p: true, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
         </div>
         <div class="trust">
           <div><span class="trust-ico" data-icon="truck"></span>Frete grátis acima de R$ 299</div>
@@ -251,7 +251,7 @@
       </div>
       <div class="xs-grid" data-stagger="up">
       <a href="/pages/box-retro" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'retro', i: 0, p: true, r: 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Retrô</div>
           <div class="xs-desc">Camisas históricas de 1970 a 2020. Os clássicos que marcaram época.</div>
@@ -259,7 +259,7 @@
         <div class="xs-price"><s>R$ 289,97</s>R$ 174,00</div>
       </a>
       <a href="/pages/box-atual" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'atual', i: 0, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Atual</div>
           <div class="xs-desc">Temporada recente dos clubões e modelos fora do padrão.</div>
@@ -267,7 +267,7 @@
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
       </a>
       <a href="/pages/box-brasil" class="xs-card spotlight">
-        <span class="xs-photo xs-mystery"><span class="mystery"><span data-icon="shirt"></span><b>?</b></span></span>
+        <span class="xs-photo xs-mystery">{%- capture foto -%}{% render 'box-imagem', c: 'brasil', modo: 'img', p: true %}{%- endcapture -%}{%- if foto != blank -%}{{ foto }}{%- else -%}<span class="mystery"><span data-icon="shirt"></span><b>?</b></span>{%- endif -%}</span>
         <div>
           <div class="xs-name">Box Brasil</div>
           <div class="xs-desc">A amarelinha ou a azul. Das clássicas do tetra e do penta às mais recentes.</div>
@@ -275,7 +275,7 @@
         <div class="xs-price"><s>R$ 249,97</s>R$ 149,00</div>
       </a>
       <a href="/pages/box-classica" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'classica', i: 0, p: true, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Clássica</div>
           <div class="xs-desc">Retrô, atual, clubes e seleções — o equilíbrio perfeito.</div>
@@ -283,7 +283,7 @@
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
       </a>
       <a href="/pages/box-masculino" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'masculino', i: 0, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Masculino</div>
           <div class="xs-desc">Camisas masculinas de clubes e seleções do mundo todo.</div>
@@ -291,7 +291,7 @@
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
       </a>
       <a href="/pages/box-feminino" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-feminina-01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'feminino', i: 0, p: true, r: 'camisa-feminina-01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Feminino</div>
           <div class="xs-desc">Camisas com modelagem feminina, de clubes e seleções.</div>
@@ -299,7 +299,7 @@
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
       </a>
       <a href="/pages/box-infantil" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'infantil', i: 0, p: true, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Infantil</div>
           <div class="xs-desc">Kits e conjuntos infantis pra criar o próximo craque.</div>
@@ -307,7 +307,7 @@
         <div class="xs-price"><s>R$ 169,90</s>R$ 99,00</div>
       </a>
       <a href="/pages/box-casal" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'casal', i: 0, p: true, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Casal</div>
           <div class="xs-desc">Uma camisa masculina + uma feminina. Mistério em dobro.</div>
@@ -379,24 +379,24 @@
     "variants": null,
     "photos": [
       {
-        "src": "{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}",
-        "nome": "Alemanha 26/27"
+        "src": "{% render 'box-imagem', c: 'selecoes', i: 0, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'selecoes', i: 0, p: true, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'selecoes', i: 0, campo: 'titulo', rt: 'Alemanha 26/27' %}"
       },
       {
-        "src": "{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' | asset_url }}",
-        "nome": "Senegal 26/27"
+        "src": "{% render 'box-imagem', c: 'selecoes', i: 1, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'selecoes', i: 1, p: true, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'selecoes', i: 1, campo: 'titulo', rt: 'Senegal 26/27' %}"
       },
       {
-        "src": "{{ 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' | asset_url }}",
-        "nome": "Inglaterra 2013"
+        "src": "{% render 'box-imagem', c: 'selecoes', i: 2, r: 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'selecoes', i: 2, p: true, r: 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'selecoes', i: 2, campo: 'titulo', rt: 'Inglaterra 2013' %}"
       },
       {
-        "src": "{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}",
-        "nome": "Colômbia 26/27"
+        "src": "{% render 'box-imagem', c: 'selecoes', i: 3, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'selecoes', i: 3, p: true, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'selecoes', i: 3, campo: 'titulo', rt: 'Colômbia 26/27' %}"
       }
     ],
     "prices": [

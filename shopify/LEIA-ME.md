@@ -14,6 +14,7 @@ carrinho lateral e o rodapé da Box.
 | Pasta | Arquivos | Para que serve |
 |---|---|---|
 | `layout/` | `box.liquid` | Estrutura das páginas da Box (cabeçalho, busca, menu, rodapé) |
+| `snippets/` | `box-imagem.liquid` | Puxa as fotos das **coleções da loja** (é aqui que você escolhe as coleções) |
 | `templates/` | `page.box.liquid` | Home da Box |
 | `templates/` | `page.box-retro.liquid` … `page.box-casal.liquid` | Uma página para cada box (9) |
 | `assets/` | `box-*.css`, `box-*.js`, `box-busca.json`, `box-logo-branca.png`, `camisa-*.webp` | Estilos, scripts, índice da busca e fotos |
@@ -33,12 +34,36 @@ O `--nodelete` garante que só esses arquivos são enviados e **nada do tema é 
 
 **Opção B — pelo painel (Editar código):** na cópia, **⋯ → Editar código**.
 - **Layout → Adicionar um novo layout** → nome `box` → apague o conteúdo e cole o de `layout/box.liquid`.
+- **Snippets → Adicionar um novo snippet** → nome `box-imagem` → cole o de `snippets/box-imagem.liquid`.
 - **Templates → Adicionar um novo modelo** → tipo **page**, formato **liquid**, nome `box` → cole `templates/page.box.liquid`.
   Repita para cada box: `box-retro`, `box-atual`, `box-selecoes`, `box-brasil`, `box-classica`,
   `box-masculino`, `box-feminino`, `box-infantil`, `box-casal`.
 - **Assets → Adicionar um novo asset** → envie todos os arquivos da pasta `assets/` (dá para selecionar vários).
 
-### 3. Crie os produtos (um por box)
+### 3. Diga de quais coleções vêm as fotos
+As fotos de camisas da Box (carrossel, "Camisas que podem vir", "Pra quem é o manto",
+galeria de cada box, menu…) são a **foto principal dos produtos das suas coleções**.
+Quando a loja muda os produtos, a Box muda junto — não precisa subir imagem nenhuma.
+
+Abra `snippets/box-imagem.liquid` e troque, no topo, o handle de cada coleção:
+
+| Parte da Box | Linha no snippet | Onde aparece |
+|---|---|---|
+| Retrô | `when 'retro'` | Box Retrô, aba "Retrô" de "Camisas que podem vir", topo da página |
+| Atual | `when 'atual'` | Box Atual |
+| Seleções | `when 'selecoes'` | Box Seleções |
+| Brasil | `when 'brasil'` | Box Brasil |
+| Clássica | `when 'classica'` | Box Clássica |
+| Masculino | `when 'masculino'` | Box Masculino, aba "Masculina", "Pra quem é o manto" |
+| Feminino | `when 'feminino'` | Box Feminino, aba "Feminina" |
+| Infantil | `when 'infantil'` | Box Infantil, aba "Infantil" |
+| Casal | `when 'casal'` | Box Casal |
+
+O handle é o final da URL da coleção: `sualoja.com.br/collections/`**`este-aqui`**.
+São usados os primeiros produtos com foto de cada coleção (até 5, na ordem da coleção).
+Coleção que não existir ou estiver vazia → a Box mostra as fotos de reserva (`camisa-*.webp`).
+
+### 4. Crie os produtos (um por box)
 **Produtos → Adicionar produto.** O **identificador (handle)** precisa ser exatamente este,
 porque é por ele que a página encontra o produto, os preços e as variantes:
 
@@ -59,7 +84,7 @@ porque é por ele que a página encontra o produto, os preços e as variantes:
   do item (aparece no pedido como "Tamanhos: Camisa 1: G · Camisa 2: M…").
 - O handle fica em **Produto → Listagem do mecanismo de pesquisa → Editar → Identificador do URL**.
 
-### 4. Crie as páginas
+### 5. Crie as páginas
 **Loja virtual → Páginas → Adicionar página.**
 
 | Título | Identificador do URL (handle) | Modelo |
@@ -80,10 +105,10 @@ O conteúdo da página pode ficar vazio. O modelo escolhe-se no canto direito ("
 > As páginas só oferecem esses modelos se a cópia do tema for a que está **publicada**.
 > Para testar antes: use **Pré-visualizar** na cópia do tema e abra `/pages/box`.
 
-### 5. Coloque a Box no menu da loja
+### 6. Coloque a Box no menu da loja
 **Loja virtual → Navegação → Menu principal → Adicionar item → link `/pages/box`.**
 
-### 6. Teste e publique
+### 7. Teste e publique
 Abra `/pages/box` na pré-visualização da cópia, escolha uma box, um tamanho, adicione
 ao carrinho e clique em **Finalizar compra**. Estando tudo certo: **Temas → Publicar** a cópia.
 

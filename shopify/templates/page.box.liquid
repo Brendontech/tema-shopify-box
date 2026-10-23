@@ -29,10 +29,10 @@
         <div class="rv-motes" id="rvMotes"></div>
       </div>
       <div class="rv-shirts" aria-hidden="true">
-        <div class="rv-shirt far" style="--x:-38cqw;--y:15cqw;--r:-12deg;--delay:.1s"><div class="rv-card"><img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" width="420" height="420"></div></div>
-        <div class="rv-shirt" style="--x:-19cqw;--y:2cqw;--r:-6deg;--delay:0s"><div class="rv-card"><img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" width="420" height="420"></div></div>
-        <div class="rv-shirt" style="--x:19cqw;--y:2cqw;--r:6deg;--delay:.05s"><div class="rv-card"><img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="" width="420" height="420"></div></div>
-        <div class="rv-shirt far" style="--x:38cqw;--y:15cqw;--r:12deg;--delay:.15s"><div class="rv-card"><img src="{{ 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp' | asset_url }}" alt="" width="420" height="420"></div></div>
+        <div class="rv-shirt far" style="--x:-38cqw;--y:15cqw;--r:-12deg;--delay:.1s"><div class="rv-card"><img src="{% render 'box-imagem', c: 'retro', i: 4, p: true, r: 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' %}" alt="" width="420" height="420"></div></div>
+        <div class="rv-shirt" style="--x:-19cqw;--y:2cqw;--r:-6deg;--delay:0s"><div class="rv-card"><img src="{% render 'box-imagem', c: 'retro', i: 0, p: true, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' %}" alt="" width="420" height="420"></div></div>
+        <div class="rv-shirt" style="--x:19cqw;--y:2cqw;--r:6deg;--delay:.05s"><div class="rv-card"><img src="{% render 'box-imagem', c: 'feminino', i: 2, p: true, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' %}" alt="" width="420" height="420"></div></div>
+        <div class="rv-shirt far" style="--x:38cqw;--y:15cqw;--r:12deg;--delay:.15s"><div class="rv-card"><img src="{% render 'box-imagem', c: 'retro', i: 1, p: true, r: 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp' %}" alt="" width="420" height="420"></div></div>
       </div>
       <div class="rv-sparks" id="rvSparks" aria-hidden="true"></div>
       <button type="button" class="rv-box" id="rvBox" aria-label="Abrir a caixa misteriosa">
@@ -85,84 +85,84 @@
     <div class="shirt-grid" id="shirtGrid">
 <!-- CAMISAS:INICIO -->
       <figure class="shirt-card" data-cat="retro">
-        <div class="shirt-img"><img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="Juventus — Retrô · listrada" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Juventus</span><span class="shirt-det">Retrô · listrada</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'retro', i: 0, p: true, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' %}" data-full="{% render 'box-imagem', c: 'retro', i: 0, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca.webp' %}" alt="{% render 'box-imagem', c: 'retro', i: 0, campo: 'titulo', rt: 'Juventus' %} — Retrô" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'retro', i: 0, campo: 'titulo', rt: 'Juventus' %}</span><span class="shirt-det">Retrô</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="retro">
-        <div class="shirt-img"><img src="{{ 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp' | asset_url }}" alt="Manchester United 98/99 — Retrô · Umbro" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Manchester United 98/99</span><span class="shirt-det">Retrô · Umbro</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'retro', i: 1, p: true, r: 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp' %}" data-full="{% render 'box-imagem', c: 'retro', i: 1, r: 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina.webp' %}" alt="{% render 'box-imagem', c: 'retro', i: 1, campo: 'titulo', rt: 'Manchester United 98/99' %} — Retrô" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'retro', i: 1, campo: 'titulo', rt: 'Manchester United 98/99' %}</span><span class="shirt-det">Retrô</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="retro">
-        <div class="shirt-img"><img src="{{ 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' | asset_url }}" alt="Inglaterra 2013 — Retrô · seleção" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Inglaterra 2013</span><span class="shirt-det">Retrô · seleção</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'retro', i: 2, p: true, r: 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' %}" data-full="{% render 'box-imagem', c: 'retro', i: 2, r: 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike.webp' %}" alt="{% render 'box-imagem', c: 'retro', i: 2, campo: 'titulo', rt: 'Inglaterra 2013' %} — Retrô" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'retro', i: 2, campo: 'titulo', rt: 'Inglaterra 2013' %}</span><span class="shirt-det">Retrô</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="retro">
-        <div class="shirt-img"><img src="{{ 'camisa-retro-04-camisa-inter-de-milao-retro-0405-masculino-p.webp' | asset_url }}" alt="Inter de Milão 04/05 — Retrô · Nike" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Inter de Milão 04/05</span><span class="shirt-det">Retrô · Nike</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'retro', i: 3, p: true, r: 'camisa-retro-04-camisa-inter-de-milao-retro-0405-masculino-p.webp' %}" data-full="{% render 'box-imagem', c: 'retro', i: 3, r: 'camisa-retro-04-camisa-inter-de-milao-retro-0405-masculino.webp' %}" alt="{% render 'box-imagem', c: 'retro', i: 3, campo: 'titulo', rt: 'Inter de Milão 04/05' %} — Retrô" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'retro', i: 3, campo: 'titulo', rt: 'Inter de Milão 04/05' %}</span><span class="shirt-det">Retrô</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="retro">
-        <div class="shirt-img"><img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="Flamengo 92/93 — Retrô · home" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Flamengo 92/93</span><span class="shirt-det">Retrô · home</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'retro', i: 4, p: true, r: 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' %}" data-full="{% render 'box-imagem', c: 'retro', i: 4, r: 'camisa-retro-05-flamengo-retro-19921993-home.webp' %}" alt="{% render 'box-imagem', c: 'retro', i: 4, campo: 'titulo', rt: 'Flamengo 92/93' %} — Retrô" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'retro', i: 4, campo: 'titulo', rt: 'Flamengo 92/93' %}</span><span class="shirt-det">Retrô</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="masculina">
-        <div class="shirt-img"><img src="{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta-p.webp' | asset_url }}" alt="Orlando Magic — Regata NBA" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Orlando Magic</span><span class="shirt-det">Regata NBA</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'masculino', i: 0, p: true, r: 'camisa-masculina-01-regata-orlando-magic-masculina-preta-p.webp' %}" data-full="{% render 'box-imagem', c: 'masculino', i: 0, r: 'camisa-masculina-01-regata-orlando-magic-masculina-preta.webp' %}" alt="{% render 'box-imagem', c: 'masculino', i: 0, campo: 'titulo', rt: 'Orlando Magic' %} — Masculina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'masculino', i: 0, campo: 'titulo', rt: 'Orlando Magic' %}</span><span class="shirt-det">Masculina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="masculina">
-        <div class="shirt-img"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="Chelsea 23/24 — Masculina · home" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Chelsea 23/24</span><span class="shirt-det">Masculina · home</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'masculino', i: 1, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" data-full="{% render 'box-imagem', c: 'masculino', i: 1, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' %}" alt="{% render 'box-imagem', c: 'masculino', i: 1, campo: 'titulo', rt: 'Chelsea 23/24' %} — Masculina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'masculino', i: 1, campo: 'titulo', rt: 'Chelsea 23/24' %}</span><span class="shirt-det">Masculina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="masculina">
-        <div class="shirt-img"><img src="{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' | asset_url }}" alt="Grêmio 24/25 — Masculina · torcedor" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Grêmio 24/25</span><span class="shirt-det">Masculina · torcedor</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'masculino', i: 2, p: true, r: 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' %}" data-full="{% render 'box-imagem', c: 'masculino', i: 2, r: 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr.webp' %}" alt="{% render 'box-imagem', c: 'masculino', i: 2, campo: 'titulo', rt: 'Grêmio 24/25' %} — Masculina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'masculino', i: 2, campo: 'titulo', rt: 'Grêmio 24/25' %}</span><span class="shirt-det">Masculina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="masculina">
-        <div class="shirt-img"><img src="{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' | asset_url }}" alt="São Paulo 25/26 — Masculina · goleiro" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">São Paulo 25/26</span><span class="shirt-det">Masculina · goleiro</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'masculino', i: 3, p: true, r: 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' %}" data-full="{% render 'box-imagem', c: 'masculino', i: 3, r: 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home.webp' %}" alt="{% render 'box-imagem', c: 'masculino', i: 3, campo: 'titulo', rt: 'São Paulo 25/26' %} — Masculina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'masculino', i: 3, campo: 'titulo', rt: 'São Paulo 25/26' %}</span><span class="shirt-det">Masculina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="masculina">
-        <div class="shirt-img"><img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="Atlético de Madrid 25/26 — Masculina · pré-jogo" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Atlético de Madrid 25/26</span><span class="shirt-det">Masculina · pré-jogo</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'masculino', i: 4, p: true, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' %}" data-full="{% render 'box-imagem', c: 'masculino', i: 4, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo.webp' %}" alt="{% render 'box-imagem', c: 'masculino', i: 4, campo: 'titulo', rt: 'Atlético de Madrid 25/26' %} — Masculina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'masculino', i: 4, campo: 'titulo', rt: 'Atlético de Madrid 25/26' %}</span><span class="shirt-det">Masculina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="feminina">
-        <div class="shirt-img"><img src="{{ 'camisa-feminina-01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp' | asset_url }}" alt="Atlético de Madrid 25/26 — Feminina · torcedor" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Atlético de Madrid 25/26</span><span class="shirt-det">Feminina · torcedor</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'feminino', i: 0, p: true, r: 'camisa-feminina-01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp' %}" data-full="{% render 'box-imagem', c: 'feminino', i: 0, r: 'camisa-feminina-01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor.webp' %}" alt="{% render 'box-imagem', c: 'feminino', i: 0, campo: 'titulo', rt: 'Atlético de Madrid 25/26' %} — Feminina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'feminino', i: 0, campo: 'titulo', rt: 'Atlético de Madrid 25/26' %}</span><span class="shirt-det">Feminina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="feminina">
-        <div class="shirt-img"><img src="{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' | asset_url }}" alt="Senegal 26/27 — Feminina · seleção" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Senegal 26/27</span><span class="shirt-det">Feminina · seleção</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'feminino', i: 1, p: true, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' %}" data-full="{% render 'box-imagem', c: 'feminino', i: 1, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i.webp' %}" alt="{% render 'box-imagem', c: 'feminino', i: 1, campo: 'titulo', rt: 'Senegal 26/27' %} — Feminina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'feminino', i: 1, campo: 'titulo', rt: 'Senegal 26/27' %}</span><span class="shirt-det">Feminina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="feminina">
-        <div class="shirt-img"><img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="Alemanha 26/27 — Feminina · seleção" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Alemanha 26/27</span><span class="shirt-det">Feminina · seleção</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'feminino', i: 2, p: true, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' %}" data-full="{% render 'box-imagem', c: 'feminino', i: 2, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i.webp' %}" alt="{% render 'box-imagem', c: 'feminino', i: 2, campo: 'titulo', rt: 'Alemanha 26/27' %} — Feminina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'feminino', i: 2, campo: 'titulo', rt: 'Alemanha 26/27' %}</span><span class="shirt-det">Feminina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="feminina">
-        <div class="shirt-img"><img src="{{ 'camisa-feminina-04-camisa-bahia-2425-uniforme-2-jogo-feminina-p.webp' | asset_url }}" alt="Bahia 24/25 — Feminina · uniforme 2" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Bahia 24/25</span><span class="shirt-det">Feminina · uniforme 2</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'feminino', i: 3, p: true, r: 'camisa-feminina-04-camisa-bahia-2425-uniforme-2-jogo-feminina-p.webp' %}" data-full="{% render 'box-imagem', c: 'feminino', i: 3, r: 'camisa-feminina-04-camisa-bahia-2425-uniforme-2-jogo-feminina.webp' %}" alt="{% render 'box-imagem', c: 'feminino', i: 3, campo: 'titulo', rt: 'Bahia 24/25' %} — Feminina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'feminino', i: 3, campo: 'titulo', rt: 'Bahia 24/25' %}</span><span class="shirt-det">Feminina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="feminina">
-        <div class="shirt-img"><img src="{{ 'camisa-feminina-05-camisa-cruzeiro-ii-202627-torcedor-adidas-feminina-brancoazu-p.webp' | asset_url }}" alt="Cruzeiro 26/27 — Feminina · uniforme 2" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Cruzeiro 26/27</span><span class="shirt-det">Feminina · uniforme 2</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'feminino', i: 4, p: true, r: 'camisa-feminina-05-camisa-cruzeiro-ii-202627-torcedor-adidas-feminina-brancoazu-p.webp' %}" data-full="{% render 'box-imagem', c: 'feminino', i: 4, r: 'camisa-feminina-05-camisa-cruzeiro-ii-202627-torcedor-adidas-feminina-brancoazu.webp' %}" alt="{% render 'box-imagem', c: 'feminino', i: 4, campo: 'titulo', rt: 'Cruzeiro 26/27' %} — Feminina" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'feminino', i: 4, campo: 'titulo', rt: 'Cruzeiro 26/27' %}</span><span class="shirt-det">Feminina</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="infantil">
-        <div class="shirt-img"><img src="{{ 'camisa-infantil-01-kit-infantil-atletico-de-madrid-l-2425-p.webp' | asset_url }}" alt="Atlético de Madrid 24/25 — Kit infantil" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Atlético de Madrid 24/25</span><span class="shirt-det">Kit infantil</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'infantil', i: 0, p: true, r: 'camisa-infantil-01-kit-infantil-atletico-de-madrid-l-2425-p.webp' %}" data-full="{% render 'box-imagem', c: 'infantil', i: 0, r: 'camisa-infantil-01-kit-infantil-atletico-de-madrid-l-2425.webp' %}" alt="{% render 'box-imagem', c: 'infantil', i: 0, campo: 'titulo', rt: 'Atlético de Madrid 24/25' %} — Infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'infantil', i: 0, campo: 'titulo', rt: 'Atlético de Madrid 24/25' %}</span><span class="shirt-det">Infantil</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="infantil">
-        <div class="shirt-img"><img src="{{ 'camisa-infantil-02-conjunto-infantil-aston-villa-home-2425-vinho-p.webp' | asset_url }}" alt="Aston Villa 24/25 — Conjunto infantil" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Aston Villa 24/25</span><span class="shirt-det">Conjunto infantil</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'infantil', i: 1, p: true, r: 'camisa-infantil-02-conjunto-infantil-aston-villa-home-2425-vinho-p.webp' %}" data-full="{% render 'box-imagem', c: 'infantil', i: 1, r: 'camisa-infantil-02-conjunto-infantil-aston-villa-home-2425-vinho.webp' %}" alt="{% render 'box-imagem', c: 'infantil', i: 1, campo: 'titulo', rt: 'Aston Villa 24/25' %} — Infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'infantil', i: 1, campo: 'titulo', rt: 'Aston Villa 24/25' %}</span><span class="shirt-det">Infantil</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="infantil">
-        <div class="shirt-img"><img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="Colômbia 26/27 — Conjunto infantil" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Colômbia 26/27</span><span class="shirt-det">Conjunto infantil</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'infantil', i: 2, p: true, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' %}" data-full="{% render 'box-imagem', c: 'infantil', i: 2, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627.webp' %}" alt="{% render 'box-imagem', c: 'infantil', i: 2, campo: 'titulo', rt: 'Colômbia 26/27' %} — Infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'infantil', i: 2, campo: 'titulo', rt: 'Colômbia 26/27' %}</span><span class="shirt-det">Infantil</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="infantil">
-        <div class="shirt-img"><img src="{{ 'camisa-infantil-04-kit-infantil-borussia-dortmund-2324-amarelopreto-p.webp' | asset_url }}" alt="Borussia Dortmund 23/24 — Kit infantil" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Borussia Dortmund 23/24</span><span class="shirt-det">Kit infantil</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'infantil', i: 3, p: true, r: 'camisa-infantil-04-kit-infantil-borussia-dortmund-2324-amarelopreto-p.webp' %}" data-full="{% render 'box-imagem', c: 'infantil', i: 3, r: 'camisa-infantil-04-kit-infantil-borussia-dortmund-2324-amarelopreto.webp' %}" alt="{% render 'box-imagem', c: 'infantil', i: 3, campo: 'titulo', rt: 'Borussia Dortmund 23/24' %} — Infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'infantil', i: 3, campo: 'titulo', rt: 'Borussia Dortmund 23/24' %}</span><span class="shirt-det">Infantil</span></figcaption>
       </figure>
       <figure class="shirt-card" data-cat="infantil">
-        <div class="shirt-img"><img src="{{ 'camisa-infantil-05-conjunto-infantil-borussia-dortmund-202627-p.webp' | asset_url }}" alt="Borussia Dortmund 26/27 — Conjunto infantil" loading="lazy" width="420" height="420"></div>
-        <figcaption><span class="shirt-name">Borussia Dortmund 26/27</span><span class="shirt-det">Conjunto infantil</span></figcaption>
+        <div class="shirt-img"><img src="{% render 'box-imagem', c: 'infantil', i: 4, p: true, r: 'camisa-infantil-05-conjunto-infantil-borussia-dortmund-202627-p.webp' %}" data-full="{% render 'box-imagem', c: 'infantil', i: 4, r: 'camisa-infantil-05-conjunto-infantil-borussia-dortmund-202627.webp' %}" alt="{% render 'box-imagem', c: 'infantil', i: 4, campo: 'titulo', rt: 'Borussia Dortmund 26/27' %} — Infantil" loading="lazy" width="420" height="420"></div>
+        <figcaption><span class="shirt-name">{% render 'box-imagem', c: 'infantil', i: 4, campo: 'titulo', rt: 'Borussia Dortmund 26/27' %}</span><span class="shirt-det">Infantil</span></figcaption>
       </figure>
 <!-- CAMISAS:FIM -->
     </div>
@@ -204,11 +204,11 @@
           <span class="bx-visual">
             <span class="bx-ring" aria-hidden="true"></span>
           <span class="bx-deck">
-            <img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-retro-04-camisa-inter-de-milao-retro-0405-masculino-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'retro', i: 0, p: true, r: 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'retro', i: 1, p: true, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'retro', i: 2, p: true, r: 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'retro', i: 3, p: true, r: 'camisa-retro-04-camisa-inter-de-milao-retro-0405-masculino-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'retro', i: 4, p: true, r: 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' %}" alt="" loading="lazy" width="420" height="420">
           </span>
           </span>
           <span class="bx-body">
@@ -228,11 +228,11 @@
           <span class="bx-visual">
             <span class="bx-ring" aria-hidden="true"></span>
           <span class="bx-deck">
-            <img src="{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-feminina-05-camisa-cruzeiro-ii-202627-torcedor-adidas-feminina-brancoazu-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'atual', i: 0, p: true, r: 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'atual', i: 1, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'atual', i: 2, p: true, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'atual', i: 3, p: true, r: 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'atual', i: 4, p: true, r: 'camisa-feminina-05-camisa-cruzeiro-ii-202627-torcedor-adidas-feminina-brancoazu-p.webp' %}" alt="" loading="lazy" width="420" height="420">
           </span>
           </span>
           <span class="bx-body">
@@ -252,10 +252,10 @@
           <span class="bx-visual">
             <span class="bx-ring" aria-hidden="true"></span>
           <span class="bx-deck">
-            <img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'selecoes', i: 0, p: true, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'selecoes', i: 1, p: true, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'selecoes', i: 2, p: true, r: 'camisa-retro-03-camisa-inglaterra-retro-2013-branca-nike-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'selecoes', i: 3, p: true, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' %}" alt="" loading="lazy" width="420" height="420">
           </span>
           </span>
           <span class="bx-body">
@@ -274,7 +274,7 @@
           <span class="bx-top"><span class="bx-num">04</span><span class="bx-off">-40%</span></span>
           <span class="bx-visual">
             <span class="bx-ring" aria-hidden="true"></span>
-          <span class="bx-deck bx-deck-mystery"><span class="mystery"><span data-icon="shirt"></span><b>?</b></span></span>
+          {%- capture deck -%}{% render 'box-imagem', c: 'brasil', modo: 'deck', n: 5 %}{%- endcapture -%}{%- if deck != blank -%}<span class="bx-deck">{{ deck }}</span>{%- else -%}<span class="bx-deck bx-deck-mystery"><span class="mystery"><span data-icon="shirt"></span><b>?</b></span></span>{%- endif -%}
           </span>
           <span class="bx-body">
             <span class="bx-kick">Amarelinha e azul</span>
@@ -293,11 +293,11 @@
           <span class="bx-visual">
             <span class="bx-ring" aria-hidden="true"></span>
           <span class="bx-deck">
-            <img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-            <img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'classica', i: 0, p: true, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'classica', i: 1, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'classica', i: 2, p: true, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'classica', i: 3, p: true, r: 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+            <img src="{% render 'box-imagem', c: 'classica', i: 4, p: true, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' %}" alt="" loading="lazy" width="420" height="420">
           </span>
           </span>
           <span class="bx-body">
@@ -325,19 +325,19 @@
     </div>
     <div class="fit-grid" data-stagger="up">
       <a href="/pages/box-masculino" class="fit-card spotlight">
-        <div class="fit-img"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></div>
+        <div class="fit-img"><img src="{% render 'box-imagem', c: 'masculino', i: 0, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420"></div>
         <div class="fit-body"><span class="fit-kicker">Ele</span><div class="fit-name">Box Masculino</div><div class="fit-price">a partir de <b>R$ 119</b></div></div>
       </a>
       <a href="/pages/box-feminino" class="fit-card spotlight">
-        <div class="fit-img"><img src="{{ 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></div>
+        <div class="fit-img"><img src="{% render 'box-imagem', c: 'feminino', i: 0, p: true, r: 'camisa-feminina-02-camisa-feminina-senegal-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420"></div>
         <div class="fit-body"><span class="fit-kicker">Ela</span><div class="fit-name">Box Feminino</div><div class="fit-price">a partir de <b>R$ 119</b></div></div>
       </a>
       <a href="/pages/box-infantil" class="fit-card spotlight">
-        <div class="fit-img"><img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></div>
+        <div class="fit-img"><img src="{% render 'box-imagem', c: 'infantil', i: 0, p: true, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' %}" alt="" loading="lazy" width="420" height="420"></div>
         <div class="fit-body"><span class="fit-kicker">Kids</span><div class="fit-name">Box Infantil</div><div class="fit-price">a partir de <b>R$ 99</b></div></div>
       </a>
       <a href="/pages/box-casal" class="fit-card spotlight">
-        <div class="fit-img fit-pair"><img src="{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"><img src="{{ 'camisa-feminina-05-camisa-cruzeiro-ii-202627-torcedor-adidas-feminina-brancoazu-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></div>
+        <div class="fit-img fit-pair"><img src="{% render 'box-imagem', c: 'casal', i: 0, p: true, r: 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' %}" alt="" loading="lazy" width="420" height="420"><img src="{% render 'box-imagem', c: 'casal', i: 1, p: true, r: 'camisa-feminina-05-camisa-cruzeiro-ii-202627-torcedor-adidas-feminina-brancoazu-p.webp' %}" alt="" loading="lazy" width="420" height="420"></div>
         <div class="fit-body"><span class="fit-kicker">Ele + Ela</span><div class="fit-name">Box Casal</div><div class="fit-price">a partir de <b>R$ 219</b> o par</div></div>
       </a>
     </div>
@@ -397,10 +397,10 @@
   <div class="container">
     <div class="cta-banner" data-reveal="scale">
       <div class="cta-shirts" aria-hidden="true">
-        <img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-        <img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-        <img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
-        <img src="{{ 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420">
+        <img src="{% render 'box-imagem', c: 'retro', i: 4, p: true, r: 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+        <img src="{% render 'box-imagem', c: 'retro', i: 0, p: true, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+        <img src="{% render 'box-imagem', c: 'masculino', i: 1, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420">
+        <img src="{% render 'box-imagem', c: 'retro', i: 1, p: true, r: 'camisa-retro-02-camisa-manchester-united-home-1-199899-umbro-retro-masculina-p.webp' %}" alt="" loading="lazy" width="420" height="420">
       </div>
       <h2 class="cta-title">O manto está esperando por você.</h2>
       <p class="cta-sub">Mais de 9 mil camisas entregues. A sua é a próxima.</p>

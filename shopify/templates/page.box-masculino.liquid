@@ -18,19 +18,19 @@
       <!-- Galeria -->
       <div class="gallery">
         <div class="mi has-photo" id="mi">
-          <img class="mi-photo" id="miPhoto" src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' | asset_url }}" alt="Chelsea 23/24" width="1000" height="1000">
+          <img class="mi-photo" id="miPhoto" src="{% render 'box-imagem', c: 'masculino', i: 0, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' %}" alt="{% render 'box-imagem', c: 'masculino', i: 0, campo: 'titulo', rt: 'Chelsea 23/24' %}" width="1000" height="1000">
           <div class="mi-fan" id="miFan" hidden></div>
           <div class="mi-tag">★ BOX MASCULINO ★</div>
           <div class="mi-off">MODELAGEM MASCULINA</div>
-          <div class="mi-lbl" id="miLbl">Chelsea 23/24</div>
+          <div class="mi-lbl" id="miLbl">{% render 'box-imagem', c: 'masculino', i: 0, campo: 'titulo', rt: 'Chelsea 23/24' %}</div>
           <div class="mi-sub" id="miSub">EXEMPLO DO ACERVO · A SUA É SURPRESA</div>
         </div>
         <div class="tbs" style="--n:5">
-          <button type="button" class="tb tb-photo on" data-src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' | asset_url }}" data-label="Chelsea 23/24" data-cover="0" aria-label="Chelsea 23/24"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
-          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo.webp' | asset_url }}" data-label="Atlético de Madrid 25/26" data-cover="0" aria-label="Atlético de Madrid 25/26"><img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
-          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr.webp' | asset_url }}" data-label="Grêmio 24/25" data-cover="0" aria-label="Grêmio 24/25"><img src="{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
-          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home.webp' | asset_url }}" data-label="São Paulo 25/26" data-cover="0" aria-label="São Paulo 25/26"><img src="{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
-          <button type="button" class="tb tb-photo" data-src="{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta.webp' | asset_url }}" data-label="Orlando Magic" data-cover="0" aria-label="Orlando Magic"><img src="{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo on" data-src="{% render 'box-imagem', c: 'masculino', i: 0, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' %}" data-label="{% render 'box-imagem', c: 'masculino', i: 0, campo: 'titulo', rt: 'Chelsea 23/24' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'masculino', i: 0, campo: 'titulo', rt: 'Chelsea 23/24' %}"><img src="{% render 'box-imagem', c: 'masculino', i: 0, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{% render 'box-imagem', c: 'masculino', i: 1, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo.webp' %}" data-label="{% render 'box-imagem', c: 'masculino', i: 1, campo: 'titulo', rt: 'Atlético de Madrid 25/26' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'masculino', i: 1, campo: 'titulo', rt: 'Atlético de Madrid 25/26' %}"><img src="{% render 'box-imagem', c: 'masculino', i: 1, p: true, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{% render 'box-imagem', c: 'masculino', i: 2, r: 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr.webp' %}" data-label="{% render 'box-imagem', c: 'masculino', i: 2, campo: 'titulo', rt: 'Grêmio 24/25' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'masculino', i: 2, campo: 'titulo', rt: 'Grêmio 24/25' %}"><img src="{% render 'box-imagem', c: 'masculino', i: 2, p: true, r: 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{% render 'box-imagem', c: 'masculino', i: 3, r: 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home.webp' %}" data-label="{% render 'box-imagem', c: 'masculino', i: 3, campo: 'titulo', rt: 'São Paulo 25/26' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'masculino', i: 3, campo: 'titulo', rt: 'São Paulo 25/26' %}"><img src="{% render 'box-imagem', c: 'masculino', i: 3, p: true, r: 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
+          <button type="button" class="tb tb-photo" data-src="{% render 'box-imagem', c: 'masculino', i: 4, r: 'camisa-masculina-01-regata-orlando-magic-masculina-preta.webp' %}" data-label="{% render 'box-imagem', c: 'masculino', i: 4, campo: 'titulo', rt: 'Orlando Magic' %}" data-cover="0" aria-label="{% render 'box-imagem', c: 'masculino', i: 4, campo: 'titulo', rt: 'Orlando Magic' %}"><img src="{% render 'box-imagem', c: 'masculino', i: 4, p: true, r: 'camisa-masculina-01-regata-orlando-magic-masculina-preta-p.webp' %}" alt="" loading="lazy" width="420" height="420"></button>
         </div>
         <div class="trust">
           <div><span class="trust-ico" data-icon="truck"></span>Frete grátis acima de R$ 299</div>
@@ -251,7 +251,7 @@
       </div>
       <div class="xs-grid" data-stagger="up">
       <a href="/pages/box-retro" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'retro', i: 0, p: true, r: 'camisa-retro-05-flamengo-retro-19921993-home-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Retrô</div>
           <div class="xs-desc">Camisas históricas de 1970 a 2020. Os clássicos que marcaram época.</div>
@@ -259,7 +259,7 @@
         <div class="xs-price"><s>R$ 289,97</s>R$ 174,00</div>
       </a>
       <a href="/pages/box-atual" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'atual', i: 0, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Atual</div>
           <div class="xs-desc">Temporada recente dos clubões e modelos fora do padrão.</div>
@@ -267,7 +267,7 @@
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
       </a>
       <a href="/pages/box-selecoes" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'selecoes', i: 0, p: true, r: 'camisa-feminina-03-camisa-feminina-alemanha-202627-i-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Seleções</div>
           <div class="xs-desc">Do Japão à Jamaica — seleções que ninguém tem.</div>
@@ -275,7 +275,7 @@
         <div class="xs-price"><s>R$ 249,97</s>R$ 149,00</div>
       </a>
       <a href="/pages/box-brasil" class="xs-card spotlight">
-        <span class="xs-photo xs-mystery"><span class="mystery"><span data-icon="shirt"></span><b>?</b></span></span>
+        <span class="xs-photo xs-mystery">{%- capture foto -%}{% render 'box-imagem', c: 'brasil', modo: 'img', p: true %}{%- endcapture -%}{%- if foto != blank -%}{{ foto }}{%- else -%}<span class="mystery"><span data-icon="shirt"></span><b>?</b></span>{%- endif -%}</span>
         <div>
           <div class="xs-name">Box Brasil</div>
           <div class="xs-desc">A amarelinha ou a azul. Das clássicas do tetra e do penta às mais recentes.</div>
@@ -283,7 +283,7 @@
         <div class="xs-price"><s>R$ 249,97</s>R$ 149,00</div>
       </a>
       <a href="/pages/box-classica" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'classica', i: 0, p: true, r: 'camisa-retro-01-camisa-juventus-retro-2010-preta-e-branca-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Clássica</div>
           <div class="xs-desc">Retrô, atual, clubes e seleções — o equilíbrio perfeito.</div>
@@ -291,7 +291,7 @@
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
       </a>
       <a href="/pages/box-feminino" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-feminina-01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'feminino', i: 0, p: true, r: 'camisa-feminina-01-camisa-feminina-nike-atletico-madrid-202526-i-torcedor-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Feminino</div>
           <div class="xs-desc">Camisas com modelagem feminina, de clubes e seleções.</div>
@@ -299,7 +299,7 @@
         <div class="xs-price"><s>R$ 197,95</s>R$ 119,00</div>
       </a>
       <a href="/pages/box-infantil" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'infantil', i: 0, p: true, r: 'camisa-infantil-03-conjunto-infantil-colombia-202627-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Infantil</div>
           <div class="xs-desc">Kits e conjuntos infantis pra criar o próximo craque.</div>
@@ -307,7 +307,7 @@
         <div class="xs-price"><s>R$ 169,90</s>R$ 99,00</div>
       </a>
       <a href="/pages/box-casal" class="xs-card spotlight">
-        <span class="xs-photo"><img src="{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}" alt="" loading="lazy" width="420" height="420"></span>
+        <span class="xs-photo"><img src="{% render 'box-imagem', c: 'casal', i: 0, p: true, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' %}" alt="" loading="lazy" width="420" height="420"></span>
         <div>
           <div class="xs-name">Box Casal</div>
           <div class="xs-desc">Uma camisa masculina + uma feminina. Mistério em dobro.</div>
@@ -379,29 +379,29 @@
     "variants": null,
     "photos": [
       {
-        "src": "{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' | asset_url }}",
-        "nome": "Chelsea 23/24"
+        "src": "{% render 'box-imagem', c: 'masculino', i: 0, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'masculino', i: 0, p: true, r: 'camisa-masculina-02-camisa-chelsea-i-2324-nike-azul-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'masculino', i: 0, campo: 'titulo', rt: 'Chelsea 23/24' %}"
       },
       {
-        "src": "{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' | asset_url }}",
-        "nome": "Atlético de Madrid 25/26"
+        "src": "{% render 'box-imagem', c: 'masculino', i: 1, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'masculino', i: 1, p: true, r: 'camisa-masculina-05-camisa-nike-atletico-de-madrid-202526-pre-jogo-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'masculino', i: 1, campo: 'titulo', rt: 'Atlético de Madrid 25/26' %}"
       },
       {
-        "src": "{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' | asset_url }}",
-        "nome": "Grêmio 24/25"
+        "src": "{% render 'box-imagem', c: 'masculino', i: 2, r: 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'masculino', i: 2, p: true, r: 'camisa-masculina-03-camisa-masculina-umbro-gremio-oficial-2425-torcedor-com-patr-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'masculino', i: 2, campo: 'titulo', rt: 'Grêmio 24/25' %}"
       },
       {
-        "src": "{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' | asset_url }}",
-        "nome": "São Paulo 25/26"
+        "src": "{% render 'box-imagem', c: 'masculino', i: 3, r: 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'masculino', i: 3, p: true, r: 'camisa-masculina-04-camisa-sao-paulo-2526-goleiro-home-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'masculino', i: 3, campo: 'titulo', rt: 'São Paulo 25/26' %}"
       },
       {
-        "src": "{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta.webp' | asset_url }}",
-        "thumb": "{{ 'camisa-masculina-01-regata-orlando-magic-masculina-preta-p.webp' | asset_url }}",
-        "nome": "Orlando Magic"
+        "src": "{% render 'box-imagem', c: 'masculino', i: 4, r: 'camisa-masculina-01-regata-orlando-magic-masculina-preta.webp' %}",
+        "thumb": "{% render 'box-imagem', c: 'masculino', i: 4, p: true, r: 'camisa-masculina-01-regata-orlando-magic-masculina-preta-p.webp' %}",
+        "nome": "{% render 'box-imagem', c: 'masculino', i: 4, campo: 'titulo', rt: 'Orlando Magic' %}"
       }
     ],
     "prices": [

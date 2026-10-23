@@ -439,7 +439,8 @@
       DSB.lightbox.open(visible.map(function (c) {
         var img = c.querySelector('img');
         return {
-          src: img.getAttribute('src').replace(/-p\.webp(?=\?|$)/, '.webp'),
+          // foto grande: data-full (Shopify) ou a versão sem "-p" do arquivo
+          src: img.getAttribute('data-full') || img.getAttribute('src').replace(/-p\.webp(?=\?|$)/, '.webp'),
           caption: c.querySelector('.shirt-name').textContent + ' · ' + c.querySelector('.shirt-det').textContent
         };
       }), visible.indexOf(card));

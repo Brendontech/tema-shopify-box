@@ -1,0 +1,59 @@
+{%- comment -%}
+  ============================================================
+  FOTOS DA BOX VINDAS DAS COLEÇÕES DA LOJA
+  ------------------------------------------------------------
+  Troque os identificadores (handles) abaixo pelos das suas
+  coleções. O handle aparece na URL da coleção:
+  sualoja.com.br/collections/ESTE-AQUI
+  Se a coleção não existir ou não tiver produtos com foto,
+  a Box usa as fotos de reserva (assets camisa-*.webp).
+  ============================================================
+{%- endcomment -%}
+{%- case c -%}
+  {%- when 'retro' -%}{%- assign handle = 'retro' -%}
+  {%- when 'atual' -%}{%- assign handle = 'atual' -%}
+  {%- when 'selecoes' -%}{%- assign handle = 'selecoes' -%}
+  {%- when 'brasil' -%}{%- assign handle = 'brasil' -%}
+  {%- when 'classica' -%}{%- assign handle = 'classica' -%}
+  {%- when 'masculino' -%}{%- assign handle = 'masculino' -%}
+  {%- when 'feminino' -%}{%- assign handle = 'feminino' -%}
+  {%- when 'infantil' -%}{%- assign handle = 'infantil' -%}
+  {%- when 'casal' -%}{%- assign handle = 'casal' -%}
+{%- endcase -%}
+{%- comment -%}
+  Parâmetros: c = parte da Box (acima) · i = posição do produto (0 = primeiro)
+  p = true para miniatura · r = foto de reserva · rt = nome de reserva
+  campo: 'titulo' devolve o nome do produto · modo: 'img' (uma <img>) ou 'deck' (n fotos)
+{%- endcomment -%}
+{%- assign colecao = collections[handle] -%}
+{%- if p -%}{%- assign largura = 480 -%}{%- else -%}{%- assign largura = 1200 -%}{%- endif -%}
+
+{%- if modo == 'deck' -%}
+  {%- assign qtd = 0 -%}
+  {%- for produto in colecao.products limit: 24 -%}
+    {%- if produto.featured_image and qtd < n -%}
+      <img src="{{ produto.featured_image | image_url: width: 480 }}" alt="" loading="lazy" width="420" height="420">
+      {%- assign qtd = qtd | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- assign posicao = i | default: 0 -%}
+  {%- assign achou = false -%}
+  {%- assign k = 0 -%}
+  {%- for produto in colecao.products limit: 24 -%}
+    {%- if produto.featured_image -%}
+      {%- if k == posicao -%}{%- assign achou = produto -%}{%- break -%}{%- endif -%}
+      {%- assign k = k | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if modo == 'img' -%}
+    {%- if achou -%}<img src="{{ achou.featured_image | image_url: width: largura }}" alt="" loading="lazy" width="420" height="420">{%- endif -%}
+  {%- elsif campo == 'titulo' -%}
+    {%- if achou -%}{{ achou.title | replace: '"', '”' | escape }}{%- else -%}{{ rt }}{%- endif -%}
+  {%- elsif achou -%}
+    {{- achou.featured_image | image_url: width: largura -}}
+  {%- elsif r != blank -%}
+    {{- r | asset_url -}}
+  {%- endif -%}
+{%- endif -%}

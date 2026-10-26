@@ -5,6 +5,8 @@
   Troque os identificadores (handles) abaixo pelos das suas
   coleções. O handle aparece na URL da coleção:
   sualoja.com.br/collections/ESTE-AQUI
+  (pode colar o link inteiro da coleção, também funciona)
+  Deixe '' (vazio) se a coleção ainda não existe.
   Se a coleção não existir ou não tiver produtos com foto,
   a Box usa as fotos de reserva (assets camisa-*.webp).
   ============================================================
@@ -25,6 +27,8 @@
   p = true para miniatura · r = foto de reserva · rt = nome de reserva
   campo: 'titulo' devolve o nome do produto · modo: 'img' (uma <img>) ou 'deck' (n fotos)
 {%- endcomment -%}
+{%- comment -%} Aceita o handle ("retro") ou o link inteiro da coleção {%- endcomment -%}
+{%- assign handle = handle | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first | strip -%}
 {%- assign colecao = collections[handle] -%}
 {%- if p -%}{%- assign largura = 480 -%}{%- else -%}{%- assign largura = 1200 -%}{%- endif -%}
 
